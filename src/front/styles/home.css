@@ -1,7 +1,47 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.container-bienvenida {
+    text-align: center;
+    padding: 50px;
+    background-color: #282c34;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.titulo-bienvenida {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+h1{
+    font-size: 3rem;
+    font-weight: bold;
+    padding-top: 2rem;
+}
+
+.imagen-titulo {
+    width: 25%;
+    margin-left: 1.2rem;
+}
+
+.imagen-bienvenida {
+    max-width: 300px;
+    margin: 20px 0;
+}
+
+
+.boton-bienvenida {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #282c34;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton-bienvenida:hover {
+    background-color: #21a1f1;
+}

@@ -1,0 +1,18 @@
+.container-inicio{
+    text-align: center;
+    padding: 50px;
+    background-color: #282c34;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("https://s3.amazonaws.com/thumbnails.thecrimson.com/photos/2023/10/23/211613_1366205.jpg.1500x843_q95_crop-smart_upscale.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icono{
+    width: 10rem;
+}

@@ -1,62 +1,41 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/inicio.css";
-import { useNavigate } from "react-router-dom";
-import { FaRegUserCircle } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { Login } from "../component/login"
+import { Register } from "../component/register"
+import { Footer } from "../component/footer";
+
 
 export const Inicio = () => {
-    const { store, actions } = useContext(Context);
-
-    const navigate = useNavigate()
-
-    const [inputEmail, setInputEmail] = useState("");
-    const [inputPassword, setInputPassword] = useState("");
 
 
     return (
         <>
             <div className="container-inicio">
-                <div className="botones-inicio">
-                    <button>Login</button>
-                    <button>Register</button>
+
+                <ul className="nav nav-tabs" id="myTab" role="tablist">
+                    <li className="nav-item" role="presentation">
+                        <button className="nav-link active sombreado letra-negrita" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">LOG IN</button>
+                    </li>
+                    <li className="nav-item" role="presentation">
+                        <button className="nav-link sombreado letra-negrita" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">REGISTER</button>
+                    </li>
+                </ul>
+                <div className="tab-content" id="myTabContent">
+
+                    <div className="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <Login />
+                    </div>
+
+                    <div className="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                        <Register />
+                    </div>
+
                 </div>
-                <div className="container-fluid d-flex flex-column justify-content-center align-items-center mt-5">
-                    <form className="form-login bg-light">
-                        <div className="text-center mb-4">
-                        <FaRegUserCircle />
-                            
-                            
-            
-                        </div>
-
-                        <div className="form-label-group">
-                            <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required="" autoFocus=""
-                                onChange={(event) => setInputEmail(event.target.value)}
-                                value={inputEmail} />
-                            <label htmlFor="inputEmail"></label>
-                        </div>
-
-                        <div className="form-label-group">
-                            <input type="password" id="inputPassword" className="form-control" placeholder="Password" required=""
-                                onChange={(event) => setInputEmail(event.target.value)}
-                                value={inputPassword} />
-                            <label htmlFor="inputPassword"></label>
-                        </div>
-
-                        <div className="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" className=".text-dark" value="remember-me" /> Remember me
-                            </label>
-                        </div>
-                        <button className="btn btn-lg btn-primary w-100 btn-block" type="submit">Sign in</button>
-                      
-                    </form>
-                </div>
-
-
 
             </div>
-
+            <Footer />
         </>
     )
 };

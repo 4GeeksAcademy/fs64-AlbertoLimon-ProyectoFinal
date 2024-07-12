@@ -1,5 +1,4 @@
 .container-inicio{
-    text-align: center;
     padding: 50px;
     background-color: #282c34;
     color: white;
@@ -13,6 +12,29 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.icono{
-    width: 10rem;
+.sombreado{
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+}
+.letra-negrita{
+    font-weight: bold;
+}
+.tab-content{
+    width: 380px;
+    background-color: rgba(240, 240, 240, 0.8);
+    color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    padding-bottom: .4rem;
+    padding: 1rem;
+  
+}
+.icono-usuario{
+    width: 40%;
+}
+.olvidar-contraseña{
+    align-items: end;
+}
+.boton-submit{
+    margin-top: .6rem;
+    margin-bottom: .5rem;
 }

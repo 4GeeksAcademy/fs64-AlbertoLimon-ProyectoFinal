@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/inicio.css";
-import { FaUser } from "react-icons/fa";
-import { Login } from "../component/login"
-import { Register } from "../component/register"
-import { Footer } from "../component/footer";
+import { Login } from "../component/Login/login"
+import { Register } from "../component/Register/register"
+import { Footer } from "../component/Footer/footer";
 
 
 export const Inicio = () => {

@@ -18,21 +18,23 @@ export const CharacterList = () => {
             const data = await actions.getCharacters();
             const personajes = data.results
             setCharacters(personajes)
-            console.log("results,  ", data.results)
-            console.log("caracteres,  ", characters)
+            
         }
 
         fetchCharacters()
+        
     }, [])
+
+    console.log("caracteres,  ", characters)
 
     return (
         <>
             <div className="card-container">
                 {characters.map((character, index) => (
                     <div className="card">
-                        <img src=""/>
+                        <img src={character.image}/>
                         <div className="card-body">
-                            <h5 className="card-title mb-3">aaaaaa</h5>
+                            <h5 className="card-title mb-3">{character.name}</h5>
 
                             <div className="d-flex justify-content-between">
                                 <button onClick={() => navigate('/')} className="btn btn-outline-primary">Show details</button>

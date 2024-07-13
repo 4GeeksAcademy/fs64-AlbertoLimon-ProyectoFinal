@@ -1,3 +1,7 @@
+import charactersDispatcher from "./charactersDispatcher"
+import episodesDispatcher from "./episodesDispatcher";
+import locationsDispatcher from "./locationsDispatcher";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -13,7 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -47,14 +52,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			getCharacters: () => {
-				
+			getCharacters: async () => {
+				const data = await charactersDispatcher.get()
+				console.log(data)
+				return data
 			},
-			getEpisodes: () => {
-
+			getEpisodes: async () => {
+				const data = await episodesDispatcher.get()
 			},
-			getCharacters: () => {
-
+			getLocations: async () => {
+				const data = await locationsDispatcher.get()
 			}
 		}
 	};

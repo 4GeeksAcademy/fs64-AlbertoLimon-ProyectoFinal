@@ -1,9 +1,21 @@
+.navbar{
+    background-color: black;
+}
+.navbar-brand span{
+    color: white;
+}
+
 .imagenPerfil{
     width: 50px;
     margin-right: .6rem;
 }
+.nav-link{
+    color: white;
+}
+/*
 .active {
     color: #0b5ed7 !important;
     font-weight: bold;
     border-bottom: 3px solid #0b5ed7;
-  }
+}
+    */

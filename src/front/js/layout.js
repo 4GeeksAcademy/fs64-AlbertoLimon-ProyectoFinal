@@ -9,6 +9,7 @@ import injectContext from "./store/appContext";
 import { Inicio } from "./pages/inicio";
 import { Main } from "./pages/main";
 import { Profile } from "./component/Profile/profile";
+import { CharacterDetail } from "./component/Characters/characterDetail";
 
 //create your first component
 const Layout = () => {
@@ -30,6 +31,8 @@ const Layout = () => {
 
                         <Route element={<Profile />} path="/profile" />
                         
+                        <Route element={<CharacterDetail />} path="/characterDetail" />
+
                     </Routes>
                     
                 </ScrollToTop>

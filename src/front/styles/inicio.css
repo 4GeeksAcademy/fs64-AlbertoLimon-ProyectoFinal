@@ -28,6 +28,9 @@
     padding: 1rem;
   
 }
+.nav-link{
+    font-size: 1.3rem;
+}
 .icono-usuario{
     width: 40%;
 }

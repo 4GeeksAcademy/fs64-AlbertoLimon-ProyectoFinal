@@ -26,7 +26,7 @@ export const Footer = () => {
 							<ul className="nav flex-column">
 								<li className="nav-item mb-2 d-flex flex-row justify-content-center align-items-center ">
 									<BiLogoGmail />
-									<span className="ps-2" href="">albertolimoncarmona99@gmail.com</span>
+									<span className="span-gmail" href="">albertolimoncarmona99@gmail.com</span>
 								</li>
 								<li className="nav-item mb-2">+34 640967587</li>
 							</ul>
@@ -35,7 +35,7 @@ export const Footer = () => {
 						<div className="col-4 centrado">
 							<h5>Follow</h5>
 							<ul className="nav flex-column">
-								<li className="nav-item mb-2"><a href="www.linkedin.com/in/alberto-limón-carmona-34660420b" target="_blank"><FaLinkedin /></a> </li>
+								<li className="nav-item mb-2"><a href="https://www.linkedin.com/in/alberto-limón-carmona-34660420b" target="_blank"><FaLinkedin /></a> </li>
 								<li className="nav-item mb-2"><a href="https://github.com/albertolimongithub" target="_blank"><FaGithub /></a>  </li>
 							</ul>
 						</div>

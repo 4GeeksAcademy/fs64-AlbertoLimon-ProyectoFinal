@@ -52,8 +52,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			getCharacters: async () => {
-				const data = await charactersDispatcher.get()
+			getCharacters: async (pageNumber) => {
+				const data = await charactersDispatcher.get(pageNumber)
 				console.log(data)
 				return data
 			},

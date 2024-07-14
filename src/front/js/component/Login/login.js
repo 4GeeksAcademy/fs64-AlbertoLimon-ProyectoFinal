@@ -38,8 +38,8 @@ export const Login = () => {
                                 value={inputPassword} />
 
                             <div className="d-flex justify-content-end">
-                                <span className="letra-negrita">
-                                    <a className="text-dark" href="">Forgot password?</a>
+                                <span className="">
+                                    <a className="fs-6 text-dark fw-bold" href="">Forgot password?</a>
                                 </span>
                             </div>
 

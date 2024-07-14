@@ -1,7 +1,7 @@
 const charactersDispatcher = {
-    get : async () => {
+    get : async (pageNumber) => {
         try {
-            const response = await fetch("https://rickandmortyapi.com/api/character", {
+            const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type':'application/json'

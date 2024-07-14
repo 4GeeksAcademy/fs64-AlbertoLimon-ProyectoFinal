@@ -7,10 +7,10 @@ import { LuLogOut } from "react-icons/lu";
 export const Navbar = () => {
 	return (
 		<>
-			<nav className="navbar navbar-expand-lg navbar-light mb-4">
+			<nav className="navbar navbar-expand-lg navbar-light">
 				<div className="container">
-					<div className="navbar-brand fs-3">
-						<img className="imagenPerfil" src="https://cdn11.bigcommerce.com/s-fg272t4iw0/images/stencil/1280x1280/products/7093/7346/C-17141__68476.1557818587.jpg?c=2" />
+					<div className="navbar-brand">
+						<img className="imagenPerfil" src="https://i.pinimg.com/originals/ec/3e/3d/ec3e3d06ff9aaacd229c7c288308340e.png" />
 						<span className="">My Profile</span>
 					</div>
 					<div className="dropdown">
@@ -45,14 +45,14 @@ export const Navbar = () => {
 						id="navbarNavAltMarkup"
 					>
 						<div className="navbar-nav fs-5">
-							<NavLink to="/main" className="nav-link">
+							<NavLink to="/main" className="nav-link fs-3">
 								Characters
 							</NavLink>
-							<NavLink to="/episodes" className="nav-link">
+							<NavLink to="/episodes" className="nav-link fs-3">
 								Episodes
 							</NavLink>
 							<NavLink
-								className="nav-link"
+								className="nav-link fs-3"
 								to="/location"
 							>
 								Locations

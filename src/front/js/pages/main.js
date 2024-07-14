@@ -1,8 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Navbar } from "../component/Navbar/navbar"
 import { Footer } from "../component/Footer/footer";
-import { CharacterList } from "../component/Characters/characterList";
+import { Outlet } from "react-router-dom";
+import "../../styles/main.css"
 
 
 export const Main = () => {
@@ -11,14 +12,8 @@ export const Main = () => {
 
     return (
         <>
-            <Navbar />
-            <div className="container-fluid main">
-                <h1>Rick & Morty</h1>
-                <div>
-                    <CharacterList />
-                </div>
-            </div>
-
+            <Navbar /> 
+                <Outlet />
             <Footer />
         </>
     )

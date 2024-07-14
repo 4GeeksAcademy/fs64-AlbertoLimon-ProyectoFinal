@@ -20,6 +20,11 @@ footer{
 a{
     color: white;
 }
+.span-gmail{
+    margin-left: .3rem;
+    font-size: .9rem;
+    color: white;
+}
 h5{
     text-align: left;
     font-size: 1.1rem;

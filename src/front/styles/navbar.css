@@ -1,17 +1,22 @@
 .navbar{
-    background-color: black;
+    background-color: white;
 }
-.navbar-brand span{
-    color: white;
+.navbar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+span{
+    color: black;
+    font-size: 2.3rem;
 }
 
 .imagenPerfil{
-    width: 50px;
+    width: 100px;
     margin-right: .6rem;
 }
-.nav-link{
-    color: white;
-}
+
 /*
 .active {
     color: #0b5ed7 !important;

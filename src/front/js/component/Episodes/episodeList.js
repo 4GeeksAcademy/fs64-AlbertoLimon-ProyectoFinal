@@ -6,7 +6,7 @@ import "../../../styles/cards.css"
 import { useNavigate } from "react-router-dom";
 import { Pagination } from "../Pagination/pagination";
 
-export const CharacterList = () => {
+export const EpisodesList = () => {
 
     
     const { store, actions } = useContext(Context);

@@ -1,7 +1,21 @@
+
 .main{
-    display: flex;
-    
+    padding-bottom: 4rem;
+    background-color: rgb(34, 34, 34);
 }
 h1{
+    font-size: 4rem;
     text-align: center;
+    margin-bottom: 2.5rem;
+    color: whitesmoke;
+}
+.contenedorImagen{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    margin-bottom: 1rem;
+}
+.imagenTitulo{
+    text-align: center;
+    width: 23%;
 }

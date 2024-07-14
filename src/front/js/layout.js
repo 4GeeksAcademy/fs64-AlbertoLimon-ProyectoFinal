@@ -9,7 +9,8 @@ import injectContext from "./store/appContext";
 import { Inicio } from "./pages/inicio";
 import { Main } from "./pages/main";
 import { Profile } from "./component/Profile/profile";
-import { CharacterDetail } from "./component/Characters/characterDetail";
+import { Characters } from "./pages/characters";
+import { Episodes } from "./pages/episodes";
 
 //create your first component
 const Layout = () => {
@@ -22,17 +23,19 @@ const Layout = () => {
     return (
         <div>
             <BrowserRouter basename={basename}>
-                <ScrollToTop>            
+                <ScrollToTop>  
+
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Inicio />} path="/inicio" />
 
-                        <Route element={<Main />} path="/main" />
-
                         <Route element={<Profile />} path="/profile" />
+                    
                         
-                        <Route element={<CharacterDetail />} path="/characterDetail" />
-
+                        <Route element={<Main />} path="/main">
+                            <Route element={<Characters />} path="characters" />
+                            <Route element={<Episodes />} path="episodes" />
+                        </Route>
                     </Routes>
                     
                 </ScrollToTop>

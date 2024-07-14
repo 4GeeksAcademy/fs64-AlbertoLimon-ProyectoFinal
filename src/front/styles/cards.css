@@ -1,7 +1,8 @@
 .card{
-    width: 300px;
+    width: 20%;
+    padding: 0;
+    border: 3px solid black;
 }
-
 .iconoFavorito{
     font-size: 1.6rem;
 }

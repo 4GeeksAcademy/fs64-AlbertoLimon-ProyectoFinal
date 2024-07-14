@@ -23,7 +23,7 @@ export const Home = () => {
 				<p>Explora el multiverso de Rick y Morty.</p>
 				<button type="button" className="boton-bienvenida btn btn-primary" onClick={() => navigate("/inicio")}>Comenzar</button>
 			</div>
-
+		
 		</>
 	)
 };

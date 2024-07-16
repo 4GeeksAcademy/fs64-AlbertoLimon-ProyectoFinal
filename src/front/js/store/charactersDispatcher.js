@@ -30,12 +30,11 @@ const charactersDispatcher = {
             })
             if(response.ok){
                 const data = await response.json();
-                console.log(data)
-                return characters;
+                return data;
             }
 
         } catch (error) {
-            console.error("Error al cargar los personajes:", error);
+            console.error("Error el personaje con id: " + id, error);
             throw error;
         }
     }

@@ -60,6 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return numPages;
 			},
 			getSingleCharacter: async(id) => {
+				
 				const data = await charactersDispatcher.getSingleCharacter(id)
 				return data;
 			},

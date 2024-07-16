@@ -31,14 +31,16 @@ const Layout = () => {
                         <Route element={<Inicio />} path="/inicio" />
 
                         <Route element={<Profile />} path="/profile" />
-                    
-                        <Route element={<CharacterDetails />} path="/characterDetails" />
+
+                        
 
                         <Route element={<Main />} path="/main">
                             <Route element={<Characters />} path="characters" />
-                            <Route element={<CharacterDetails />} path="characterDetails" />
+                            <Route element={<CharacterDetails />} path="characters/:id" />
                             <Route element={<Episodes />} path="episodes" />
                         </Route>
+                        
+                        
                         
                     </Routes>
                     

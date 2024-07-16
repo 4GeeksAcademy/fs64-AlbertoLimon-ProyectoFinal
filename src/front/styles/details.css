@@ -1,15 +1,14 @@
 .contenedorDetalles{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     background-color: rgb(59, 59, 59);
     border-radius: 10px;
-    width: 70%;
+    width: 18%;
     padding: 0;
 }
 .imagenDetalles{
-    width: 50%
+    width: 100%
 }
 
 .detallesSecundarios{
@@ -18,8 +17,16 @@
 }
 .status{
     display: flex;
+    flex-direction: row;
     align-items: center;
+    color: whitesmoke;
 }
+.spanDetalle{
+    font-size: 1.1rem;
+    color: white;
+}
+
+
 .status-icon{
     height: 0.5rem;
     width: 0.5rem;

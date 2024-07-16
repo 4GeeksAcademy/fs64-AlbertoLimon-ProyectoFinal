@@ -1,0 +1,20 @@
+.formSearch{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.inputSearch {
+    width: 25%;
+    border: 2px solid white;
+    border-radius: 10px;
+    box-shadow: 1px 3px 9px 1px black;
+    padding: 12px 17px;
+    font-size: 1rem;
+  }
+
+.btnSearch {
+    font-size: 1rem;
+    border-radius: 10px;
+    box-shadow: 1px 3px 9px rgba( #000000);
+  }

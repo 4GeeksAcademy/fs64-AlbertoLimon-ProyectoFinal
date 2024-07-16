@@ -9,7 +9,8 @@ const locationsDispatcher = {
             })
             if(response.ok){
                 const data = await response.json();
-                return data;    
+                const locations = data.results
+                return locations;    
             }
 
         } catch (error) {

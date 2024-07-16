@@ -30,7 +30,6 @@ export const EpisodesList = () => {
 
     }, [])
 
-    console.log("caracteres,  ", characters)
 
     return (
         <>

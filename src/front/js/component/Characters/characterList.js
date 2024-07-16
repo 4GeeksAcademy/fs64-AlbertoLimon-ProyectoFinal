@@ -5,6 +5,7 @@ import { MdFavorite } from "react-icons/md";
 import "../../../styles/cards.css"
 import { useNavigate } from "react-router-dom";
 import { Pagination } from "../Pagination/pagination";
+import { SearchBar } from "../Search/search";
 
 export const CharacterList = () => {
 
@@ -15,14 +16,17 @@ export const CharacterList = () => {
 
     const [characters, setCharacters] = useState([])
 
+    const [searchText, setSearchText] = useState("")
+
     const navigate = useNavigate()
 
     useEffect(() => {
 
         const fetchCharacters = async () => {
-            const data = await actions.getCharacters(pageNumber);
-            const personajes = data.results
-            setCharacters(personajes)
+            console.log(searchText)
+            const data = await actions.getCharacters(pageNumber, searchText);
+            console.log("data ",data)
+            setCharacters(data)
 
         }
 
@@ -30,13 +34,13 @@ export const CharacterList = () => {
 
     }, [])
 
-    console.log("caracteres,  ", characters)
-
     return (
         <>
+        <SearchBar setSearchText={setSearchText}/>
+
             <div className="card-container container-fluid row">
                 <div className="col-3">
-                    <h1>Aqui va la barra de busqueda</h1>
+                    <h1>Aqui va la barra de filtrado</h1>
                 </div>
                 <div className="col-9">
                     <div className="row d-flex justify-content-center align-items-center gap-4">
@@ -48,7 +52,7 @@ export const CharacterList = () => {
                                     <h5 className="card-title mb-3 text-dark">{character.name}</h5>
 
                                     <div className="d-flex justify-content-between">
-                                        <button onClick={() => navigate('/')} className="btn btn-outline-primary">Show details</button>
+                                        <button onClick={() => navigate(`/characterDetails/${character.id}`)} className="btn btn-outline-primary">Show details</button>
                                         <button className="btn btn-outline-danger" >
                                             <MdFavorite className="iconoFavorito" />
                                         </button>
@@ -59,7 +63,7 @@ export const CharacterList = () => {
                         ))}
                     </div>
 
-                    <Pagination setPageNumber={setPageNumber} />
+                    <Pagination type={"characters"} />
 
                 </div>
                 

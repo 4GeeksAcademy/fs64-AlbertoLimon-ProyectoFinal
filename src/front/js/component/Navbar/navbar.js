@@ -45,15 +45,15 @@ export const Navbar = () => {
 						id="navbarNavAltMarkup"
 					>
 						<div className="navbar-nav fs-5">
-							<NavLink to="/main" className="nav-link fs-3">
+							<NavLink to="/main/characters" className="nav-link fs-3">
 								Characters
 							</NavLink>
-							<NavLink to="/episodes" className="nav-link fs-3">
+							<NavLink to="/main/episodes" className="nav-link fs-3">
 								Episodes
 							</NavLink>
 							<NavLink
 								className="nav-link fs-3"
-								to="/location"
+								to="/main/locations"
 							>
 								Locations
 							</NavLink>

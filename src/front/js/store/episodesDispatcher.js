@@ -9,7 +9,8 @@ const episodesDispatcher = {
             })
             if(response.ok){
                 const data = await response.json();
-                return data;
+                const episodes = data.results
+                return episodes;
             }
 
         } catch (error) {

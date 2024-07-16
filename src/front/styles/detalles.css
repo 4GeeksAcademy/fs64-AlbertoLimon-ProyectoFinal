@@ -1,0 +1,29 @@
+.contenedorDetalles{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(59, 59, 59);
+    border-radius: 10px;
+    width: 70%;
+    padding: 0;
+}
+.imagenDetalles{
+    width: 50%
+}
+
+.detallesSecundarios{
+    display: flex;
+    flex-direction: column;
+}
+.status{
+    display: flex;
+    align-items: center;
+}
+.status-icon{
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-right: 0.375rem;
+    background: rgb(255, 0, 0);
+    border-radius: 50%;
+}

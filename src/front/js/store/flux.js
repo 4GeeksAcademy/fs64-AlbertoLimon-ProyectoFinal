@@ -1,6 +1,7 @@
 import charactersDispatcher from "./charactersDispatcher"
 import episodesDispatcher from "./episodesDispatcher";
 import locationsDispatcher from "./locationsDispatcher";
+import pageDispatcher from "./pageDispatcher";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -52,16 +53,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			getCharacters: async (pageNumber) => {
-				const data = await charactersDispatcher.get(pageNumber)
-				console.log(data)
-				return data
+			getCharacters: async (pageNumber, searchText) => {
+				console.log(pageNumber, searchText)
+				const data = await charactersDispatcher.get(pageNumber, searchText)
+				return data;
 			},
 			getEpisodes: async () => {
 				const data = await episodesDispatcher.get()
+				return data;
 			},
 			getLocations: async () => {
 				const data = await locationsDispatcher.get()
+				return data;
+			},
+			getPages: async (type) => {
+				const numPages = await pageDispatcher.get(type)
+				return numPages;
+			},
+			getSingleCharacter: async(id) => {
+				const data = await charactersDispatcher.getSingleCharacter(id)
+				return data;
 			}
 		}
 	};

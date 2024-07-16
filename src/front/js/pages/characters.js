@@ -5,6 +5,7 @@ import { CharacterList } from "../component/Characters/characterList";
 import "../../styles/main.css"
 
 
+
 export const Characters = () => {
 
     const { store, actions } = useContext(Context);
@@ -15,8 +16,9 @@ export const Characters = () => {
             <div className="container-fluid main">
                 <div className="contenedorImagen d-flex justify-content-center align-items-center">
                     <img className="imagenTitulo" src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/c50a4a55883023.5996f8afa3f5c.gif" />
-                </div>
+                </div>  
 
+                
                 <div>
                     <CharacterList />
                 </div>

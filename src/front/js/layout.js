@@ -11,6 +11,7 @@ import { Main } from "./pages/main";
 import { Profile } from "./component/Profile/profile";
 import { Characters } from "./pages/characters";
 import { Episodes } from "./pages/episodes";
+import { CharacterDetails } from "./component/Characters/characterDetails";
 
 //create your first component
 const Layout = () => {
@@ -31,11 +32,14 @@ const Layout = () => {
 
                         <Route element={<Profile />} path="/profile" />
                     
-                        
+                        <Route element={<CharacterDetails />} path="/characterDetails" />
+
                         <Route element={<Main />} path="/main">
                             <Route element={<Characters />} path="characters" />
+                            <Route element={<CharacterDetails />} path="characterDetails" />
                             <Route element={<Episodes />} path="episodes" />
                         </Route>
+                        
                     </Routes>
                     
                 </ScrollToTop>

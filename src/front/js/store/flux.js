@@ -7,26 +7,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
+			characters: []
 			
 		},
+		
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
@@ -53,10 +42,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			getCharacters: async (pageNumber, searchText) => {
-				console.log(pageNumber, searchText)
-				const data = await charactersDispatcher.get(pageNumber, searchText)
-				return data;
+			getCharacters: async (pageNumber) => {
+				console.log(pageNumber)
+				const data = await charactersDispatcher.get(pageNumber)
+				setStore({characters: data})
 			},
 			getEpisodes: async () => {
 				const data = await episodesDispatcher.get()
@@ -73,6 +62,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSingleCharacter: async(id) => {
 				const data = await charactersDispatcher.getSingleCharacter(id)
 				return data;
+			},
+			setFiltered: (filtered) => {
+				setStore({characters: filtered})
 			}
 		}
 	};

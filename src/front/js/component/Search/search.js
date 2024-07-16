@@ -2,9 +2,25 @@ import React, { useState, useContext } from "react";
 import { Context } from "../../store/appContext";
 import "./search.css"
 
-export const SearchBar = ({setSearchText}) => {
+export const SearchBar = () => {
 
-    console.log(setSearchText())
+    const { store, actions } = useContext(Context);
+
+    const [searchText, setSearchText] = useState("")
+
+
+    const setFilter = (e) => {
+        setSearchText(e.target.value)
+        console.log("serach text :",searchText)
+        const filtered = store.characters.filter((item) => {
+            console.log("item :",item)
+            
+            item.name.includes(searchText)
+        })
+
+        actions.setFiltered(filtered)
+        console.log("filtered:  ",filtered)
+    }
 
     return (
         <>
@@ -14,7 +30,7 @@ export const SearchBar = ({setSearchText}) => {
                     type="text"
                     placeholder="Search for Characters..."
                     onChange={(e) => {
-                        setSearchText(e.target.value)
+                        setFilter(e)
                     }}
 
                 />

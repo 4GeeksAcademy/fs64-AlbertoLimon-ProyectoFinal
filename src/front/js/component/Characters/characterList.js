@@ -23,11 +23,9 @@ export const CharacterList = () => {
     useEffect(() => {
 
         const fetchCharacters = async () => {
-            console.log(searchText)
-            const data = await actions.getCharacters(pageNumber, searchText);
-            console.log("data ",data)
-            setCharacters(data)
-
+            
+            await actions.getCharacters(pageNumber);
+            console.log(store.characters)
         }
 
         fetchCharacters()
@@ -36,7 +34,7 @@ export const CharacterList = () => {
 
     return (
         <>
-        <SearchBar setSearchText={setSearchText}/>
+        <SearchBar />
 
             <div className="card-container container-fluid row">
                 <div className="col-3">
@@ -44,7 +42,7 @@ export const CharacterList = () => {
                 </div>
                 <div className="col-9">
                     <div className="row d-flex justify-content-center align-items-center gap-4">
-                        {characters.map((character, index) => (
+                        {store.characters.map((character, index) => (
 
                             <div className="card col-3">
                                 <img src={character.image} />

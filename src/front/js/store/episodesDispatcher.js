@@ -19,6 +19,24 @@ const episodesDispatcher = {
         }
 
         
+    },
+    getSingleEpisode: async(id) => {
+        try {
+            const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            })
+            if(response.ok){
+                const data = await response.json();
+                return data;
+            }
+
+        } catch (error) {
+            console.error("Error al cargar el capítulo con id: " + id, error);
+            throw error;
+        }
     }
 }
 

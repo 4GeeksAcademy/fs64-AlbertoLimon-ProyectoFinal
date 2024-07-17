@@ -1,65 +1,61 @@
 import React from "react"
 import { useState, useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
-import { MdFavorite } from "react-icons/md";
-import "../../../styles/cards.css"
-import "../../../styles/detalles.css"
+
+
+import "../../../styles/details.css"
 import { useNavigate, useParams } from "react-router-dom";
 
-export const LocationDetails = () => {
+export const ÑpcationDetails = () => {
 
 	const { store, actions } = useContext(Context);
+	const [location, setLocation] = useState([])
 
+	const { id } = useParams();
 
-	const { idLocation } = useParams();
+	console.log("idLocation ", id)
 
 	const navigate = useNavigate()
 
 	useEffect(() => {
 
 		const fetchLocation = async () => {
-			const data = await actions.getSingleLocation(idLocation);
-			console.log(data)
-
+			const data = await actions.getSingleLocation(id);
+			setLocation(data)
 		}
 
 		fetchLocation()
 	}, [])
 
+
 	return (
 		<>
-			<div className="">
+
+			<div className="mt-4 mb-4">
 				<div className="card-container container contenedorDetalles">
 
 					<div className="card imagenDetalles">
-						<img src="https://www.cinemascomics.com/wp-content/uploads/2021/06/Destructor-Estelar-Interdictor.jpg" className="card-img-top" alt="..." />
+						<img src="" className="card-img-top" alt="..." />
 					</div>
 
 
 					<div className="card-body detallesSecundarios">
-						<div className="detalleIndividual">
-							<h5 className="name">name</h5>
+						<div className="">
+							<span className="spanDetalle fs-2 fw-bold">{location.name}</span>
 						</div>
 
-						<div className="detalleIndividual ">
-							<span className=""></span>
-							<h5>type</h5>
+						<div className="">
+							<span className="spanDetalle">Type: {location.type}</span>
 						</div>
-						<div className="detalleIndividual">
-							<h5>dimension</h5>
+						<div className="">
+							<span className="spanDetalle">Dimension: {location.dimension}</span>
 						</div>
-						<div className="detalleIndividual">
-							<h5>Some residents:</h5>
-							
-						</div>
+
 					</div>
 
 
 				</div>
 			</div>
-
-
-			<button className="btn btn-outline-primary" onClick={() => navigate('/')}>Back to Home</button>
 
 		</>
 	)

@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
-import { MdFavorite } from "react-icons/md";
+
 
 import "../../../styles/details.css"
 import { useNavigate, useParams } from "react-router-dom";
@@ -31,7 +31,7 @@ export const CharacterDetails = () => {
 	return (
 		<>
 		
-			<div className="bg-light mb-4">
+			<div className="mt-4 mb-4">
 				<div className="card-container container contenedorDetalles">
 
 					<div className="card imagenDetalles">

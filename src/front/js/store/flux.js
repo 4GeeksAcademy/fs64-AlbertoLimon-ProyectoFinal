@@ -60,8 +60,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return numPages;
 			},
 			getSingleCharacter: async(id) => {
-				
 				const data = await charactersDispatcher.getSingleCharacter(id)
+				return data;
+			},
+			getSingleEpisode: async(id) => {
+				const data = await episodesDispatcher.getSingleEpisode(id)
+				return data;
+			},
+			getSingleLocation: async(id) => {
+				const data = await locationsDispatcher.getSingleLocation(id)
 				return data;
 			},
 			setFiltered: (filtered) => {

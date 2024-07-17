@@ -9,7 +9,8 @@ export const Register = () => {
 
     const navigate = useNavigate()
 
-    const [inputName, setInputName] = useState("");
+    const [inputFirstName, setInputFirstName] = useState("");
+    const [inputLastName, setInputLastName] = useState("");
     const [inputUsername, setInputUsername] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
@@ -23,11 +24,19 @@ export const Register = () => {
                         <img className="icono-usuario" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
                     </div>
 
-                    <div className="form-label-group">
-                        <label className="letra-negrita" htmlFor="inputName">Full Name</label>
-                        <input type="text" id="inputName" className="form-control sombreado" placeholder="Enter your name" required="" autoFocus=""
-                            onChange={(event) => setInputName(event.target.value)}
-                            value={inputName} />
+                    <div className="form-label-group mt-3">
+                        <label className="letra-negrita" htmlFor="inputFirstName">First Name</label>
+                        <input type="text" id="inputFirstName" className="form-control sombreado" placeholder="Enter your first name" required="" autoFocus=""
+                            onChange={(event) => setInputFirstName(event.target.value)}
+                            value={inputFirstName} />
+
+                    </div>
+                    
+                    <div className="form-label-group mt-3">
+                        <label className="letra-negrita" htmlFor="inputLastName">Last Name</label>
+                        <input type="text" id="inputLastName" className="form-control sombreado" placeholder="Enter your last name" required="" autoFocus=""
+                            onChange={(event) => setInputLastName(event.target.value)}
+                            value={inputLastName} />
 
                     </div>
 

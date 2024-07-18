@@ -6,6 +6,7 @@ export const Profile = () => {
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
 
+
     return (
         <>
             <div>
@@ -18,7 +19,7 @@ export const Profile = () => {
                             <h3>Personal information</h3>
                             <div>
                                 <form className="form-login bg-transparent">
-
+                                    <button >Edit</button>
                                     <div className="row mt-3">
                                         <div className="col form-label-group">
                                             <label className="" htmlFor="inputFirstName">First name</label>
@@ -47,7 +48,7 @@ export const Profile = () => {
 
                                     <div className="form-label-group mt-3">
                                         <label className="" htmlFor="inputEmail">Email</label>
-                                        <input type="email" id="inputEmailLogin" className="form-control w-75" placeholder="" required="" autoFocus=""
+                                        <input type="email" id="inputEmailLogin" className="form-control w-75" placeholder="" readOnly required="" autoFocus=""
                                             onChange={(event) => setInputEmail(event.target.value)}
                                             value={inputEmail} />
 
@@ -94,10 +95,13 @@ export const Profile = () => {
                             </div>
                         </div>
 
-
                     </div>
 
-                    <button className="btn btn-lg btn-primary w-25 mt-2 justify-content-center btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Save changes</button>
+                    <div className="d-flex justify-content-around mt-3">
+                        <button className="btnCancel btn btn-light btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Cancel</button>
+                        <button className="btnSave btn btn-primary btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Save changes</button>
+                    </div>
+
 
                 </div>
             </div>

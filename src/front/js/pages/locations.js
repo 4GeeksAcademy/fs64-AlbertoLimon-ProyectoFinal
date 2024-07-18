@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
 import "../../styles/main.css"
-import { EpisodeList } from "../component/Episodes/episodeList";
+import { LocationList } from "../component/Locations/locationList";
 
 
-export const Episodes = () => {
+export const Locations = () => {
 
     const { store, actions } = useContext(Context);
 
@@ -18,7 +18,7 @@ export const Episodes = () => {
                 </div>
 
                 <div>
-                    <EpisodeList />
+                    <LocationList />
                 </div>
             </div>
 

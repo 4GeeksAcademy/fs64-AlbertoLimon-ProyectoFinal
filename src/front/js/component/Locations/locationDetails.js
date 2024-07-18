@@ -6,7 +6,7 @@ import { Context } from "../../store/appContext";
 import "../../../styles/details.css"
 import { useNavigate, useParams } from "react-router-dom";
 
-export const ÑpcationDetails = () => {
+export const LocationDetails = () => {
 
 	const { store, actions } = useContext(Context);
 	const [location, setLocation] = useState([])

@@ -10,8 +10,12 @@ import { Inicio } from "./pages/inicio";
 import { Main } from "./pages/main";
 import { Profile } from "./component/Profile/profile";
 import { Characters } from "./pages/characters";
-import { Episodes } from "./pages/episodes";
 import { CharacterDetails } from "./component/Characters/characterDetails";
+import { Episodes } from "./pages/episodes";
+import { EpisodeDetails } from "./component/Episodes/episodeDetails";
+import { Locations } from "./pages/locations";
+import { LocationDetails } from "./component/Locations/locationDetails";
+
 
 //create your first component
 const Layout = () => {
@@ -32,14 +36,16 @@ const Layout = () => {
 
                         <Route element={<Profile />} path="/profile" />
 
-                        
-
                         <Route element={<Main />} path="/main">
                             <Route element={<Characters />} path="characters" />
                             <Route element={<CharacterDetails />} path="characters/:id" />
+
                             <Route element={<Episodes />} path="episodes" />
+                            <Route element={<EpisodeDetails />} path="episodes/:id" />
+
+                            <Route element={<Locations />} path="locations" />
+                            <Route element={<LocationDetails />} path="locations/:id" />
                         </Route>
-                        
                         
                         
                     </Routes>

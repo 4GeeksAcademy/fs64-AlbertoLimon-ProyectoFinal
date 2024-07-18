@@ -11,28 +11,30 @@ export const CharacterList = () => {
 
     const { store, actions } = useContext(Context);
 
-    const [pageNumber, setPageNumber] = useState(1)
+    const [pageNumber, setPageNumber] = useState(0)
 
     const [searchText, setSearchText] = useState("")
-
+   
     const navigate = useNavigate()
 
+    const fetchCharacters = async () => {
+        await actions.getCharacters(pageNumber);
+    }
+
+    const fetchInfoPages =  () => {
+        actions.getPages("characters")
+    }
+
     useEffect(() => {
-
-        const fetchCharacters = async () => {
-            
-            await actions.getCharacters(pageNumber);
-            console.log(store.characters[0].id)
-        }
-
+        fetchInfoPages()
         fetchCharacters()
         
-    }, [])
+    }, [pageNumber])
 
     return (
         <>
-        <h1>Characters</h1>
-        <SearchBar />
+            
+            <SearchBar />
 
             <div className="card-container container-fluid row">
                 <div className="col-3">
@@ -59,11 +61,11 @@ export const CharacterList = () => {
                         ))}
                     </div>
 
-                    <Pagination type={"characters"} />
+                    <Pagination totalPages={store.numPages} pageNumber={pageNumber} setPageNumber={setPageNumber} />
 
                 </div>
-                
-                
+
+
             </div>
 
         </>

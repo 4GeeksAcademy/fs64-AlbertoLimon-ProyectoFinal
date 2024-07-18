@@ -12,10 +12,10 @@ h1{
 .contenedorImagen{
     display: flex;
     justify-content: center;
-    align-items: center;   
+    align-items: center;
     margin-bottom: 1rem;
 }
 .imagenTitulo{
     text-align: center;
-    width: 23%;
+    width: 25%;
 }

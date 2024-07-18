@@ -19,7 +19,7 @@
     font-weight: bold;
 }
 .tab-content{
-    width: 380px;
+    
     background-color: rgba(240, 240, 240, 0.8);
     color: #000000;
     border: 1px solid #ccc;
@@ -31,8 +31,11 @@
 .nav-link{
     font-size: 1.3rem;
 }
-.icono-usuario{
-    width: 40%;
+.icono-login{
+    width: 30%;
+}
+.icono-register{
+    width: 30%;
 }
 .olvidar-contraseña{
     align-items: end;

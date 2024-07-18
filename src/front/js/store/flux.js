@@ -7,8 +7,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			characters: []
-			
+			characters: [],
+			episodes: [],
+			locations: [],
+			numPages: null,
 		},
 		
 		actions: {
@@ -43,21 +45,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 			getCharacters: async (pageNumber) => {
-				console.log(pageNumber)
 				const data = await charactersDispatcher.get(pageNumber)
 				setStore({characters: data})
 			},
-			getEpisodes: async () => {
-				const data = await episodesDispatcher.get()
-				return data;
+			getEpisodes: async (pageNumber) => {
+				const data = await episodesDispatcher.get(pageNumber)
+				setStore({episodes: data})
 			},
 			getLocations: async () => {
 				const data = await locationsDispatcher.get()
-				return data;
+				setStore({locations: data})
 			},
 			getPages: async (type) => {
-				const numPages = await pageDispatcher.get(type)
-				return numPages;
+				const data = await pageDispatcher.get(type)
+				setStore({numPages : data})
 			},
 			getSingleCharacter: async(id) => {
 				const data = await charactersDispatcher.getSingleCharacter(id)

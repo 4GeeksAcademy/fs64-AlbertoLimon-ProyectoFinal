@@ -31,7 +31,7 @@ const pageDispatcher = {
             }
 
         } catch (error) {
-            console.error("Error al cargar el número de páginas:", error);
+            console.error("Error al cargar el número de páginas de :" + type, error);
             throw error;
         }
 

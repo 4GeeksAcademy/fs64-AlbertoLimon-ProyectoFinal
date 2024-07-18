@@ -9,23 +9,26 @@ import { useNavigate, useParams } from "react-router-dom";
 export const EpisodeDetails = () => {
 
 	const { store, actions } = useContext(Context);
-	const [episode, setEpisode] = useState([])
 
-	const { id } = useParams();
+    const [pageNumber, setPageNumber] = useState(0)
 
-	console.log("idEpisode ", id)
+    const [searchText, setSearchText] = useState("")
+   
+    const navigate = useNavigate()
 
-	const navigate = useNavigate()
+    const fetchEpisodes = async () => {
+        await actions.getEpisodes(pageNumber);
+    }
 
-	useEffect(() => {
+    const fetchInfoPages =  () => {
+        actions.getPages("episodes")
+    }
 
-		const fetchEpisode = async () => {
-			const data = await actions.getSingleEpisode(id);
-			setEpisode(data)
-		}
-
-		fetchEpisode()
-	}, [])
+    useEffect(() => {
+        fetchInfoPages()
+        fetchEpisodes()
+        
+    }, [pageNumber])
 
 
 	return (

@@ -1,7 +1,7 @@
 const locationsDispatcher = {
-    get : async () => {
+    get : async (pageNumber) => {
         try {
-            const response = await fetch("", {
+            const response = await fetch(`https://rickandmortyapi.com/api/location/?page=${pageNumber}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type':'application/json'

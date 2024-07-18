@@ -1,59 +1,27 @@
-import React, { useContext } from "react";
-import { Context } from "../../store/appContext";
+import React from "react";
+import ReactPaginate from "react-paginate";
 
-export const Pagination = ({ type }) => {
+export const Pagination = ({ totalPages, pageNumber, setPageNumber }) => {
 
-    
-    const next = () => {
-        setPageNumber(actualPage => actualPage + 1)
-    }
-    const prev = () => {
-        setPageNumber(actualPage => actualPage - 1)
-    }
 
     return (
-        
+
         <>
-            <div className="container">
-                <button onClick={prev} className="btn btn-primary">Prev</button>
-                <button onClick={next} className="btn btn-primary">Next</button>
-            </div>
+            <ReactPaginate
+                className="pagination justify-content-center gap-4 my-4"
+                pageCount={totalPages}
+                forcePage={pageNumber === 1? 0 : pageNumber - 1} 
+                nextLabel="Next"
+                previousLabel="Prev"
+                nextClassName="btn btn-primary"
+                previousClassName="btn btn-primary"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                activeClassName="active"
+                onPageChange={(data) => {setPageNumber(data.selected + 1)}}
+            />
+
         </>
     )
-        /*
-    const { store, actions } = useContext(Context);
 
-    const getNumPages = () => {
-        const numPages = actions.getPages(type)
-        console.log("pages ", numPages)
-        return numPages
-    }
-    
-    const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
-    function Items({ currentItems }) {
-        return (
-            <>
-                {currentItems &&
-                    currentItems.map((item) => (
-                        <div>
-                            <h3>Item #{item}</h3>
-                        </div>
-                    ))}
-            </>
-        );
-    }
-
-
-
-    getNumPages()
-
-    return (
-        <>
-            <div className="">
-
-            </div>
-        </>
-    )
-        */
 }

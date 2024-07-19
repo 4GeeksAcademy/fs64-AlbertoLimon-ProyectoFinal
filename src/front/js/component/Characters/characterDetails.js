@@ -45,7 +45,22 @@ export const CharacterDetails = () => {
 						</div>
 
 						<div className="status">
-							<span className="status-icon"></span>
+							{(() => {
+								if(character.status === "Alive") {
+									return(
+										<span className={".status-icon bg-success"}></span>
+									)
+								}else if(character.status === "Dead"){
+									return(
+										<span className={".status-icon bg-danger"}></span>
+									)
+								}else if(character.status === "Unknown"){
+									return(
+										<span className={".status-icon bg-secondary"}></span>
+									)
+								}
+							})()}
+							
 							<span className="spanDetalle">{character.status}</span>
 						</div>
 						<div className="">

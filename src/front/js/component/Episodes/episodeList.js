@@ -22,7 +22,7 @@ export const EpisodeList = () => {
     }
 
     const fetchInfoPages =  () => {
-        actions.getPages("episodes")
+        actions.getTotalPages("episodes")
         
     }
 

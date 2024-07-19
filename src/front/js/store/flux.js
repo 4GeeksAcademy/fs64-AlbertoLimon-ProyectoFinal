@@ -44,9 +44,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+			getTotalPages: async (type) => {
+				const data = await pageDispatcher.getTotalPages(type)
+				setStore({numPages : data})
+				
+			},
+			getElementPages: async (type, name) => {
+				console.log("name ", name)
+				const data = await pageDispatcher.getElementPages(type, name)
+				setStore({numPages : data})
+			},
 			getCharacters: async (pageNumber) => {
 				const data = await charactersDispatcher.get(pageNumber)
+				console.log(data)
 				setStore({characters: data})
+			},
+			getCharactersSearched: async (pageNumber, name) => {
+				console.log("name ", name)
+				const data = await charactersDispatcher.getSearch(pageNumber, name)
+				setStore({characters : data})
 			},
 			getEpisodes: async (pageNumber) => {
 				const data = await episodesDispatcher.get(pageNumber)
@@ -55,10 +71,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getLocations: async () => {
 				const data = await locationsDispatcher.get()
 				setStore({locations: data})
-			},
-			getPages: async (type) => {
-				const data = await pageDispatcher.get(type)
-				setStore({numPages : data})
 			},
 			getSingleCharacter: async(id) => {
 				const data = await charactersDispatcher.getSingleCharacter(id)

@@ -68,9 +68,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await episodesDispatcher.get(pageNumber)
 				setStore({episodes: data})
 			},
+			getEpisodesSearched: async (pageNumber, name) => {
+				console.log("name ", name)
+				const data = await episodesDispatcher.getSearch(pageNumber, name)
+				setStore({episodes : data})
+			},
 			getLocations: async () => {
 				const data = await locationsDispatcher.get()
 				setStore({locations: data})
+			},
+			getLocationsSearched: async (pageNumber, name) => {
+				console.log("name ", name)
+				const data = await locationsDispatcher.getSearch(pageNumber, name)
+				setStore({locations : data})
 			},
 			getSingleCharacter: async(id) => {
 				const data = await charactersDispatcher.getSingleCharacter(id)

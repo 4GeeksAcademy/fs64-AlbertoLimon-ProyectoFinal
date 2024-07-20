@@ -36,6 +36,26 @@ const locationsDispatcher = {
             console.error("Error al cargar el lugar con id: " + id, error);
             throw error;
         }
+    },
+    getSearch: async(pageNumber, name) => {
+        try {
+            const response = await fetch(`https://rickandmortyapi.com/api/location/?page=${pageNumber}&name=${name}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            })
+            if(response.ok){
+                const data = await response.json();
+                const locationsSearched = data.results
+                console.log("data searched:  " ,locationsSearched)
+                return locationsSearched;
+            }
+
+        } catch (error) {
+            console.error("Error al buscar lugares con el nombre: " + name, error);
+            throw error;
+        }
     }
 }
 

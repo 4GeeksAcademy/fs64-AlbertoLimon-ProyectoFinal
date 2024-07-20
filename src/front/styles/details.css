@@ -25,12 +25,3 @@
     font-size: 1.1rem;
     color: white;
 }
-
-
-.status-icon{
-    height: 0.5rem;
-    width: 0.5rem;
-    margin-right: 0.375rem;
-    background: rgb(255, 0, 0);
-    border-radius: 50%;
-}

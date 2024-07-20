@@ -49,7 +49,7 @@ const pageDispatcher = {
                 apiUrl = `https://rickandmortyapi.com/api/location/?name=${name}`
                 break;
             default:
-                console.log(`Sorry, that option don't exist`);
+                console.log(`Lo siento, esa opción no existe`);
         }
 
 

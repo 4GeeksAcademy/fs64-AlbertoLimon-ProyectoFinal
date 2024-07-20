@@ -18,7 +18,6 @@ export const CharacterList = () => {
     const navigate = useNavigate()
 
 
-
     const fetchInfoPages = async () => {
         console.log("search ", search)
         if (search.length > 0) {

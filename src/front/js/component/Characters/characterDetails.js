@@ -13,7 +13,7 @@ export const CharacterDetails = () => {
 
 	const { id } = useParams();
 
-	console.log("idCharacter ",id)
+	console.log("idCharacter ", id)
 
 	const navigate = useNavigate()
 
@@ -30,7 +30,7 @@ export const CharacterDetails = () => {
 
 	return (
 		<>
-		
+
 			<div className="mt-4 mb-4">
 				<div className="card-container container contenedorDetalles">
 
@@ -46,36 +46,54 @@ export const CharacterDetails = () => {
 
 						<div className="status">
 							{(() => {
-								if(character.status === "Alive") {
-									return(
-										<span className={".status-icon bg-success"}></span>
+								if (character.status === "Alive") {
+									return (
+										<span style={{
+											height: "0.5rem",
+											width: "0.5rem",
+											marginRight: "0.375rem",
+											backgroundColor: "green",
+											borderRadius: "50%"
+										}} ></span>
 									)
-								}else if(character.status === "Dead"){
-									return(
-										<span className={".status-icon bg-danger"}></span>
+								} else if (character.status === "Dead") {
+									return (
+										<span style={{
+											height: "0.5rem",
+											width: "0.5rem",
+											marginRight: "0.375rem",
+											backgroundColor: "red",
+											borderRadius: "50%"
+										}} ></span>
 									)
-								}else if(character.status === "Unknown"){
-									return(
-										<span className={".status-icon bg-secondary"}></span>
+								} else if (character.status === "Unknown") {
+									return (
+										<span style={{
+											height: "0.5rem",
+											width: "0.5rem",
+											marginRight: "0.375rem",
+											backgroundColor: "grey",
+											borderRadius: "50%"
+										}} ></span>
 									)
 								}
 							})()}
-							
-							<span className="spanDetalle">{character.status}</span>
+
+							<span className="spanDetalle fw-bold">{character.status}</span>
 						</div>
 						<div className="">
-							<span className="spanDetalle">{character.species}</span>
+							<span className="spanDetalle">Specie: {character.species}</span>
 						</div>
 						<div className="">
-							<span className="spanDetalle">{character.gender}</span>
-							
+							<span className="spanDetalle">Gender: {character.gender}</span>
+
 						</div>
 						<div className="">
 							<span className="spanDetalle">From: </span>
 
 						</div>
 						<div className="">
-							<span className="spanDetalle">Actual location: </span>
+							<span className="spanDetalle">Actual location = </span>
 						</div>
 					</div>
 

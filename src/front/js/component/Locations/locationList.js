@@ -11,62 +11,84 @@ export const LocationList = () => {
 
     const { store, actions } = useContext(Context);
 
-    const [pageNumber, setPageNumber] = useState(0)
+    const [pageNumber, setPageNumber] = useState(1)
 
-    const [searchText, setSearchText] = useState("")
-   
+    const [search, setSearch] = useState("")
+
     const navigate = useNavigate()
+
+
+
+    const fetchInfoPages = async () => {
+        console.log("search ", search)
+        if (search.length > 0) {
+            await actions.getElementPages("locations", search)
+            await actions.getLocationsSearched(pageNumber, search);
+
+        } else {
+            await actions.getTotalPages("locations")
+
+        }
+
+    }
 
     const fetchLocations = async () => {
         await actions.getLocations(pageNumber);
+
     }
 
-    const fetchInfoPages =  () => {
-        actions.getPages("locations")
+    /*
+            const fetchCharacters = async () => {
+                await actions.getCharacters(pageNumber);
+            }
         
-    }
-
+            const fetchInfoPages =  () => {
+                actions.getTotalPages("characters")
+            }
+        */
     useEffect(() => {
-        fetchInfoPages()
-        fetchLocations()
-        
-    }, [pageNumber])
 
-    console.log("paginas lugares ",store.numPages)
-    console.log("  ",store.locations)
+        fetchInfoPages()
+
+        fetchLocations()
+
+    }, [pageNumber, search])
+
+    console.log("search ", search)
+
+
+    console.log("locations ", store.locations)
 
     return (
         <>
-            <SearchBar />
 
-            <div className="card-container container-fluid row">
-                <div className="col-3">
-                    <h1>Aqui va la barra de busqueda</h1>
-                </div>
-                <div className="col-9">
-                    <div className="row d-flex justify-content-center align-items-center gap-4">
-                        {store.locations.map((location, index) => (
+            <SearchBar setSearch={setSearch} setPageNumber={setPageNumber} />
 
-                            <div className="card col-3">
-                                <img src="" />
-                                <div className="card-body">
-                                    <h5 className="card-title mb-3 text-dark">{location.name}</h5>
+            <div className="card-container container">
 
-                                    <div className="d-flex justify-content-between">
-                                        <button onClick={() => navigate(`/main/locations/${location.id}`)} className="btn btn-outline-primary">Show details</button>
-                                        <button className="btn btn-outline-danger" >
-                                            <MdFavorite className="iconoFavorito" />
-                                        </button>
-                                    </div>
+                <div className="row d-flex justify-content-center align-items-center gap-4">
+                    {store.locations.map((location, index) => (
+
+                        <div className="card col-3" key={index}>
+                            <img src="" />
+                            <div className="card-body">
+                                <h5 className="card-title mb-3 text-dark">{location.name}</h5>
+
+                                <div className="d-flex justify-content-between">
+                                    <button onClick={() => navigate(`/main/locations/${location.id}`)} className="btn btn-outline-primary">Show details</button>
+                                    <button className="btn btn-outline-danger" >
+                                        <MdFavorite className="iconoFavorito" />
+                                    </button>
                                 </div>
                             </div>
+                        </div>
 
-                        ))}
-                    </div>
-
-                    <Pagination totalPages={store.numPages} pageNumber={pageNumber} setPageNumber={setPageNumber} />
-
+                    ))}
                 </div>
+
+                <Pagination totalPages={store.numPages} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+
+
 
 
             </div>

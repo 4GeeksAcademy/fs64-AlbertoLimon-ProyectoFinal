@@ -7,7 +7,6 @@ export const SearchBar = ({setSearch, setPageNumber}) => {
 
     const { store, actions } = useContext(Context);
     
-    const [searchText, setSearchText] = useState("")
 
     
     //    const [searchQuery, setSearchQuery] = useState("")

@@ -77,6 +77,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await locationsDispatcher.get()
 				setStore({locations: data})
 			},
+			getSingleLocation: async(id) => {
+				const data = await locationsDispatcher.getSingleLocation(id)
+				return data;
+			},
+			getLocationId: async (url) => {
+				const data = await locationsDispatcher.getId(url)
+				return data;
+			},
 			getLocationsSearched: async (pageNumber, name) => {
 				console.log("name ", name)
 				const data = await locationsDispatcher.getSearch(pageNumber, name)
@@ -90,10 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await episodesDispatcher.getSingleEpisode(id)
 				return data;
 			},
-			getSingleLocation: async(id) => {
-				const data = await locationsDispatcher.getSingleLocation(id)
-				return data;
-			},
+			
 			setFiltered: (filtered) => {
 				setStore({characters: filtered})
 			}

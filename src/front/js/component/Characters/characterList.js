@@ -36,15 +36,6 @@ export const CharacterList = () => {
 
     }
 
-    /*
-            const fetchCharacters = async () => {
-                await actions.getCharacters(pageNumber);
-            }
-        
-            const fetchInfoPages =  () => {
-                actions.getTotalPages("characters")
-            }
-        */
     useEffect(() => {
 
         fetchInfoPages()
@@ -55,8 +46,6 @@ export const CharacterList = () => {
 
     console.log("search ", search)
 
-
-    console.log("characters ", store.characters)
 
     return (
         <>
@@ -86,9 +75,6 @@ export const CharacterList = () => {
                 </div>
 
                 <Pagination totalPages={store.numPages} pageNumber={pageNumber} setPageNumber={setPageNumber} />
-
-
-
 
             </div>
 

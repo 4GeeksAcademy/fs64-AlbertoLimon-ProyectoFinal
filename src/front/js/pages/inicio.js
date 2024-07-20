@@ -15,7 +15,7 @@ export const Inicio = () => {
 
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                     <li className="nav-item" role="presentation">
-                        <button className="nav-link nav-login active sombreado letra-negrita" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">LOG IN</button>
+                        <button className="nav-link nav-login activo sombreado letra-negrita" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">LOG IN</button>
                     </li>
                     <li className="nav-item" role="presentation">
                         <button className="nav-link nav-register sombreado letra-negrita" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">REGISTER</button>

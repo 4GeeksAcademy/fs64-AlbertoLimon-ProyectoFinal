@@ -37,15 +37,8 @@ export const LocationList = () => {
 
     }
 
-    /*
-            const fetchCharacters = async () => {
-                await actions.getCharacters(pageNumber);
-            }
-        
-            const fetchInfoPages =  () => {
-                actions.getTotalPages("characters")
-            }
-        */
+
+
     useEffect(() => {
 
         fetchInfoPages()
@@ -56,8 +49,6 @@ export const LocationList = () => {
 
     console.log("search ", search)
 
-
-    console.log("locations ", store.locations)
 
     return (
         <>

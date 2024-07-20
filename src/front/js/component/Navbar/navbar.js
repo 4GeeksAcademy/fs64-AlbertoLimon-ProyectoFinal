@@ -4,6 +4,7 @@ import "../../../styles/navbar.css";
 import { MdOutlineSettings } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
 
+
 export const Navbar = () => {
 	return (
 		<>
@@ -45,7 +46,7 @@ export const Navbar = () => {
 						id="navbarNavAltMarkup"
 					>
 						<div className="navbar-nav fs-5">
-							<NavLink to="/main/characters" className="nav-link fs-2">
+							<NavLink activeClassName="" to="/main/characters" className="nav-link fs-2">
 								Characters
 							</NavLink>
 							<NavLink to="/main/episodes" className="nav-link fs-2">

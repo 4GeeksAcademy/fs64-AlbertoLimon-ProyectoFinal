@@ -17,6 +17,13 @@ export const CharacterDetails = () => {
 
 	const navigate = useNavigate()
 
+	const goToLocation = (url) => {
+		const id = actions.getIdLocation(url)
+		navigate(`/main/locations/${id}`)
+		//<a className="" onClick={goToLocation(character.origin.url)}></a>
+		//onClick={goToLocation(character.location.url)}
+	}
+
 	useEffect(() => {
 
 		const fetchCharacter = async () => {
@@ -27,6 +34,7 @@ export const CharacterDetails = () => {
 		fetchCharacter()
 	}, [])
 
+	console.log(character)
 
 	return (
 		<>
@@ -78,7 +86,7 @@ export const CharacterDetails = () => {
 									)
 								}
 							})()}
-
+							
 							<span className="spanDetalle fw-bold">{character.status}</span>
 						</div>
 						<div className="">
@@ -93,7 +101,7 @@ export const CharacterDetails = () => {
 
 						</div>
 						<div className="">
-							<span className="spanDetalle">Actual location = </span>
+							<span className="spanDetalle">Actual location : <a className="" ></a> </span>
 						</div>
 					</div>
 

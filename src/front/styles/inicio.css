@@ -44,3 +44,6 @@
     margin-top: .6rem;
     margin-bottom: .5rem;
 }
+.active{
+    border: none;
+}

@@ -37,6 +37,27 @@ const locationsDispatcher = {
             throw error;
         }
     },
+    getId: async(url) => {
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            })
+            if(response.ok){
+                const data = await response.json();
+                
+                const id = data.id
+                console.log(id)
+                return id;
+            }
+
+        } catch (error) {
+            console.error("Error el id del lugar ", error);
+            throw error;
+        }
+    },
     getSearch: async(pageNumber, name) => {
         try {
             const response = await fetch(`https://rickandmortyapi.com/api/location/?page=${pageNumber}&name=${name}`, {

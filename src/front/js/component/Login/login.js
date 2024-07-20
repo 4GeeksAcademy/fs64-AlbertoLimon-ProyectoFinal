@@ -27,7 +27,7 @@ export const Login = () => {
     return (
         <>
 
-            <div className="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+            <div className="tab-pane fade show" id="login" role="tabpanel" aria-labelledby="login-tab">
                 <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
                     <form className="form-login bg-transparent">
                         <div className="text-center">

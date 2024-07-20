@@ -36,16 +36,7 @@ export const EpisodeList = () => {
         await actions.getEpisodes(pageNumber);
 
     }
-
-    /*
-            const fetchCharacters = async () => {
-                await actions.getCharacters(pageNumber);
-            }
-        
-            const fetchInfoPages =  () => {
-                actions.getTotalPages("characters")
-            }
-        */
+    
     useEffect(() => {
 
         fetchInfoPages()
@@ -57,7 +48,6 @@ export const EpisodeList = () => {
     console.log("search ", search)
 
 
-    console.log("episodes ", store.episodes)
 
     return (
         <>

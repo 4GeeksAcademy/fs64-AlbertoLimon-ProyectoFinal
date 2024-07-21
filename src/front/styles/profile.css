@@ -1,11 +1,11 @@
 .btnSave{
     width: 10%;
-    padding: 1rem .7rem;
-    font-size: 1rem;
+    
+    border-radius: .5rem;
 }
 .btnCancel{
     width: 10%;
     background-color: grey;
-    padding: 1rem .7;
+
     font-size: 1rem;
 }

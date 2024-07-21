@@ -16,9 +16,8 @@ span{
     width: 100px;
     margin-right: .6rem;
 }
-
 .active {
-    color: black !important;
+    color: black ;
     font-weight: bold;
     border-bottom: 3px solid black;
 }

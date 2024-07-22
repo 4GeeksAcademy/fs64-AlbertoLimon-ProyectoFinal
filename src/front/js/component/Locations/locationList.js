@@ -47,7 +47,8 @@ export const LocationList = () => {
 
     }, [pageNumber, search])
 
-    console.log("search ", search)
+    console.log("num pages  ", pageNumber)
+    console.log("locations ", store.locations)
 
 
     return (

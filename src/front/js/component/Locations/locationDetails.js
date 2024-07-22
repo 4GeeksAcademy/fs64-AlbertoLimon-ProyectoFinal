@@ -27,6 +27,7 @@ export const LocationDetails = () => {
 		fetchLocation()
 	}, [])
 
+	console.log(location)
 
 	return (
 		<>

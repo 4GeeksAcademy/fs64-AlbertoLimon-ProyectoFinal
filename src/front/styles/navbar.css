@@ -16,9 +16,10 @@ span{
     width: 100px;
     margin-right: .6rem;
 }
-.active {
+.item-nav:active, .item-nav:focus {
     color: black ;
     font-weight: bold;
     border-bottom: 3px solid black;
+
 }
     

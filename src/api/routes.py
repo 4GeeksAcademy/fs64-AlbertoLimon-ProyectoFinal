@@ -20,3 +20,22 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/signUp', methods=['POST'])
+def register():
+    response_body = request.json
+    user_query = User.query.filter_by(email = response_body["email"]).first()
+    if user_query is None:
+        create_user = User(email = response_body["email"], password = response_body["password"], is_active = response_body["is_active"])
+        db.session.add(create_user)
+        db.session.commit()
+        response = {
+            "msg ": "Usuario creado con éxito"
+        }
+        return jsonify(response), 200
+    else:
+        response = {
+            "msg ": "Usuario ya existe"
+        }
+        return jsonify(response), 404
+

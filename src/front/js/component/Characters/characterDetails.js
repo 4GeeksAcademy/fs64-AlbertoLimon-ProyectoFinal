@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export const CharacterDetails = () => {
 
 	const { store, actions } = useContext(Context);
-	const [character, setCharacter] = useState([])
+	const [character, setCharacter] = useState({})
 
 	const { id } = useParams();
 
@@ -18,10 +18,8 @@ export const CharacterDetails = () => {
 	const navigate = useNavigate()
 
 	const goToLocation = (url) => {
-		const id = actions.getIdLocation(url)
+		const id = actions.getLocationId(url)
 		navigate(`/main/locations/${id}`)
-		//<a className="" onClick={goToLocation(character.origin.url)}></a>
-		//onClick={goToLocation(character.location.url)}
 	}
 
 	useEffect(() => {
@@ -97,11 +95,12 @@ export const CharacterDetails = () => {
 
 						</div>
 						<div className="">
-							<span className="spanDetalle">From: </span>
+							<span className="spanDetalle">From: {character.location? character.location.name : "Loading"}</span>
 
 						</div>
 						<div className="">
-							<span className="spanDetalle">Actual location : <a className="" ></a> </span>
+							<span className="spanDetalle">Actual location : <a className="" onClick={() => goToLocation(character.location? character.location.url : "Loading")}>{character.origin? character.origin.name : "Loading"}</a>
+							 </span>
 						</div>
 					</div>
 

@@ -9,7 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(200), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    phone = db.Column(db.Integer(120), unique=True, nullable=True)
+    phone = db.Column(db.Integer, unique=True, nullable=True)
     birthDate = db.Column(db.DateTime(120), unique=True, nullable=True)
     country = db.Column(db.String(120), unique=True, nullable=True)
     postalCode = db.Column(db.String(120), unique=True, nullable=True)

@@ -47,15 +47,15 @@ return (
 					className="collapse navbar-collapse justify-content-end"
 					id="navbarNavAltMarkup"
 				>
-					<div className="navbar-nav fs-5">
-						<NavLink activeClassName="" to="/main/characters" className="nav-link fs-2">
+					<div className="navbar-nav">
+						<NavLink  to="/main/characters" className="item-nav nav-link fs-2">
 							Characters
 						</NavLink>
-						<NavLink to="/main/episodes" className="nav-link fs-2">
+						<NavLink to="/main/episodes" className="item-nav nav-link fs-2">
 							Episodes
 						</NavLink>
 						<NavLink
-							className="nav-link fs-2"
+							className="item-nav nav-link fs-2"
 							to="/main/locations"
 						>
 							Locations

@@ -25,3 +25,6 @@
     font-size: 1.1rem;
     color: white;
 }
+a:hover{
+    color: orange;
+}

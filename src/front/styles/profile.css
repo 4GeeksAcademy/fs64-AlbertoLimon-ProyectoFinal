@@ -1,11 +1,16 @@
 .btnSave{
-    width: 10%;
-    
+    width: 150px;
+   
     border-radius: .5rem;
 }
 .btnCancel{
-    width: 10%;
-    background-color: grey;
-
+    width: 100px;
     font-size: 1rem;
+    border-radius: .5rem;
+    background-color: rgb(207, 207, 207);
+    margin-left: 1rem;
+}
+.btnDelete{
+    font-size: 1rem;
+    border-radius: .5rem;
 }

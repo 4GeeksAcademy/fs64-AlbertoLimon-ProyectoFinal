@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "../../../styles/profile.css"
 import { useNavigate } from "react-router-dom";
 import { Countries } from "./countries";
+import { Navbar } from "../Navbar/navbar";
 
 export const Profile = () => {
 
@@ -25,15 +26,22 @@ export const Profile = () => {
 
     const navigate = useNavigate()
 
+    const saveChanges = () => {
+
+    }
+
+    const deleteAccount = () => {
+        
+    }
+
+
     return (
-        <>
-            <div className="">
-                <h1 className="text-dark">
-                    My profile
-                </h1>
-                <div className="container d-flex flex-column justify-content-center">
-                    <div className=" d-flex  ">
-                        <div className="col border d-flex flex-column px-3 py-3 bg-light ">
+        <>  
+            <Navbar />
+            <div>
+                <div className="container d-flex flex-column justify-content-center mt-4">
+                    <div className=" d-flex flex-column bg-light border rounded-3">
+                        <div className="col  d-flex flex-column px-3 py-3">
                             <h3>Account details</h3>
                             <div>
                                 <form className="">
@@ -109,18 +117,19 @@ export const Profile = () => {
                             </div>
                         </div>
 
+                        <div className="d-flex justify-content-between px-3 pb-2 pt-1">
+                            <div className="d-flex w-50">
+                                <button className="btnSave btn btn-primary btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Save Changes</button>
+                                <button className="btnCancel btn btn-light btn-block boton-submit" type="submit" onClick={() => navigate("/main/characters")}>Cancel</button>
+                            </div>
+                            <div className="">
+                                <button className="btnDelete btn btn-danger btn-block boton-submit w-100" type="submit" onClick={() => navigate("/main")}>Delete Account</button>
+                            </div>
+                        </div>
 
                     </div>
 
-                    <div className="d-flex justify-content-between">
-                        <div className="mt-3 justify-content-around">
-                            <button className="btnCancel btn btn-light btn-block boton-submit" type="submit" onClick={() => navigate("/main/characters")}>Cancel</button>
-                            <button className="btnSave btn btn-primary btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Save Changes</button>
-                        </div>
-                        <div className="">
-                            <button className="btnDelete btn btn-danger btn-block boton-submit mt-4" type="submit" onClick={() => navigate("/main")}>Delete Account</button>
-                        </div>
-                    </div>
+
 
 
 

@@ -2,6 +2,7 @@ import charactersDispatcher from "./charactersDispatcher"
 import episodesDispatcher from "./episodesDispatcher";
 import locationsDispatcher from "./locationsDispatcher";
 import pageDispatcher from "./pageDispatcher";
+import userDispatcher from "./userDispatcher";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -73,8 +74,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await episodesDispatcher.getSearch(pageNumber, name)
 				setStore({episodes : data})
 			},
-			getLocations: async () => {
-				const data = await locationsDispatcher.get()
+			getLocations: async (pageNumber) => {
+				const data = await locationsDispatcher.get(pageNumber)
 				setStore({locations: data})
 			},
 			getSingleLocation: async(id) => {
@@ -98,10 +99,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await episodesDispatcher.getSingleEpisode(id)
 				return data;
 			},
-			
-			setFiltered: (filtered) => {
-				setStore({characters: filtered})
+			registerUser: async(firstName, lastName, username, email, password) => {
+				await userDispatcher.register(firstName, lastName, username, email, password)
+			},
+			loginUser: async(email, password) => {
+				await userDispatcher.login(email, password)
 			}
+
 		}
 	};
 };

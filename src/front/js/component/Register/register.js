@@ -26,10 +26,23 @@ export const Register = () => {
         setShowPassword(!showPassword);
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Previene que el formulario recargue la página
+        console.log("submit");
+        try {
+
+            await actions.registerUser(inputFirstName, inputLastName, inputUsername, inputEmail, inputPassword)
+
+        } catch (error) {
+            console.error("Error durante el registro de usuario:", error);
+        }
+
+    }
+
     return (
         <>
             <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
-                <form className="form-register bg-transparent">
+                <form className="form-register bg-transparent" onSubmit={handleSubmit}>
                     <div className="text-center">
                         <img className="icono-register" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
                     </div>
@@ -88,7 +101,7 @@ export const Register = () => {
                                     </button>
                                 </div>
 
-                                        
+
                             </div>
 
 
@@ -104,7 +117,7 @@ export const Register = () => {
                     </div>
 
 
-                    <button className="btn btn-lg btn-success w-100 btn-block boton-submit" type="submit" onClick={() => navigate("/")}>Sign in</button>
+                    <button className="btn btn-lg btn-success w-100 btn-block boton-submit" type="submit" onClick={() => handleSubmit()}>Sign in</button>
 
                 </form>
             </div>

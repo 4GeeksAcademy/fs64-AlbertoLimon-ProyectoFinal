@@ -17,10 +17,8 @@ export const EpisodeList = () => {
 
     const navigate = useNavigate()
 
-
-
     const fetchInfoPages = async () => {
-        console.log("search ", search)
+        
         if (search.length > 0) {
             await actions.getElementPages("episodes", search)
             await actions.getEpisodesSearched(pageNumber, search);

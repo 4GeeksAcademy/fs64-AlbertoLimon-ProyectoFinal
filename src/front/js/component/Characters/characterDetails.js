@@ -17,8 +17,11 @@ export const CharacterDetails = () => {
 
 	const navigate = useNavigate()
 
-	const goToLocation = (url) => {
-		const id = actions.getLocationId(url)
+	const goToLocation = async (url) => {
+		console.log("url: ", url)
+
+		const id = await actions.getLocationId(url)
+		console.log("id ", id)
 		navigate(`/main/locations/${id}`)
 	}
 
@@ -46,7 +49,7 @@ export const CharacterDetails = () => {
 
 
 					<div className="card-body detallesSecundarios">
-						<div className="">
+						<div className="mb-2">
 							<span className="spanDetalle fs-2 fw-bold">{character.name}</span>
 						</div>
 
@@ -84,29 +87,50 @@ export const CharacterDetails = () => {
 									)
 								}
 							})()}
-							
+
 							<span className="spanDetalle fw-bold">{character.status}</span>
 						</div>
 						<div className="">
-							<span className="spanDetalle">Specie: {character.species}</span>
+							<span className="spanDetalle fw-bold"> {character.species}</span>
 						</div>
 						<div className="">
-							<span className="spanDetalle">Gender: {character.gender}</span>
+							<span className="spanDetalle fw-bold">{character.gender}</span>
+
+						</div>
+
+						<div className="">
+							{(() => {
+								if (character.origin?.name === "Unknown") {
+									return (
+										<span className="spanDetalle">From: Unknown</span>
+									)
+								} else {
+									return (
+										<span className="spanDetalle">From: <a className="fw-bold" onClick={() => goToLocation(character.origin.url)}>{character.origin ? character.origin.name : "Loading"}</a></span>
+									)
+								}
+							})()}
 
 						</div>
 						<div className="">
-							<span className="spanDetalle">From: {character.location? character.location.name : "Loading"}</span>
+							{(() => {
+								if (character.location?.name === "Unknown") {
+									return (
+										<span className="spanDetalle">Actual location: Unknown</span>
+									)
+								} else {
+									return (
+										<span className="spanDetalle">Actual location: <a className="fw-bold" onClick={() => goToLocation(character.location.url)}>{character.location ? character.location.name : "Loading"}</a></span>
+									)
+								}
+							})()}
 
-						</div>
-						<div className="">
-							<span className="spanDetalle">Actual location : <a className="" onClick={() => goToLocation(character.location? character.location.url : "Loading")}>{character.origin? character.origin.name : "Loading"}</a>
-							 </span>
 						</div>
 					</div>
 
 
 				</div>
-			</div>
+			</div >
 
 		</>
 	)

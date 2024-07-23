@@ -2,6 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
+from flask_jwt_extended import JWTManager, create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -21,8 +23,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/signUp', methods=['POST'])
-def register():
+@api.route('/register', methods=['POST'])
+def register_user():
     response_body = request.json
     user_query = User.query.filter_by(email = response_body["email"]).first()
     if user_query is None:
@@ -39,3 +41,40 @@ def register():
         }
         return jsonify(response), 404
 
+
+@api.route('/login', methods=['POST'])
+def login_user():
+    request_body = request.json
+    email = request_body.get("email")
+    password = request_body.get("password")
+    print(request_body)
+    user_login = User.query.filter_by(email = request_body["email"]).first()
+    if user_login is None:
+        response_body = {
+             "msg": "Usuario no existe"
+            }
+        return jsonify(response_body), 404
+    elif email != user_login.email or password != user_login.password:
+        return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
+    else:
+        access_token = create_access_token(identity=user_login.id)
+        return jsonify({ "token": access_token, "user_id": user_login.id })
+
+
+@api.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
+
+
+@api.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({"message": "Usuario eliminado correctamente"}), 200
+    else:
+        return jsonify({"message": "Usuario no encontrado"}), 404

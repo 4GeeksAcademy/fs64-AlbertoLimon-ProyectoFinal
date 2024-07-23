@@ -41,15 +41,15 @@ export const LocationDetails = () => {
 
 
 					<div className="card-body detallesSecundarios">
-						<div className="">
+						<div className="mb-2">
 							<span className="spanDetalle fs-2 fw-bold">{location.name}</span>
 						</div>
 
-						<div className="">
-							<span className="spanDetalle">Type: {location.type}</span>
+						<div className="text-white">
+							Type: <span className="spanDetalle fw-bold"> {location.type}</span>
 						</div>
-						<div className="">
-							<span className="spanDetalle">Dimension: {location.dimension}</span>
+						<div className="text-white">
+							Dimension:<span className="spanDetalle fw-bold"> {location.dimension}</span>
 						</div>
 
 					</div>

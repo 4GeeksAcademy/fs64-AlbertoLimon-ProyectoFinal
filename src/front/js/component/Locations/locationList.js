@@ -17,10 +17,8 @@ export const LocationList = () => {
 
     const navigate = useNavigate()
 
-
-
     const fetchInfoPages = async () => {
-        console.log("search ", search)
+        
         if (search.length > 0) {
             await actions.getElementPages("locations", search)
             await actions.getLocationsSearched(pageNumber, search);
@@ -36,8 +34,6 @@ export const LocationList = () => {
         await actions.getLocations(pageNumber);
 
     }
-
-
 
     useEffect(() => {
 
@@ -79,9 +75,6 @@ export const LocationList = () => {
                 </div>
 
                 <Pagination totalPages={store.numPages} pageNumber={pageNumber} setPageNumber={setPageNumber} />
-
-
-
 
             </div>
 

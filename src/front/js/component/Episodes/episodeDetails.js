@@ -27,6 +27,7 @@ export const EpisodeDetails = () => {
 		fetchEpisode()
 	}, [])
 
+	console.log("episode ",episode)
 
 	return (
 		<>
@@ -40,15 +41,15 @@ export const EpisodeDetails = () => {
 
 
 					<div className="card-body detallesSecundarios">
-						<div className="">
+						<div className="mb-2">
 							<span className="spanDetalle fs-2 fw-bold">{episode.name}</span>
 						</div>
 
-						<div className="">
-							<span className="spanDetalle">Air date: {episode.air_date}</span>
+						<div className="text-white">
+							Air date: <span className="spanDetalle fw-bold">{episode.air_date}</span>
 						</div>
-						<div className="">
-							<span className="spanDetalle">Episode: {episode.episode}</span>
+						<div className="text-white">
+							Episode: <span className="spanDetalle fw-bold">{episode.episode}</span>
 						</div>
 
 					</div>

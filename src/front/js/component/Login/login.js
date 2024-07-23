@@ -23,13 +23,25 @@ export const Login = () => {
         setShowPassword(!showPassword);
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Previene que el formulario recargue la página
+        console.log("submit");
+        try {
+
+            await actions.loginUser(inputEmail, inputPassword)
+
+        } catch (error) {
+            console.error("Error durante el inicio de sesión del usuario:", error);
+        }
+
+    }
 
     return (
         <>
 
             <div className="tab-pane fade show" id="login" role="tabpanel" aria-labelledby="login-tab">
                 <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
-                    <form className="form-login bg-transparent">
+                    <form className="form-login bg-transparent" onSubmit={handleSubmit}>
                         <div className="text-center">
                             <img className="icono-login" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
                         </div>

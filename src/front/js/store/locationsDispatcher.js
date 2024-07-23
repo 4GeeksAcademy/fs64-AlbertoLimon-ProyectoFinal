@@ -49,7 +49,6 @@ const locationsDispatcher = {
                 const data = await response.json();
                 
                 const id = data.id
-                console.log(id)
                 return id;
             }
 

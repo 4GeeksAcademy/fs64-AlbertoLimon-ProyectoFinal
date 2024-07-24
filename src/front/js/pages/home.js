@@ -21,7 +21,7 @@ export const Home = () => {
 					className="imagen-bienvenida"
 				/>
 				<p>Explora el multiverso de Rick y Morty.</p>
-				<button type="button" className="boton-bienvenida btn btn-primary" onClick={() => navigate("/inicio")}>Comenzar</button>
+				<button type="button" className="boton-bienvenida btn btn-primary" onClick={() => navigate("/welcome")}>Comenzar</button>
 			</div>
 		
 		</>

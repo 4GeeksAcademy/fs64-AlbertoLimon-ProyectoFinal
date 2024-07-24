@@ -38,6 +38,26 @@ const episodesDispatcher = {
             throw error;
         }
     },
+    getId: async(url) => {
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            })
+            if(response.ok){
+                const data = await response.json();
+                console.log(data)
+                const id = data.id
+                return id;
+            }
+
+        } catch (error) {
+            console.error("Error el id del episodio ", error);
+            throw error;
+        }
+    },
     getSearch: async(pageNumber, name) => {
         try {
             const response = await fetch(`https://rickandmortyapi.com/api/episode/?page=${pageNumber}&name=${name}`, {

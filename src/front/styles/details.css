@@ -1,14 +1,14 @@
 .contenedorDetalles{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     background-color: rgb(59, 59, 59);
     border-radius: 10px;
-    width: 19%;
+    width: 40%;
     padding: 0;
 }
 .imagenDetalles{
-    width: 100%
+    width: 40%
 }
 
 .detallesSecundarios{

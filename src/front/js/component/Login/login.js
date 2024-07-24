@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../store/appContext";
-import "../../../styles/inicio.css";
+import "../../../styles/welcome.css";
 import "../../../styles/login.css";
 import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
@@ -79,7 +79,7 @@ export const Login = () => {
 
                         </div>
 
-                        <button className="btn btn-lg btn-primary w-100 btn-block boton-submit mt-3" type="submit" onClick={() => navigate("/main")}>Login</button>
+                        <button className="btn btn-lg btn-primary w-100 btn-block boton-submit mt-3" type="submit" onClick={() => navigate("/main/characters")}>Login</button>
 
                     </form>
                 </div>

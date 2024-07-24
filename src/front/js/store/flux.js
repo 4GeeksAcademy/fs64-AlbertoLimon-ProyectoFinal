@@ -60,6 +60,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(data)
 				setStore({characters: data})
 			},
+			getSingleCharacter: async(id) => {
+				const data = await charactersDispatcher.getSingleCharacter(id)
+				return data;
+			},
 			getCharactersSearched: async (pageNumber, name) => {
 				console.log("name ", name)
 				const data = await charactersDispatcher.getSearch(pageNumber, name)
@@ -68,6 +72,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getEpisodes: async (pageNumber) => {
 				const data = await episodesDispatcher.get(pageNumber)
 				setStore({episodes: data})
+			},
+			getSingleEpisode: async(id) => {
+				const data = await episodesDispatcher.getSingleEpisode(id)
+				return data;
+			},
+			getEpisodeId: async (url) => {
+				console.log(url)
+				const data = await episodesDispatcher.getId(url)
+				console.log(data)
+				return data;
 			},
 			getEpisodesSearched: async (pageNumber, name) => {
 				console.log("name ", name)
@@ -91,14 +105,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await locationsDispatcher.getSearch(pageNumber, name)
 				setStore({locations : data})
 			},
-			getSingleCharacter: async(id) => {
-				const data = await charactersDispatcher.getSingleCharacter(id)
-				return data;
-			},
-			getSingleEpisode: async(id) => {
-				const data = await episodesDispatcher.getSingleEpisode(id)
-				return data;
-			},
+			
+			
 			registerUser: async(firstName, lastName, username, email, password) => {
 				await userDispatcher.register(firstName, lastName, username, email, password)
 			},

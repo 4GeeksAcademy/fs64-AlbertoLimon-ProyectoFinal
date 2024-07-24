@@ -9,13 +9,26 @@ import { useNavigate, useParams } from "react-router-dom";
 export const CharacterDetails = () => {
 
 	const { store, actions } = useContext(Context);
+
 	const [character, setCharacter] = useState({})
+
+	const [firstEpisode, setFirstEpisode] = useState("")
+
 
 	const { id } = useParams();
 
 	console.log("idCharacter ", id)
 
 	const navigate = useNavigate()
+
+	const goToEpisode = async (url) => {
+		console.log("url: ", url)
+
+		const id = await actions.getEpisodeId(url)
+		console.log("id ", id)
+		navigate(`/main/episodes/${id}`)
+	}
+
 
 	const goToLocation = async (url) => {
 		console.log("url: ", url)
@@ -25,6 +38,7 @@ export const CharacterDetails = () => {
 		navigate(`/main/locations/${id}`)
 	}
 
+
 	useEffect(() => {
 
 		const fetchCharacter = async () => {
@@ -32,10 +46,39 @@ export const CharacterDetails = () => {
 			setCharacter(data)
 		}
 
+		const firstEpisodeSeenIn = async () => {
+			console.log(character)
+			const url = character.episode ? character.episode[0] : "Loading episode"
+			console.log("url ",url)
+			// Separar la parte base de la URL y el número de episodio
+			let baseUrl = "https://rickandmortyapi.com/api/episode/";
+			let episodeNumber = url.replace(baseUrl, '').trim();
+
+			console.log(baseUrl); // https://rickandmortyapi.com/api/episode/
+			console.log("episode number ",episodeNumber); // 1
+			
+			setFirstEpisode(await actions.getSingleEpisode(episodeNumber))
+
+		}
+
+		/*
+				const fetchFirstSeenIn = async () => {
+					const urlEpisode = character.episode ? character.episode[0] : "Loading episode"
+					console.log(urlEpisode)
+					const id = await actions.getEpisodeId(urlEpisode)
+					console.log(id)
+					const episode = await actions.getSingleEpisode(id)
+					console.log(episode)
+					setNameFirstEpisode(episode.name)
+				}
+		*/
 		fetchCharacter()
+		firstEpisodeSeenIn()
 	}, [])
 
+	console.log(character.episode ? character.episode[0] : "Loading episode")
 	console.log(character)
+	console.log("firstEpisode ",firstEpisode)
 
 	return (
 		<>
@@ -75,7 +118,7 @@ export const CharacterDetails = () => {
 											borderRadius: "50%"
 										}} ></span>
 									)
-								} else if (character.status === "Unknown") {
+								} else if (character.status === "unknown") {
 									return (
 										<span style={{
 											height: "0.5rem",
@@ -88,25 +131,31 @@ export const CharacterDetails = () => {
 								}
 							})()}
 
-							<span className="spanDetalle fw-bold">{character.status}</span>
-						</div>
-						<div className="">
-							<span className="spanDetalle fw-bold"> {character.species}</span>
+							<span className="spanDetalle fw-bold">{character.status} - {character.species}</span>
 						</div>
 						<div className="">
 							<span className="spanDetalle fw-bold">{character.gender}</span>
+						</div>
 
+						<div className="d-flex flex-column text-white pt-2">
+							First seen in: <span className="spanDetalle fw-bold"><a className="fw-bold" onClick={() => goToEpisode(character.episode[0])}></a> </span>
 						</div>
 
 						<div className="">
 							{(() => {
 								if (character.origin?.name === "Unknown") {
 									return (
-										<span className="spanDetalle">From: Unknown</span>
+										<div className="d-flex text-white flex-column pt-2">
+											From: <span className="spanDetalle"> Unknown</span>
+										</div>
+
 									)
 								} else {
 									return (
-										<span className="spanDetalle">From: <a className="fw-bold" onClick={() => goToLocation(character.origin.url)}>{character.origin ? character.origin.name : "Loading"}</a></span>
+										<div className="d-flex flex-column text-white pt-2">
+											From: <span className="spanDetalle"><a className="fw-bold" onClick={() => goToLocation(character.origin.url)}>{character.origin ? character.origin.name : "Loading origin"}</a></span>
+										</div>
+
 									)
 								}
 							})()}
@@ -116,11 +165,17 @@ export const CharacterDetails = () => {
 							{(() => {
 								if (character.location?.name === "Unknown") {
 									return (
-										<span className="spanDetalle">Actual location: Unknown</span>
+										<div className="d-flex text-white flex-column pt-2">
+											Actual location: <span className="spanDetalle"> Unknown</span>
+										</div>
+
 									)
 								} else {
 									return (
-										<span className="spanDetalle">Actual location: <a className="fw-bold" onClick={() => goToLocation(character.location.url)}>{character.location ? character.location.name : "Loading"}</a></span>
+										<div className="d-flex text-white flex-column mt-2">
+											Last known location: <span className="spanDetalle"><a className="fw-bold" onClick={() => goToLocation(character.location.url)}>{character.location ? character.location.name : "Loading location"}</a></span>
+										</div>
+
 									)
 								}
 							})()}

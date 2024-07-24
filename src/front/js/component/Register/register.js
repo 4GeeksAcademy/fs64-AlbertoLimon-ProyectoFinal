@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../store/appContext";
-import "../../../styles/inicio.css";
+import "../../../styles/welcome.css";
 import "../../../styles/register.css";
 import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";

@@ -6,7 +6,6 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 
-import { Inicio } from "./pages/inicio";
 import { Main } from "./pages/main";
 import { Profile } from "./component/Profile/profile";
 import { Characters } from "./pages/characters";
@@ -15,6 +14,7 @@ import { Episodes } from "./pages/episodes";
 import { EpisodeDetails } from "./component/Episodes/episodeDetails";
 import { Locations } from "./pages/locations";
 import { LocationDetails } from "./component/Locations/locationDetails";
+import { Welcome } from "./pages/welcome";
 
 
 //create your first component
@@ -32,7 +32,7 @@ const Layout = () => {
 
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Inicio />} path="/inicio" />
+                        <Route element={<Welcome />} path="/welcome" />
 
                         <Route element={<Profile />} path="/profile" />
 

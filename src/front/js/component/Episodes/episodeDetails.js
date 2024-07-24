@@ -52,6 +52,10 @@ export const EpisodeDetails = () => {
 							Episode: <span className="spanDetalle fw-bold">{episode.episode}</span>
 						</div>
 
+						<div className="text-white">
+							Some residents: <span className="spanDetalle fw-bold"></span>
+						</div>
+
 					</div>
 
 

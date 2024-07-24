@@ -68,13 +68,42 @@ def protected():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
 
+@api.route('/users/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    user = User.query.get(user_id)
+    if user:
+        data = request.json
+        firstName = data.get('firstName', user.firstName)
+        lastName = data.get('lastName', user.lastName)
+        username = data.get('username', user.username)
+        email = data.get('email', user.email)
+        phone = data.get('phone', user.phone)
+        country = data.get('country', user.country)
+        birthDate = data.get('birthDate', user.birthDate)
+        postalCode = data.get('postalCode', user.postalCode)
+        
+        user.firstName = firstName
+        user.lastName = lastName
+        user.username = username
+        user.email = email
+        user.phone = phone
+        user.country = country
+        user.birthDate = birthDate
+        user.postalCode = postalCode
 
+        db.session.commit()
+        return jsonify({'msg': 'Información de usuario actualizada!'}), 200
+    else:
+        return jsonify({'msg': 'Usuario no encontrado!'}), 404
+    
 @api.route('/users/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
     user = User.query.get(user_id)
     if user:
+        # Eliminar los favoritos asociados al usuario
+        Favorite.query.filter_by(user_id=user_id).delete()
         db.session.delete(user)
         db.session.commit()
-        return jsonify({"message": "Usuario eliminado correctamente"}), 200
+        return jsonify({"message": "Usuario y sus favoritos eliminados correctamente"}), 200
     else:
         return jsonify({"message": "Usuario no encontrado"}), 404

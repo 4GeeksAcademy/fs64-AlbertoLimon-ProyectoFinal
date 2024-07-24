@@ -27,7 +27,7 @@ export const Profile = () => {
     const navigate = useNavigate()
 
     const saveChanges = () => {
-
+        
     }
 
     const deleteAccount = () => {
@@ -74,7 +74,7 @@ export const Profile = () => {
 
                                     <div className="form-label-group mt-3">
                                         <label className="" htmlFor="inputEmail">Email</label>
-                                        <input type="email" id="inputEmailLogin" className="form-control w-75" placeholder="" readOnly required="" autoFocus=""
+                                        <input type="email" id="inputEmailLogin" className="form-control w-75" readOnly placeholder="" required="" autoFocus=""
                                             onChange={(event) => setInputEmail(event.target.value)}
                                             value={inputEmail} />
 

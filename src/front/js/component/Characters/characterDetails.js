@@ -38,45 +38,38 @@ export const CharacterDetails = () => {
 		navigate(`/main/locations/${id}`)
 	}
 
+	const fetchCharacter = async () => {
+		const data = await actions.getSingleCharacter(id);
+		setCharacter(data)
+	}
 
 	useEffect(() => {
-
-		const fetchCharacter = async () => {
-			const data = await actions.getSingleCharacter(id);
-			setCharacter(data)
-		}
-
-		const firstEpisodeSeenIn = async () => {
-			console.log(character)
-			const url = character.episode ? character.episode[0] : "Loading episode"
-			console.log("url ",url)
-			// Separar la parte base de la URL y el número de episodio
-			let baseUrl = "https://rickandmortyapi.com/api/episode/";
-			let episodeNumber = url.replace(baseUrl, '').trim();
-
-			console.log(baseUrl); // https://rickandmortyapi.com/api/episode/
-			console.log("episode number ",episodeNumber); // 1
-			
-			setFirstEpisode(await actions.getSingleEpisode(episodeNumber))
-
-		}
-
-		/*
-				const fetchFirstSeenIn = async () => {
-					const urlEpisode = character.episode ? character.episode[0] : "Loading episode"
-					console.log(urlEpisode)
-					const id = await actions.getEpisodeId(urlEpisode)
-					console.log(id)
-					const episode = await actions.getSingleEpisode(id)
-					console.log(episode)
-					setNameFirstEpisode(episode.name)
-				}
-		*/
 		fetchCharacter()
-		firstEpisodeSeenIn()
 	}, [])
 
-	console.log(character.episode ? character.episode[0] : "Loading episode")
+	const firstEpisodeSeenIn = async () => {
+		console.log(character)
+		const url = character.episode ? character.episode[0] : "Loading episode"
+		console.log("url ",url)
+		// Separar la parte base de la URL y el número de episodio
+		let baseUrl = "https://rickandmortyapi.com/api/episode/";
+		let episodeNumber = url.replace(baseUrl, '').trim();
+
+		console.log(baseUrl); // https://rickandmortyapi.com/api/episode/
+		console.log("episode number ",episodeNumber); // 1
+		
+		setFirstEpisode(await actions.getSingleEpisode(episodeNumber))
+
+	}
+
+	useEffect(() => {
+		
+		if(!!character.name){
+			console.log(character.episode ? character.episode[0] : "Loading episode")
+			firstEpisodeSeenIn()
+		}
+	},[character])
+	
 	console.log(character)
 	console.log("firstEpisode ",firstEpisode)
 
@@ -138,7 +131,7 @@ export const CharacterDetails = () => {
 						</div>
 
 						<div className="d-flex flex-column text-white pt-2">
-							First seen in: <span className="spanDetalle fw-bold"><a className="fw-bold" onClick={() => goToEpisode(character.episode[0])}></a> </span>
+							First seen in: <span className="spanDetalle fw-bold"><a className="fw-bold" onClick={() => goToEpisode(character.episode[0])}> {firstEpisode.name}  </a> </span>
 						</div>
 
 						<div className="">

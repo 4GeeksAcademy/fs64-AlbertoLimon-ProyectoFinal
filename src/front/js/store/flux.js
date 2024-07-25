@@ -106,9 +106,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({locations : data})
 			},
 			
-			
-			registerUser: async(firstName, lastName, username, email, password) => {
-				await userDispatcher.register(firstName, lastName, username, email, password)
+			registerUser: async(firstName, lastName, userName, email, password) => {
+				await userDispatcher.register(firstName, lastName, userName, email, password)
 			},
 			loginUser: async(email, password) => {
 				await userDispatcher.login(email, password)

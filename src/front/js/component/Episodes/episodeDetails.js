@@ -45,14 +45,14 @@ export const EpisodeDetails = () => {
 							<span className="spanDetalle fs-2 fw-bold">{episode.name}</span>
 						</div>
 
-						<div className="text-white">
+						<div className="text-white mt-2">
 							Air date: <span className="spanDetalle fw-bold">{episode.air_date}</span>
 						</div>
-						<div className="text-white">
+						<div className="text-white mt-2">
 							Episode: <span className="spanDetalle fw-bold">{episode.episode}</span>
 						</div>
 
-						<div className="text-white">
+						<div className="text-white mt-2">
 							Some residents: <span className="spanDetalle fw-bold"></span>
 						</div>
 

@@ -45,10 +45,10 @@ export const LocationDetails = () => {
 							<span className="spanDetalle fs-2 fw-bold">{location.name}</span>
 						</div>
 
-						<div className="text-white">
+						<div className="text-white mt-2">
 							Type: <span className="spanDetalle fw-bold"> {location.type}</span>
 						</div>
-						<div className="text-white">
+						<div className="text-white mt-2">
 							Dimension:<span className="spanDetalle fw-bold"> {location.dimension}</span>
 						</div>
 

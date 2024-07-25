@@ -2,7 +2,8 @@
 #contenedor-footer{
     background-color: rgb(22, 22, 22);
     max-width: 100%;
-    
+    position: fixed;
+    bottom: 0;
 }
 footer{
     width: 100%;

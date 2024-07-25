@@ -42,7 +42,7 @@ export const Register = () => {
     return (
         <>
             <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
-                <form className="form-register bg-transparent" onSubmit={handleSubmit}>
+                <form className="form-register bg-transparent">
                     <div className="text-center">
                         <img className="icono-register" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
                     </div>
@@ -94,7 +94,7 @@ export const Register = () => {
                                             setInputPassword(e.target.value);
 
                                         }}
-                                        placeholder="Enter your password" id="inputPasswordLogin" className="form-control sombreado" required=""
+                                        placeholder="Enter your password" id="inputPasswordRegister" className="form-control sombreado" required=""
                                     />
                                     <button className="bg-transparent border-0 w-25 fs-4" onClick={(e) => togglePasswordVisibility(e)}>
                                         {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -117,7 +117,7 @@ export const Register = () => {
                     </div>
 
 
-                    <button className="btn btn-lg btn-success w-100 btn-block boton-submit" type="submit" onClick={() => handleSubmit()}>Sign in</button>
+                    <button className="btn btn-lg btn-success w-100 btn-block boton-submit" type="submit" onClick={(e) => handleSubmit(e)}>Sign in</button>
 
                 </form>
             </div>

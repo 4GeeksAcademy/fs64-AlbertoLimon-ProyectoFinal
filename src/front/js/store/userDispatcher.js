@@ -1,6 +1,6 @@
 const userDispatcher = {
 
-    register: async (firstName, lastName, username, email, password) => {
+    register: async (firstName, lastName, userName, email, password) => {
 
         try {
 
@@ -9,7 +9,7 @@ const userDispatcher = {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ firstName: firstName, lastName: lastName, username: username, email: email, password: password })
+                body: JSON.stringify({ firstName: firstName, lastName: lastName, userName: userName, email: email, password: password })
             });
 
             if (!response.ok) {
@@ -18,7 +18,7 @@ const userDispatcher = {
                 } else if (response.status === 400) {
                     throw new Error("Formato inválido de email o contraseña");
                 } else {
-                    throw new Error("");
+                    throw new Error(console.log(Error));
                 }
             }
 

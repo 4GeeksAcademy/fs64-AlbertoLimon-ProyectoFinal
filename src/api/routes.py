@@ -2,17 +2,15 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from flask_jwt_extended import JWTManager, create_access_token
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from api.models import db, User
+from api.models import db, User, Favorite
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
-
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -28,7 +26,7 @@ def register_user():
     response_body = request.json
     user_query = User.query.filter_by(email = response_body["email"]).first()
     if user_query is None:
-        create_user = User(email = response_body["email"], password = response_body["password"], is_active = response_body["is_active"])
+        create_user = User(firstName = response_body["firstName"], lastName = response_body["lastName"], userName = response_body["userName"], email = response_body["email"], password = response_body["password"], is_active = response_body["is_active"])
         db.session.add(create_user)
         db.session.commit()
         response = {
@@ -75,7 +73,7 @@ def update_user(user_id):
         data = request.json
         firstName = data.get('firstName', user.firstName)
         lastName = data.get('lastName', user.lastName)
-        username = data.get('username', user.username)
+        userName = data.get('userName', user.userName)
         email = data.get('email', user.email)
         phone = data.get('phone', user.phone)
         country = data.get('country', user.country)
@@ -84,7 +82,7 @@ def update_user(user_id):
         
         user.firstName = firstName
         user.lastName = lastName
-        user.username = username
+        user.userName = userName
         user.email = email
         user.phone = phone
         user.country = country

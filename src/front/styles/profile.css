@@ -7,10 +7,12 @@
     width: 100px;
     font-size: 1rem;
     border-radius: .5rem;
-    background-color: rgb(207, 207, 207);
+    background-color: white;
+    border: 1px solid lightgray;
     margin-left: 1rem;
 }
 .btnDelete{
     font-size: 1rem;
     border-radius: .5rem;
+    background-color: rgb(209, 0, 0);
 }

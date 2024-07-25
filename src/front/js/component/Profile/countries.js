@@ -6,7 +6,7 @@ export const Countries = ({ setInputCountry }) => {
         <>
             <label htmlFor="inputCountry">Country</label>
 
-            <select className="form-select" defaultValue={"Select your country"} id="inputCountry" name="country" onChange={(event) => setInputCountry(event.target.value)} >
+            <select className="form-select" readOnly defaultValue={"Select your country"} id="inputCountry" name="country" onChange={(event) => setInputCountry(event.target.value)} >
                 
                 <option value=""></option>
                 <option value="Afghanistan">Afghanistan</option>

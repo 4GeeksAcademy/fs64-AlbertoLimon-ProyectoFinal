@@ -111,6 +111,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loginUser: async(email, password) => {
 				await userDispatcher.login(email, password)
+			},
+			deleteUser: async() => {
+				await userDispatcher.delete();
+			},
+			updateUser: async () => {
+				await userDispatcher.update()
 			}
 
 		}

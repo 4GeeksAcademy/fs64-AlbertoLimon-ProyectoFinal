@@ -41,7 +41,7 @@ const userDispatcher = {
             })
 
             if (!resp.ok) {
-                alert("Error en el login")
+                
                 throw Error("Ha habido un problema en la petición de login ")
             }
 
@@ -55,7 +55,7 @@ const userDispatcher = {
             const data = await resp.json()
             // Save your token in the localStorage
             // Also you should set your user into the store using the setItem function
-            localStorage.setItem("jwt-token", data.token);
+            sessionStorage.setItem("jwt-token", data.token);
 
 
             return data
@@ -64,7 +64,60 @@ const userDispatcher = {
             console.error("Error durante el inicio de sesión:", error);
             throw error;
         }
+    },
+    delete: async (id) => {
+        try {
+            const resp = await fetch(process.env.BACKEND_URL + `/api/users/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+
+            if (!resp.ok) {
+                
+                throw Error("Ha habido un problema al eliminar el usuario ")
+            }else{
+
+                const data = await resp.json()
+                console.log(`Usuario ${id} eliminado correctamente`);
+                return data
+            }
+
+            
+
+        } catch (error) {
+            console.error("Error al eliminar el usuario:", error);
+            throw error;
+        }
+    },
+    update: async(id) => {
+        try {
+            const resp = await fetch(process.env.BACKEND_URL + `/api/users/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({firstName: firstName, lastName: lastName, userName: userName, email: email, password: password })
+            })
+
+            if (!resp.ok) {
+                
+                throw Error("Ha habido un problema al actualizar el usuario ")
+            }else{
+
+                const data = await resp.json()
+                console.log(`Usuario ${id} actualizado correctamente`);
+                return data
+            }
+
+
+        } catch (error) {
+            console.error("Error al actualizar el usuario:", error);
+            throw error;
+        }
     }
+    
 
 }
 

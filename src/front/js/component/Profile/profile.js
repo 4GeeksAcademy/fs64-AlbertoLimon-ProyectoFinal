@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Context } from "../../store/appContext";
 import "../../../styles/profile.css"
 import { useNavigate } from "react-router-dom";
 import { Countries } from "./countries";
@@ -9,7 +10,7 @@ import { FaEyeSlash } from "react-icons/fa";
 
 export const Profile = () => {
 
-    const [showPassword, setShowPassword] = useState(false);
+    const { actions } = useContext(Context);
 
     const [inputFirstName, setInputFirstName] = useState("");
     const [inputLastName, setInputLastName] = useState("");
@@ -62,11 +63,11 @@ export const Profile = () => {
     }
 
     const saveChanges = () => {
-
+        
     }
 
-    const deleteAccount = () => {
-
+    const deleteAccount = async (id) => {
+        await actions.deleteUser(id)
     }
 
 
@@ -157,17 +158,9 @@ export const Profile = () => {
                                         </div>
                                     </div>
 
-
                                 </form>
                             </div>
-
-
-
                         </div>
-
-
-
-
                     </div>
 
 
@@ -233,7 +226,8 @@ export const Profile = () => {
                                         <div className="col form-label-group">
 
                                             <label className="" htmlFor="inputPassword">Confirm Password</label>
-                                            <input type={showPassword ? 'text' : 'password'}
+                                            <input
+                                                type="password"
                                                 onChange={(e) => {
                                                     setInputConfirmPassword(e.target.value);
 
@@ -243,18 +237,13 @@ export const Profile = () => {
                                                 id="inputConfirmPassword" className="form-control w-75" required=""
                                             />
 
-
                                         </div>
                                     </div>
-
 
                                 </form>
                             </div>
 
-
-
                         </div>
-
                     </div>
 
                     <div className="d-flex justify-content-between px-3 pb-2 pt-1">

@@ -16,7 +16,7 @@ export const Footer = () => {
 						<div className="col-4 centrado">
 							<h5>Quick Links</h5>
 							<ul className="nav flex-column">
-								<li className="nav-item mt-2 mb-2"><a href="https://rickandmortyapi.com/">Rick & Morty API</a></li>
+								<li className="nav-item mt-2 mb-2"><a href="https://rickandmortyapi.com/" target="_blank">Rick & Morty API</a></li>
 							</ul>
 						</div>
 						<div className="col-4 centrado">

@@ -9,7 +9,7 @@ export const Pagination = ({ totalPages, pageNumber, setPageNumber }) => {
 
         <>
             <ReactPaginate
-                className="pagination justify-content-center gap-4  pb-4"
+                className="pagination justify-content-center gap-4 mt-4 pb-4"
                 pageCount={totalPages}
                 forcePage={pageNumber === 1? 0 : pageNumber - 1} 
                 nextLabel="Next"

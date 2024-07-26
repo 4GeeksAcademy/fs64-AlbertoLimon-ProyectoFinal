@@ -1,7 +1,11 @@
+.card-container{
+    margin-bottom: 8rem;
+}
 .card{
     width: 18%;
     padding: 0;
     border: 1px solid black;
+    margin-bottom: 3rem;
 }
 .iconoFavorito{
     font-size: 1.5rem;

@@ -26,7 +26,7 @@ def register_user():
     response_body = request.json
     user_query = User.query.filter_by(email = response_body["email"]).first()
     if user_query is None:
-        create_user = User(firstName = response_body["firstName"], lastName = response_body["lastName"], userName = response_body["userName"], email = response_body["email"], password = response_body["password"], is_active = response_body["is_active"])
+        create_user = User(firstName = response_body["firstName"], lastName = response_body["lastName"], userName = response_body["userName"], email = response_body["email"], password = response_body["password"])
         db.session.add(create_user)
         db.session.commit()
         response = {

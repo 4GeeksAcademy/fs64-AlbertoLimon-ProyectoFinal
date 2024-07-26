@@ -26,12 +26,25 @@ export const Register = () => {
         setShowPassword(!showPassword);
     };
 
+    const validations = () => {
+        if(inputFirstName === "" || inputLastName === "" || inputUsername === "" || inputEmail === "" || inputPassword === "" || inputConfirmPassword === ""){
+            alert("Some fields are missing")
+        }else{
+            if(inputPassword === inputConfirmPassword){
+                return true
+            }else{
+                alert("Passwords do not match each other")
+            }
+        }
+    }
     const handleSubmit = async (event) => {
         event.preventDefault(); // Previene que el formulario recargue la página
         console.log("submit");
         try {
-
-            await actions.registerUser(inputFirstName, inputLastName, inputUsername, inputEmail, inputPassword)
+            if(validations()){
+                await actions.registerUser(inputFirstName, inputLastName, inputUsername, inputEmail, inputPassword)
+                
+            }
 
         } catch (error) {
             console.error("Error durante el registro de usuario:", error);

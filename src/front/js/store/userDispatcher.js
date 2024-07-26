@@ -4,7 +4,7 @@ const userDispatcher = {
 
         try {
 
-            const response = await fetch(process.env.BACKEND_URL + "/register", {
+            const response = await fetch(process.env.BACKEND_URL + "/api/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -30,11 +30,13 @@ const userDispatcher = {
             throw error;
         }
     },
-    login: async(email,password) => {
+    login: async (email, password) => {
         try {
-            const resp = await fetch(process.env.BACKEND_URL + "/login", {
+            const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify({ email, password })
             })
 

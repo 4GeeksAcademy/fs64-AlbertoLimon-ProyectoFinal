@@ -41,7 +41,7 @@ export const Login = () => {
 
             <div className="tab-pane fade show" id="login" role="tabpanel" aria-labelledby="login-tab">
                 <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
-                    <form className="form-login bg-transparent" onSubmit={handleSubmit}>
+                    <form className="form-login bg-transparent">
                         <div className="text-center">
                             <img className="icono-login" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
                         </div>
@@ -59,11 +59,11 @@ export const Login = () => {
                             <div className="d-flex">
 
                                 <input type={showPassword ? 'text' : 'password'}
-                                    value={inputPassword}
                                     onChange={(e) => {
                                         setInputPassword(e.target.value);
 
                                     }}
+                                    value={inputPassword}
                                     placeholder="Enter your password" id="inputPasswordLogin" className="form-control sombreado" required=""
                                 />
                                 <button className="bg-transparent border-0 w-25 fs-4" onClick={(e) => togglePasswordVisibility(e)}>
@@ -79,7 +79,7 @@ export const Login = () => {
 
                         </div>
 
-                        <button className="btn btn-lg btn-primary w-100 btn-block boton-submit mt-3" type="submit" onClick={() => navigate("/main/characters")}>Login</button>
+                        <button className="btn btn-lg btn-primary w-100 btn-block boton-submit mt-3" type="submit" onClick={(e) => handleSubmit(e)}>Login</button>
 
                     </form>
                 </div>

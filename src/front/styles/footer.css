@@ -1,13 +1,13 @@
-
 #contenedor-footer{
     background-color: rgb(22, 22, 22);
     max-width: 100%;
     position: fixed;
     bottom: 0;
+    
 }
 footer{
     width: 100%;
-    padding-top: 1.5rem;
+    padding-top: .9rem;
 }
 .centrado{
     display: flex;
@@ -27,7 +27,7 @@ h5{
     text-align: left;
     font-size: 1.1rem;
     color: lightgray;
-    margin-bottom: 1.5rem;
+    margin-bottom: .5rem;
 }
 form, ul{
     text-align: left;
@@ -42,6 +42,6 @@ a{
 .footer-txt{
     text-align: center;
     color: grey;
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: .8rem;
 }

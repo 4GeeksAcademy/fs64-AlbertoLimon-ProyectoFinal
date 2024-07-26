@@ -14,7 +14,6 @@ class User(db.Model):
     country = db.Column(db.String(120), unique=True, nullable=True)
     postalCode = db.Column(db.String(120), unique=True, nullable=True)
     favorites = db.relationship('Favorite', backref='user', lazy=True)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
         return f'<User {self.userName}, {self.email}>'

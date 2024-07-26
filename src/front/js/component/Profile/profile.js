@@ -4,9 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { Countries } from "./countries";
 import { Navbar } from "../Navbar/navbar";
 import { FaEdit } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 export const Profile = () => {
 
+    const [showPassword, setShowPassword] = useState(false);
 
     const [inputFirstName, setInputFirstName] = useState("");
     const [inputLastName, setInputLastName] = useState("");
@@ -16,6 +19,14 @@ export const Profile = () => {
     const [inputBirthDate, setInputBirthDate] = useState("");
     const [inputCountry, setInputCountry] = useState("");
     const [inputPostalCode, setInputPostalCode] = useState("");
+
+    const [inputActualPassword, setActualInputPassword] = useState("");
+    const [inputNewPassword, setInputNewPassword] = useState("");
+    const [inputConfirmPassword, setInputConfirmPassword] = useState("");
+
+
+    const [showActualPassword, setShowActualPassword] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
 
     console.log(inputFirstName)
     console.log(inputLastName)
@@ -27,11 +38,27 @@ export const Profile = () => {
 
     const navigate = useNavigate()
 
-    const [stateReadOnly, setStateReadOnly] = useState(true)
+    const [stateDetailsReadOnly, setStateDetailsReadOnly] = useState(true)
+    const [statePasswordReadOnly, setStatePasswordReadOnly] = useState(true)
 
-    const toggleReadOnly = () => {
-        console.log(stateReadOnly)
-        setStateReadOnly(false)
+    const toggleActualPasswordVisibility = (e) => {
+        e.preventDefault()
+        setShowActualPassword(!showActualPassword);
+    };
+
+    const toggleNewPasswordVisibility = (e) => {
+        e.preventDefault()
+        setShowNewPassword(!showNewPassword);
+    };
+
+    const toggleDetailsReadOnly = () => {
+        console.log(stateDetailsReadOnly)
+        setStateDetailsReadOnly(false)
+    }
+
+    const togglePasswordReadOnly = () => {
+        console.log(statePasswordReadOnly)
+        setStatePasswordReadOnly(false)
     }
 
     const saveChanges = () => {
@@ -52,8 +79,8 @@ export const Profile = () => {
                         <div className="col d-flex flex-column px-3 py-3">
                             <div className="d-flex flex-row justify-content-between">
                                 <h3>Account details</h3>
-                                <button onClick={toggleReadOnly} className="btn btn-light d-flex justify-content-center align-items-center gap-2 fs-4">
-                                    Edit <FaEdit className="fs-3" />
+                                <button onClick={toggleDetailsReadOnly} className="btn btn-light d-flex justify-content-center align-items-center gap-2 fs-4">
+                                    Edit <FaEdit className="fs-4" />
                                 </button>
 
                             </div>
@@ -64,7 +91,7 @@ export const Profile = () => {
                                     <div className="row mt-2">
                                         <div className="col form-label-group">
                                             <label className="" htmlFor="inputFirstName">First name</label>
-                                            <input type="text" id="inputFirstName" className="form-control w-100" placeholder="" readOnly={stateReadOnly} required="" autoFocus=""
+                                            <input type="text" id="inputFirstName" className="form-control w-100" placeholder="" readOnly={stateDetailsReadOnly} required="" autoFocus=""
                                                 onChange={(event) => setInputFirstName(event.target.value)}
                                                 value={inputFirstName} />
 
@@ -72,7 +99,7 @@ export const Profile = () => {
 
                                         <div className="col form-label-group">
                                             <label className="" htmlFor="inputLastName">Last name</label>
-                                            <input type="text" id="inputLastName" className="form-control w-100" placeholder="" readOnly={stateReadOnly} required="" autoFocus=""
+                                            <input type="text" id="inputLastName" className="form-control w-100" placeholder="" readOnly={stateDetailsReadOnly} required="" autoFocus=""
                                                 onChange={(event) => setInputLastName(event.target.value)}
                                                 value={inputLastName} />
 
@@ -82,7 +109,7 @@ export const Profile = () => {
                                     <div className="row mt-2">
                                         <div className="col form-label-group ">
                                             <label className="" htmlFor="inputEmail">Email</label>
-                                            <input type="email" id="inputEmailLogin" className="form-control w-75" placeholder="" readOnly={stateReadOnly} required="" autoFocus=""
+                                            <input type="email" id="inputEmailLogin" className="form-control w-75" placeholder="" readOnly={stateDetailsReadOnly} required="" autoFocus=""
                                                 onChange={(event) => setInputEmail(event.target.value)}
                                                 value={inputEmail} />
 
@@ -90,7 +117,7 @@ export const Profile = () => {
 
                                         <div className="col form-label-group ">
                                             <label className="" htmlFor="inputUsername">Username</label>
-                                            <input type="text" id="inputUsername" className="form-control w-75" placeholder="" readOnly={stateReadOnly} required="" autoFocus=""
+                                            <input type="text" id="inputUsername" className="form-control w-75" placeholder="" readOnly={stateDetailsReadOnly} required="" autoFocus=""
                                                 onChange={(event) => setInputUsername(event.target.value)}
                                                 value={inputUsername} />
 
@@ -100,7 +127,7 @@ export const Profile = () => {
                                     <div className="row mt-2">
                                         <div className="col form-label-group">
                                             <label className="" htmlFor="inputPhone">Phone</label>
-                                            <input type="text" id="inputPhone" className="form-control " placeholder="" readOnly={stateReadOnly} required=""
+                                            <input type="text" id="inputPhone" className="form-control " placeholder="" readOnly={stateDetailsReadOnly} required=""
                                                 onChange={(event) => setInputPhone(event.target.value)}
                                                 value={inputPhone} />
 
@@ -115,7 +142,7 @@ export const Profile = () => {
                                     <div className="row mt-2">
                                         <div className="col form-label-group">
                                             <label className="" htmlFor="inputDate">Birth Date</label>
-                                            <input type="date" id="inputDate" className="form-control w-50" readOnly={stateReadOnly} placeholder=""
+                                            <input type="date" id="inputDate" className="form-control w-50" readOnly={stateDetailsReadOnly} placeholder=""
                                                 onChange={(event) => setInputBirthDate(event.target.value)}
                                                 value={inputBirthDate} />
 
@@ -123,7 +150,7 @@ export const Profile = () => {
 
                                         <div className="col form-label-group">
                                             <label className="" htmlFor="inputPostalCode">Postal Code</label>
-                                            <input type="text" id="inputPostalCode" className="form-control" placeholder="" readOnly={stateReadOnly} autoFocus=""
+                                            <input type="text" id="inputPostalCode" className="form-control" placeholder="" readOnly={stateDetailsReadOnly} autoFocus=""
                                                 onChange={(event) => setInputPostalCode(event.target.value)}
                                                 value={inputPostalCode} />
 
@@ -134,31 +161,23 @@ export const Profile = () => {
                                 </form>
                             </div>
 
-                            
+
 
                         </div>
-                        
-                        
-                        <div className="d-flex justify-content-between px-3 pb-2 pt-1">
-                            <div className="d-flex w-50">
-                                <button className="btnSave btn btn-primary btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Save Changes</button>
-                                <button className="btnCancel btn btn-light btn-block boton-submit" type="submit" onClick={() => navigate("/main/characters")}>Cancel</button>
-                            </div>
-                            <div className="">
-                                <button className="btnDelete btn btn-danger btn-block boton-submit w-100" type="submit" onClick={() => navigate("/main")}>Delete Account</button>
-                            </div>
-                        </div>
+
+
+
 
                     </div>
 
 
 
-                    <div className="d-flex flex-column bg-light border rounded-3 mt-3">
+                    <div className="d-flex flex-column bg-light border rounded-3 mt-4">
                         <div className="col d-flex flex-column px-3 py-3">
                             <div className="d-flex flex-row justify-content-between">
                                 <h3>Change Password</h3>
-                                <button onClick={toggleReadOnly} className="btn btn-light d-flex justify-content-center align-items-center gap-2 fs-4">
-                                    Edit <FaEdit className="fs-3" />
+                                <button onClick={togglePasswordReadOnly} className="btn btn-light d-flex justify-content-center align-items-center gap-2 fs-4">
+                                    Edit <FaEdit className="fs-4" />
                                 </button>
 
                             </div>
@@ -167,37 +186,63 @@ export const Profile = () => {
                                 <form className="">
 
                                     <div className="row mt-3">
-                                        <div className="col form-label-group">
-                                            <label className="" htmlFor="inputFirstName">First name</label>
-                                            <input type="text" id="inputFirstName" className="form-control w-100" placeholder="" readOnly={stateReadOnly} required="" autoFocus=""
-                                                onChange={(event) => setInputFirstName(event.target.value)}
-                                                value={inputFirstName} />
-
-                                        </div>
 
                                         <div className="col form-label-group">
-                                            <label className="" htmlFor="inputLastName">Last name</label>
-                                            <input type="text" id="inputLastName" className="form-control w-100" placeholder="" readOnly={stateReadOnly} required="" autoFocus=""
-                                                onChange={(event) => setInputLastName(event.target.value)}
-                                                value={inputLastName} />
+
+                                            <label className="" htmlFor="inputPassword">Actual Password</label>
+                                            <div className="d-flex flex-row align-items-center">
+                                                <input type={showActualPassword ? 'text' : 'password'}
+                                                    onChange={(e) => {
+                                                        setActualInputPassword(e.target.value);
+
+                                                    }}
+                                                    value={inputActualPassword}
+                                                    readOnly={statePasswordReadOnly}
+                                                    id="inputActualPassword" className="form-control w-75" required=""
+                                                />
+                                                <button className="bg-transparent border-0 ps-2 fs-4 pb-2" onClick={(e) => toggleActualPasswordVisibility(e)}>
+                                                    {showActualPassword ? <FaEyeSlash /> : <FaEye />}
+                                                </button>
+                                            </div>
+
 
                                         </div>
-                                    </div>
 
-                                    <div className="row mt-3">
-                                        <div className="col form-label-group ">
-                                            <label className="" htmlFor="inputEmail">Email</label>
-                                            <input type="email" id="inputEmailLogin" className="form-control w-75" placeholder="" readOnly={stateReadOnly} required="" autoFocus=""
-                                                onChange={(event) => setInputEmail(event.target.value)}
-                                                value={inputEmail} />
+
+                                        <div className="col form-label-group">
+
+                                            <label className="" htmlFor="inputPassword">New Password</label>
+                                            <div className="d-flex flex-row">
+                                                <input type={showNewPassword ? 'text' : 'password'}
+                                                    onChange={(e) => {
+                                                        setInputNewPassword(e.target.value);
+
+                                                    }}
+                                                    value={inputNewPassword}
+                                                    readOnly={statePasswordReadOnly}
+                                                    id="inputNewPassword" className="form-control w-75" required=""
+                                                />
+                                                <button className="bg-transparent border-0 ps-2  fs-4 pb-2" onClick={(e) => toggleNewPasswordVisibility(e)}>
+                                                    {showNewPassword ? <FaEyeSlash /> : <FaEye />}
+                                                </button>
+                                            </div>
+
 
                                         </div>
 
-                                        <div className="col form-label-group ">
-                                            <label className="" htmlFor="inputUsername">Username</label>
-                                            <input type="text" id="inputUsername" className="form-control w-75" placeholder="" readOnly={stateReadOnly} required="" autoFocus=""
-                                                onChange={(event) => setInputUsername(event.target.value)}
-                                                value={inputUsername} />
+                                        <div className="col form-label-group">
+
+                                            <label className="" htmlFor="inputPassword">Confirm Password</label>
+                                            <input type={showPassword ? 'text' : 'password'}
+                                                onChange={(e) => {
+                                                    setInputConfirmPassword(e.target.value);
+
+                                                }}
+                                                value={inputConfirmPassword}
+                                                readOnly={statePasswordReadOnly}
+                                                id="inputConfirmPassword" className="form-control w-75" required=""
+                                            />
+
 
                                         </div>
                                     </div>
@@ -206,24 +251,21 @@ export const Profile = () => {
                                 </form>
                             </div>
 
-                            
 
-                        </div>
-                        
-                        
-                        <div className="d-flex justify-content-between px-3 pb-2 pt-1">
-                            <div className="d-flex w-50">
-                                <button className="btnSave btn btn-primary btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Save Changes</button>
-                                <button className="btnCancel btn btn-light btn-block boton-submit" type="submit" onClick={() => navigate("/main/characters")}>Cancel</button>
-                            </div>
-                            <div className="">
-                                <button className="btnDelete btn btn-danger btn-block boton-submit w-100" type="submit" onClick={() => navigate("/main")}>Delete Account</button>
-                            </div>
+
                         </div>
 
                     </div>
 
-
+                    <div className="d-flex justify-content-between px-3 pb-2 pt-1">
+                        <div className="d-flex w-50">
+                            <button className="btnSave btn btn-primary btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Save Changes</button>
+                            <button className="btnCancel btn btn-light btn-block boton-submit" type="submit" onClick={() => navigate("/main/characters")}>Cancel</button>
+                        </div>
+                        <div className="">
+                            <button className="btnDelete btn btn-danger btn-block boton-submit w-100" type="submit" onClick={() => navigate("/main")}>Delete Account</button>
+                        </div>
+                    </div>
 
                 </div>
             </div>

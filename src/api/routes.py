@@ -106,9 +106,14 @@ def delete_user(user_id):
     else:
         return jsonify({"msg": "Usuario no encontrado"}), 404
     
-@api.route('/user/<email>', methods=['GET'])
-def get_user_by_email(email):
-    # Find user by email
+@api.route('/user', methods=['POST'])
+def get_user_by_email():
+    data = request.json
+    email = data.get('email')
+
+    if not email:
+        return jsonify({"error": "Email is required"}), 400
+
     user = User.query.filter_by(email=email).first()
 
     if user:

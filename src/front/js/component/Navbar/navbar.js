@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import "../../../styles/navbar.css";
 import { MdOutlineSettings } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
+import { MdFavoriteBorder } from "react-icons/md";
 
 
 export const Navbar = () => {
@@ -23,7 +24,10 @@ return (
 
 					<ul className="dropdown-menu">
 						<Link to="/profile">
-							<li><a className="dropdown-item" href="#"><MdOutlineSettings /> Settings</a></li>
+							<li><a className="dropdown-item" href="#"><MdOutlineSettings /> Account Details</a></li>
+						</Link>
+						<Link to="/main/favorites">
+							<li><a className="dropdown-item" href="#"><MdFavoriteBorder /> My Favorites</a></li>
 						</Link>
 
 

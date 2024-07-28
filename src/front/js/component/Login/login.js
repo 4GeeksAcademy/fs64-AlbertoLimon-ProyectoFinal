@@ -47,8 +47,8 @@ export const Login = () => {
 
             if (validations() && await actions.loginUser(inputEmail, inputPassword)) {
                 console.log(inputEmail)
-                await actions.getUserByEmail(inputEmail)
-                //navigate("/main/characters")
+                //await actions.getUserByEmail(inputEmail)
+                navigate("/main/characters")
                 
             }
 

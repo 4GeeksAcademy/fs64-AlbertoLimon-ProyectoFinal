@@ -15,6 +15,8 @@ import { EpisodeDetails } from "./component/Episodes/episodeDetails";
 import { Locations } from "./pages/locations";
 import { LocationDetails } from "./component/Locations/locationDetails";
 import { Welcome } from "./pages/welcome";
+import { Favorites } from "./pages/favorites";
+import { FavoriteList } from "./component/Favorites/favoriteList";
 
 
 //create your first component
@@ -45,7 +47,11 @@ const Layout = () => {
 
                             <Route element={<Locations />} path="locations" />
                             <Route element={<LocationDetails />} path="locations/:id" />
+
+                            <Route element={<Favorites />} path="favorites" />
+                            <Route element={<FavoriteList />} path="favorites:id" />
                         </Route>
+                        
                         
                         
                     </Routes>

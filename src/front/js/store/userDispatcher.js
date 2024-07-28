@@ -121,11 +121,12 @@ const userDispatcher = {
     },
     get: async (email) => {
         try {
-            const resp = await fetch(process.env.BACKEND_URL + `/api/user/${email}`, {
-                method: "GET",
+            const resp = await fetch(process.env.BACKEND_URL + `/api/user`, {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json"
-                }
+                },
+                body: JSON.stringify({ email: email })
             })
 
             if (!resp.ok) {

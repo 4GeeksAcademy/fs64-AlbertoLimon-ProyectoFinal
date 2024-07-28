@@ -33,6 +33,10 @@ export const CharacterList = () => {
     const fetchCharacters = async () => {
         await actions.getCharacters(pageNumber);
 
+    }  
+
+    const addFavorite = (id) => {
+        
     }
 
     useEffect(() => {
@@ -63,7 +67,7 @@ export const CharacterList = () => {
 
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/characters/${character.id}`)} className="btn btn-outline-primary">Show details</button>
-                                    <button className="btn btn-outline-danger" >
+                                    <button className="btn btn-outline-danger" onClick={addFavorite(character.id)} >
                                         <MdFavorite className="iconoFavorito" />
                                     </button>
                                 </div>

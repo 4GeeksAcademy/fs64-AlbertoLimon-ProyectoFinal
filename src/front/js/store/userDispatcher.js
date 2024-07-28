@@ -14,8 +14,10 @@ const userDispatcher = {
 
             if (!response.ok) {
                 if (response.status === 401) {
+                    alert("Email ya existente")
                     throw new Error("Email ya existente");
                 } else if (response.status === 400) {
+                    alert("Formato inválido de email o contraseña")
                     throw new Error("Formato inválido de email o contraseña");
                 } else {
                     throw new Error(console.log(Error));
@@ -41,7 +43,7 @@ const userDispatcher = {
             })
 
             if (!resp.ok) {
-                
+
                 throw Error("Ha habido un problema en la petición de login ")
             }
 
@@ -75,36 +77,36 @@ const userDispatcher = {
             })
 
             if (!resp.ok) {
-                
+
                 throw Error("Ha habido un problema al eliminar el usuario ")
-            }else{
+            } else {
 
                 const data = await resp.json()
                 console.log(`Usuario ${id} eliminado correctamente`);
                 return data
             }
 
-            
+
 
         } catch (error) {
             console.error("Error al eliminar el usuario:", error);
             throw error;
         }
     },
-    update: async(id) => {
+    update: async (id) => {
         try {
             const resp = await fetch(process.env.BACKEND_URL + `/api/users/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({firstName: firstName, lastName: lastName, userName: userName, email: email, password: password })
+                body: JSON.stringify({ firstName: firstName, lastName: lastName, userName: userName, email: email, password: password })
             })
 
             if (!resp.ok) {
-                
+
                 throw Error("Ha habido un problema al actualizar el usuario ")
-            }else{
+            } else {
 
                 const data = await resp.json()
                 console.log(`Usuario ${id} actualizado correctamente`);
@@ -116,8 +118,35 @@ const userDispatcher = {
             console.error("Error al actualizar el usuario:", error);
             throw error;
         }
+    },
+    get: async (email) => {
+        try {
+            const resp = await fetch(process.env.BACKEND_URL + `/api/user/${email}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+
+            if (!resp.ok) {
+
+                throw Error("Ha habido un problema al obtener el usuario")
+            } else {
+                
+                const data = await resp.json()
+                console.log(`Usuario encontrado`, data);
+                return data
+            }
+
+
+        } catch (error) {
+            console.error("Error al obtener el usuario:", error);
+            throw error;
+        }
+
     }
-    
+
+
 
 }
 

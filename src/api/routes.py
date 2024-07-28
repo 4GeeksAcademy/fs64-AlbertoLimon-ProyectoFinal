@@ -102,6 +102,16 @@ def delete_user(user_id):
         Favorite.query.filter_by(user_id=user_id).delete()
         db.session.delete(user)
         db.session.commit()
-        return jsonify({"message": "Usuario y sus favoritos eliminados correctamente"}), 200
+        return jsonify({"msg": "Usuario y sus favoritos eliminados correctamente"}), 200
     else:
-        return jsonify({"message": "Usuario no encontrado"}), 404
+        return jsonify({"msg": "Usuario no encontrado"}), 404
+    
+@api.route('/user/<email>', methods=['GET'])
+def get_user_by_email(email):
+    # Find user by email
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+        return jsonify(user), 200
+    else:
+        return jsonify({"msg": "Usuario no encontrado"}), 404

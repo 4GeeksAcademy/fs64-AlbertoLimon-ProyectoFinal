@@ -12,6 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			episodes: [],
 			locations: [],
 			numPages: null,
+			activeUser: {}
 		},
 		
 		actions: {
@@ -107,16 +108,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			
 			registerUser: async(firstName, lastName, userName, email, password) => {
-				await userDispatcher.register(firstName, lastName, userName, email, password)
+				if(await userDispatcher.register(firstName, lastName, userName, email, password)){
+					return true;
+				}
 			},
 			loginUser: async(email, password) => {
-				await userDispatcher.login(email, password)
+				if(await userDispatcher.login(email, password)){
+					return true;
+				}
 			},
 			deleteUser: async() => {
 				await userDispatcher.delete();
 			},
-			updateUser: async () => {
-				await userDispatcher.update()
+			updateUser: async (id) => {
+				await userDispatcher.update(id)
+			},
+			getUserByEmail: async(email) => {
+				console.log(email)
+				const user = await userDispatcher.get(email)
+				console.log(user)
+				setStore({activeUser : user})
 			}
 
 		}

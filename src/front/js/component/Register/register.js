@@ -41,9 +41,8 @@ export const Register = () => {
         event.preventDefault(); // Previene que el formulario recargue la página
         console.log("submit");
         try {
-            if(validations()){
-                await actions.registerUser(inputFirstName, inputLastName, inputUsername, inputEmail, inputPassword)
-                
+            if(validations() && await actions.registerUser(inputFirstName, inputLastName, inputUsername, inputEmail, inputPassword)){
+                window.location.reload()
             }
 
         } catch (error) {

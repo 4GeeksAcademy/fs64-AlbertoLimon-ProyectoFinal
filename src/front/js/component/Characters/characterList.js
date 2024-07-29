@@ -35,8 +35,9 @@ export const CharacterList = () => {
 
     }  
 
-    const addFavorite = (id) => {
-        
+    //Falta añadir el id del ususario actual
+    const addFavoriteCharacter = async (id, type, name, userId) => {
+        await actions.addFavoriteCharacter(id, type, name, userId)
     }
 
     useEffect(() => {
@@ -67,7 +68,7 @@ export const CharacterList = () => {
 
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/characters/${character.id}`)} className="btn btn-outline-primary">Show details</button>
-                                    <button className="btn btn-outline-danger" onClick={addFavorite(character.id)} >
+                                    <button className="btn btn-outline-danger" onClick={addFavoriteCharacter(character.id, "character", character.name)} >
                                         <MdFavorite className="iconoFavorito" />
                                     </button>
                                 </div>

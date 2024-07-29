@@ -25,11 +25,17 @@ class User(db.Model):
             "lastName": self.lastName,
             "userName": self.userName,
             "email": self.email,
+            "phone": self.phone,
+            "birthDate": self.birthDate,
+            "country": self.country,
+            "postalCode": self.postalCode,
+            "favorites": self.favorites
             # do not serialize the password, its a security breach
         }
     
 class Favorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(150), nullable=False)
     itemName = db.Column(db.String(150), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('user.id') ,nullable=False)
 
@@ -40,6 +46,7 @@ class Favorite(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "type": self.type,
             "name": self.itemName,
             "userId": self.userId,
         }

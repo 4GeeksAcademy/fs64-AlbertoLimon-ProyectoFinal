@@ -9,7 +9,7 @@ import { FaLemon } from "react-icons/fa";
 export const Footer = () => {
 	return (
 		<>
-			<div className="b-example-divider"></div>
+			
 			<div className="container" id="contenedor-footer">
 				<footer className="d-flex flex-column justify-content-center ">
 					<div className="row border-bottom border-secondary ">

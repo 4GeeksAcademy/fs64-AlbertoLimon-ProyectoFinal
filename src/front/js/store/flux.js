@@ -1,5 +1,6 @@
 import charactersDispatcher from "./charactersDispatcher"
 import episodesDispatcher from "./episodesDispatcher";
+import favoritesDispatcher from "./favoritesDispatcher";
 import locationsDispatcher from "./locationsDispatcher";
 import pageDispatcher from "./pageDispatcher";
 import userDispatcher from "./userDispatcher";
@@ -128,6 +129,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const user = await userDispatcher.get(email)
 				console.log(user)
 				setStore({activeUser : user})
+			},
+			addFavorite: async(id, type, name, userId) => {
+				await favoritesDispatcher.add(id, type, name, userId)
+			},
+			getFavorites: async () => {
+				
 			}
 
 		}

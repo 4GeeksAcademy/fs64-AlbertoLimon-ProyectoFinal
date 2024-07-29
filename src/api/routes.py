@@ -120,3 +120,4 @@ def get_user_by_email():
         return jsonify(user), 200
     else:
         return jsonify({"msg": "Usuario no encontrado"}), 404
+    

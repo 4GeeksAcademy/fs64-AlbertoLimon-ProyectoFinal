@@ -47,6 +47,6 @@ class Favorite(db.Model):
         return {
             "id": self.id,
             "type": self.type,
-            "name": self.itemName,
+            "itemName": self.itemName,
             "userId": self.userId,
         }

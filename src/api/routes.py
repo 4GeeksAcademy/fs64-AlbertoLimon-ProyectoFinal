@@ -108,13 +108,15 @@ def delete_user(user_id):
     
 @api.route('/user', methods=['POST'])
 def get_user_by_email():
+
     data = request.json
-    email = data.get('email')
+    emailUser = data.get('emailUser')
+    print("emailUser ",emailUser)
 
-    if not email:
-        return jsonify({"error": "Email is required"}), 400
+    if not emailUser:
+        return jsonify({"msg": "Email es necesario"}), 400
 
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=emailUser).first()
 
     if user:
         return jsonify(user), 200

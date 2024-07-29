@@ -119,14 +119,15 @@ const userDispatcher = {
             throw error;
         }
     },
-    get: async (email) => {
+    get: async (emailUser) => {
         try {
-            const resp = await fetch(process.env.BACKEND_URL + `/api/user`, {
+            const resp = await fetch(process.env.BACKEND_URL + `/api/user/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ email: email })
+                body: JSON.stringify({ email: emailUser })
+                
             })
 
             if (!resp.ok) {

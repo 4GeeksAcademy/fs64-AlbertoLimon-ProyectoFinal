@@ -37,7 +37,7 @@ export const CharacterList = () => {
 
     //Falta añadir el id del ususario actual
     const addFavoriteCharacter = async (id, type, name, userId) => {
-        await actions.addFavoriteCharacter(id, type, name, userId)
+        await actions.addFavorite(id, type, name, userId)
     }
 
     useEffect(() => {

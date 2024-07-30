@@ -8,15 +8,15 @@ export const FavoriteList = () => {
 
     const { store, actions } = useContext(Context);
 
-    const [pageNumber, setPageNumber] = useState(1)
-
-    const [search, setSearch] = useState("")
-
     const navigate = useNavigate()
 
+    const fetchFavorites = async () => {
+        await actions.getFavorites();
+    }
 
     useEffect(() => {
-        
+
+        //fetchFavorites()
 
     }, [])
 

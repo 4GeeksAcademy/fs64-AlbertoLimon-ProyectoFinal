@@ -62,8 +62,16 @@ export const Profile = () => {
         setStatePasswordReadOnly(false)
     }
 
-    const saveChanges = () => {
-        
+
+
+    const saveChanges = async () => {
+        if(inputNewPassword !== ""){
+            if(inputNewPassword === inputConfirmPassword){
+                await actions.updateUser(id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode, inputNewPassword)
+            }
+        }else{
+            await actions.updateUser(id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode, inputActualPassword)
+        }
     }
 
     const deleteAccount = async (id) => {
@@ -248,11 +256,11 @@ export const Profile = () => {
 
                     <div className="d-flex justify-content-between px-3 pb-2 pt-1">
                         <div className="d-flex w-50">
-                            <button className="btnSave btn btn-primary btn-block boton-submit" type="submit" onClick={() => navigate("/main")}>Save Changes</button>
+                            <button className="btnSave btn btn-primary btn-block boton-submit" type="submit" onClick={() => saveChanges()}>Save Changes</button>
                             <button className="btnCancel btn btn-light btn-block boton-submit" type="submit" onClick={() => navigate("/main/characters")}>Cancel</button>
                         </div>
                         <div className="">
-                            <button className="btnDelete btn btn-danger btn-block boton-submit w-100" type="submit" onClick={() => navigate("/main")}>Delete Account</button>
+                            <button className="btnDelete btn btn-danger btn-block boton-submit w-100" type="submit" onClick={() => deleteAccount()}>Delete Account</button>
                         </div>
                     </div>
 

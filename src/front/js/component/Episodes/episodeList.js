@@ -32,7 +32,11 @@ export const EpisodeList = () => {
 
     const fetchEpisodes = async () => {
         await actions.getEpisodes(pageNumber);
+    }
 
+    //Falta añadir el id del ususario actual
+    const addFavoriteEpisode = async (id, type, name, userId) => {
+        await actions.addFavorite(id, type, name, userId)
     }
     
     useEffect(() => {
@@ -65,7 +69,7 @@ export const EpisodeList = () => {
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/episodes/${episode.id}`)} className="btn btn-outline-primary">Show details</button>
                                     <button className="btn btn-outline-danger" >
-                                        <MdFavorite className="iconoFavorito" />
+                                        <MdFavorite className="iconoFavorito" onClick={addFavoriteEpisode(episode.id, "episode", episode.name)}/>
                                     </button>
                                 </div>
                             </div>

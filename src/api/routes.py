@@ -75,6 +75,7 @@ def update_user(user_id):
         lastName = data.get('lastName', user.lastName)
         userName = data.get('userName', user.userName)
         email = data.get('email', user.email)
+        password = data.get('password', user.password)
         phone = data.get('phone', user.phone)
         country = data.get('country', user.country)
         birthDate = data.get('birthDate', user.birthDate)
@@ -84,6 +85,7 @@ def update_user(user_id):
         user.lastName = lastName
         user.userName = userName
         user.email = email
+        user.password = password
         user.phone = phone
         user.country = country
         user.birthDate = birthDate

@@ -93,14 +93,17 @@ const userDispatcher = {
             throw error;
         }
     },
-    update: async (id) => {
+    update: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode, password) => {
         try {
             const resp = await fetch(process.env.BACKEND_URL + `/api/users/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ firstName: firstName, lastName: lastName, userName: userName, email: email, password: password })
+                body: JSON.stringify({
+                    firstName: firstName, lastName: lastName, email: email, userName: username, phone: phone, country: country,
+                    birthDate: birthDate, postalCode: postalCode, password: password
+                })
             })
 
             if (!resp.ok) {
@@ -127,14 +130,14 @@ const userDispatcher = {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ email: emailUser })
-                
+
             })
 
             if (!resp.ok) {
 
                 throw Error("Ha habido un problema al obtener el usuario")
             } else {
-                
+
                 const data = await resp.json()
                 console.log(`Usuario encontrado`, data);
                 return data

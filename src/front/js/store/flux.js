@@ -118,11 +118,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return true;
 				}
 			},
-			deleteUser: async() => {
-				await userDispatcher.delete();
+			deleteUser: async(id) => {
+				await userDispatcher.delete(id);
 			},
-			updateUser: async (id) => {
-				await userDispatcher.update(id)
+			updateUser: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode, password) => {
+				await userDispatcher.update(id, firstName, lastName, email, username, phone, country, birthDate, postalCode, password)
 			},
 			getUserByEmail: async(email) => {
 				console.log(email)
@@ -134,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				await favoritesDispatcher.add(id, type, name, userId)
 			},
 			getFavorites: async () => {
-				
+				//await favoritesDispatcher.get(activeUser.id)
 			}
 
 		}

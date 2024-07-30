@@ -18,7 +18,7 @@ export const LocationList = () => {
     const navigate = useNavigate()
 
     const fetchInfoPages = async () => {
-        
+
         if (search.length > 0) {
             await actions.getElementPages("locations", search)
             await actions.getLocationsSearched(pageNumber, search);
@@ -32,8 +32,13 @@ export const LocationList = () => {
 
     const fetchLocations = async () => {
         await actions.getLocations(pageNumber);
-
     }
+
+    //Falta añadir el id del ususario actual
+    const addFavoriteLocation = async (id, type, name, userId) => {
+        await actions.addFavorite(id, type, name, userId)
+    }
+
 
     useEffect(() => {
 
@@ -65,7 +70,7 @@ export const LocationList = () => {
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/locations/${location.id}`)} className="btn btn-outline-primary">Show details</button>
                                     <button className="btn btn-outline-danger" >
-                                        <MdFavorite className="iconoFavorito" />
+                                        <MdFavorite className="iconoFavorito" onClick={addFavoriteLocation(location.id, "location", location.name)}/>
                                     </button>
                                 </div>
                             </div>

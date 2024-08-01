@@ -9,7 +9,7 @@ import { FaEyeSlash } from "react-icons/fa";
 
 export const Login = () => {
 
-    const { store, actions } = useContext(Context);
+    const { actions } = useContext(Context);
 
     const navigate = useNavigate()
 
@@ -47,7 +47,7 @@ export const Login = () => {
 
             if (validations() && await actions.loginUser(inputEmail, inputPassword)) {
                 console.log(inputEmail)
-                await actions.getUserByEmail(inputEmail)
+                //await actions.getUserByEmail(inputEmail)
                 navigate("/main/characters")
                 
             }

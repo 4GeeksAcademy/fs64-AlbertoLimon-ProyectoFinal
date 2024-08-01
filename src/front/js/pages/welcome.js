@@ -1,13 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/welcome.css";
 import { Login } from "../component/Login/login"
 import { Register } from "../component/Register/register"
 import { Footer } from "../component/Footer/footer";
+import { useNavigate } from "react-router-dom";
 
 
 export const Welcome = () => {
 
+    const { store } = useContext(Context);
+    const navigate = useNavigate()
+
+    
+
+    useEffect(() => {
+        
+        if(store.token && store.token != "" && store.token != undefined){
+            console.log("Usuario ya logeado")
+            navigate("/main/characters")
+        }
+
+    }, [])
 
     return (
         <>

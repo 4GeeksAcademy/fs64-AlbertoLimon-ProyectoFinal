@@ -42,13 +42,13 @@ export const CharacterList = () => {
 
     useEffect(() => {
 
+        console.log("Usuario: ",actions.getUserFromBack());
+
         fetchInfoPages()
 
         fetchCharacters()
 
     }, [pageNumber, search])
-
-    console.log("search ", search)
 
 
     return (
@@ -57,7 +57,7 @@ export const CharacterList = () => {
             <SearchBar setSearch={setSearch} setPageNumber={setPageNumber} />
 
             <div className="card-container container">
-
+                <h1>{store.message}</h1>
                 <div className="row d-flex justify-content-center align-items-center gap-4">
                     {store.characters.map((character, index) => (
 
@@ -68,7 +68,7 @@ export const CharacterList = () => {
 
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/characters/${character.id}`)} className="btn btn-outline-primary">Show details</button>
-                                    <button className="btn btn-outline-danger" onClick={addFavoriteCharacter(character.id, "character", character.name)} >
+                                    <button className="btn btn-outline-danger"  >
                                         <MdFavorite className="iconoFavorito" />
                                     </button>
                                 </div>

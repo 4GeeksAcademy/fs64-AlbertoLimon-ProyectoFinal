@@ -56,7 +56,7 @@ def login_user():
         return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
     else:
         access_token = create_access_token(identity=user_login.id)
-        return jsonify({ "token": access_token, "user_id": user_login.id })
+        return jsonify({ "msg": "Inicio se sesión correcto!" ,"token": access_token, "user_id": user_login.id })
 
 
 @api.route("/protected", methods=["GET"])

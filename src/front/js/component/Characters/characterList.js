@@ -36,13 +36,20 @@ export const CharacterList = () => {
     }  
 
     //Falta añadir el id del ususario actual
-    const addFavoriteCharacter = async (id, type, name, userId) => {
-        await actions.addFavorite(id, type, name, userId)
+    const addFavoriteCharacter = async (type, name, userId) => {
+        await actions.addFavorite(type, name, userId)
     }
 
     useEffect(() => {
 
-        console.log("Usuario: ",actions.getUserFromBack());
+        actions.getUserFromBack()
+        console.log("token useEffect",sessionStorage.getItem("jwt-token"))
+        
+    }, [])
+   
+    console.log(store.activeUser.id);
+
+    useEffect(() => { 
 
         fetchInfoPages()
 
@@ -57,7 +64,6 @@ export const CharacterList = () => {
             <SearchBar setSearch={setSearch} setPageNumber={setPageNumber} />
 
             <div className="card-container container">
-                <h1>{store.message}</h1>
                 <div className="row d-flex justify-content-center align-items-center gap-4">
                     {store.characters.map((character, index) => (
 
@@ -68,7 +74,7 @@ export const CharacterList = () => {
 
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/characters/${character.id}`)} className="btn btn-outline-primary">Show details</button>
-                                    <button className="btn btn-outline-danger"  >
+                                    <button className="btn btn-outline-danger" onClick={() => addFavoriteCharacter("character", character.name, store.activeUser.id)} >
                                         <MdFavorite className="iconoFavorito" />
                                     </button>
                                 </div>

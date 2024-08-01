@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
 import "../../../styles/profile.css"
 import { useNavigate } from "react-router-dom";
@@ -10,16 +10,16 @@ import { FaEyeSlash } from "react-icons/fa";
 
 export const Profile = () => {
 
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
 
-    const [inputFirstName, setInputFirstName] = useState("");
-    const [inputLastName, setInputLastName] = useState("");
-    const [inputUsername, setInputUsername] = useState("");
-    const [inputEmail, setInputEmail] = useState("");
-    const [inputPhone, setInputPhone] = useState("");
-    const [inputBirthDate, setInputBirthDate] = useState("");
-    const [inputCountry, setInputCountry] = useState("");
-    const [inputPostalCode, setInputPostalCode] = useState("");
+    const [inputFirstName, setInputFirstName] = useState(store.activeUser.firstName);
+    const [inputLastName, setInputLastName] = useState(store.activeUser.lastName);
+    const [inputUsername, setInputUsername] = useState(store.activeUser.userName);
+    const [inputEmail, setInputEmail] = useState(store.activeUser.email);
+    const [inputPhone, setInputPhone] = useState(store.activeUser.phone);
+    const [inputBirthDate, setInputBirthDate] = useState(store.activeUser.birthDate);
+    const [inputCountry, setInputCountry] = useState(store.activeUser.country);
+    const [inputPostalCode, setInputPostalCode] = useState(store.activeUser.postalCode);
 
     const [inputActualPassword, setActualInputPassword] = useState("");
     const [inputNewPassword, setInputNewPassword] = useState("");
@@ -36,6 +36,8 @@ export const Profile = () => {
     console.log(inputBirthDate)
     console.log(inputCountry)
     console.log(inputPostalCode)
+
+    console.log(store.token)
 
     const navigate = useNavigate()
 
@@ -62,22 +64,31 @@ export const Profile = () => {
         setStatePasswordReadOnly(false)
     }
 
-
-
     const saveChanges = async () => {
         if(inputNewPassword !== ""){
             if(inputNewPassword === inputConfirmPassword){
-                await actions.updateUser(id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode, inputNewPassword)
+                await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode)
             }
         }else{
-            await actions.updateUser(id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode, inputActualPassword)
+            await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode)
         }
     }
 
-    const deleteAccount = async (id) => {
-        await actions.deleteUser(id)
+    const deleteAccount = async () => {
+        await actions.deleteUser()
     }
 
+    useEffect(() => {
+
+        actions.getUserFromBack()
+        
+        
+    }, [])
+
+    console.log("id : ",store.activeUser.id);
+        
+
+ 
 
     return (
         <>

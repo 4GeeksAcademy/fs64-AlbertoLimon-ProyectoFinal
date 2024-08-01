@@ -1,37 +1,27 @@
 const favoritesDispatcher = {
-    add: async (id, type, name, userId) => {
-
-        let url = ""
-        if (type === "character") {
-            url = process.env.BACKEND_URL + "/api/favorites"
-        } else if (type === "episode") {
-            url = process.env.BACKEND_URL + "/api/episodes"
-        } else if (type === "location") {
-            url = process.env.BACKEND_URL + "/api/locations"
-        }
+    add: async (type, name, userId) => {
 
         try {
 
-            const response = await fetch(url, {
+            const response = await fetch(process.env.BACKEND_URL + "/api/favorites", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ` + sessionStorage.getItem("jwt-token")
                 },
-                body: JSON.stringify({ id: id, type: type, name: name, userId: userId })
+                body: JSON.stringify({ type: type, name: name, userId: userId })
             });
 
-            if (!response.ok) {
-                if (response.status === 401) {
-                    alert("Error al añadir favorito")
-                    throw new Error(console.log(Error));
-                } else {
-                    throw new Error(console.log(Error));
-                }
+            
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Favorito creado correctamente');
+                return data;
+            } else {
+                console.error('Error al crear el favorito:');
             }
 
-            const data = await response.json();
-
-            return data;
+            
         } catch (error) {
             console.error("Error durante el registro:", error);
             throw error;
@@ -48,7 +38,7 @@ const favoritesDispatcher = {
             })
             if (response.ok) {
                 const data = await response.json();
-                
+
                 return data;
             }
 

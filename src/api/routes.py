@@ -66,9 +66,11 @@ def protected():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
 
-@api.route('/users/<int:user_id>', methods=['PUT'])
-def update_user(user_id):
-    user = User.query.get(user_id)
+@api.route('/users', methods=['PUT'])
+@jwt_required()
+def update_user():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
     if user:
         data = request.json
         firstName = data.get('firstName', user.firstName)
@@ -96,32 +98,44 @@ def update_user(user_id):
     else:
         return jsonify({'msg': 'Usuario no encontrado!'}), 404
     
-@api.route('/users/<int:user_id>', methods=['DELETE'])
-def delete_user(user_id):
-    user = User.query.get(user_id)
+@api.route('/users', methods=['DELETE'])
+@jwt_required()
+def delete_user():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+
     if user:
         # Eliminar los favoritos asociados al usuario
-        Favorite.query.filter_by(user_id=user_id).delete()
+        Favorite.query.filter_by(user_id=current_user_id).delete()
         db.session.delete(user)
         db.session.commit()
         return jsonify({"msg": "Usuario y sus favoritos eliminados correctamente"}), 200
     else:
         return jsonify({"msg": "Usuario no encontrado"}), 404
     
-@api.route('/user', methods=['POST'])
-def get_user_by_email():
+@api.route('/users', methods=['GET'])
+@jwt_required()
+def get_user():
 
-    data = request.json
-    emailUser = data.get('emailUser')
-    print("emailUser ",emailUser)
-
-    if not emailUser:
-        return jsonify({"msg": "Email es necesario"}), 400
-
-    user = User.query.filter_by(email=emailUser).first()
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
 
     if user:
-        return jsonify(user), 200
+        return jsonify(user.serialize()), 200
     else:
         return jsonify({"msg": "Usuario no encontrado"}), 404
+    
+@api.route('/favorites', methods=['POST'])
+@jwt_required()
+def create_favorite():
+
+    data = request.json
+    favorite_query = Favorite.query.filter_by(name = data["name"]).first()
+
+    if favorite_query is None:
+        create_favorite = Favorite(type = data["type"], name = data["name"], userId = data["userId"])
+        db.session.add(create_favorite)
+        db.session.commit()
+    else:
+        return jsonify({"msg": "Favorito ya existe"}), 404
     

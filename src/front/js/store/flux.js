@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			token: null,
+			token: sessionStorage.getItem("jwt-token"),
 			characters: [],
 			episodes: [],
 			locations: [],
@@ -34,6 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
+
 
 			},
 			changeColor: (index, color) => {
@@ -135,28 +136,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return true;
 				}
 			},
-
-			deleteUser: async (id) => {
-				await userDispatcher.delete(id);
-			},
-			updateUser: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode, password) => {
-				await userDispatcher.update(id, firstName, lastName, email, username, phone, country, birthDate, postalCode, password)
-			},
 			getUserFromBack: async () => {
-				const store = getStore();
-				const opts = {
-					headers: {
-						"Authorization": "Bearer " + store.token
-					}
-				}
-				await fetch(process.env.BACKEND_URL + "/api/protected", opts)
-					.then(resp => resp.json())
-					.then(data =>
-						setStore({ message: data.current_user }))
-					.catch(error => console.log(error))
+
+				const data = await userDispatcher.get()
+				console.log(data)
+				setStore({ activeUser: data });
+
+
 			},
-			addFavorite: async (id, type, name, userId) => {
-				await favoritesDispatcher.add(id, type, name, userId)
+			deleteUser: async () => {
+				await userDispatcher.delete()
+			},
+			//Hay que comprobar el tema de las contraseñas
+			updateUser: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode) => {
+				await userDispatcher.update(id, firstName, lastName, email, username, phone, country, birthDate, postalCode)
+			},
+
+			addFavorite: async (type, name, userId) => {
+				await favoritesDispatcher.add(type, name, userId)
 			},
 			getFavorites: async () => {
 				//await favoritesDispatcher.get(activeUser.id)

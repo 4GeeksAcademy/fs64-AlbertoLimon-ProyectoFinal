@@ -5,11 +5,19 @@ import "../../../styles/navbar.css";
 import { MdOutlineSettings } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
 import { MdFavoriteBorder } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 
 export const Navbar = () => {
 
 	const { store, actions } = useContext(Context);
+
+	const navigate = useNavigate()
+
+	const logout = () => {
+		actions.logout()
+		navigate("/welcome")
+	}
 	
 	return (
 		<>
@@ -34,7 +42,7 @@ export const Navbar = () => {
 
 
 							<li><hr className="dropdown-divider" /></li>
-							<li onClick={() => actions.logout()}><a className="dropdown-item"><LuLogOut /> Logout</a></li>
+							<li onClick={() => logout()}><a className="dropdown-item"><LuLogOut /> Logout</a></li>
 						</ul>
 					</div>
 

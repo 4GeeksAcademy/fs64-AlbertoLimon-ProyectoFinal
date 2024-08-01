@@ -67,12 +67,37 @@ const userDispatcher = {
             throw error;
         }
     },
-    delete: async (id) => {
+    get: async () => {
+
         try {
-            const resp = await fetch(process.env.BACKEND_URL + `/api/users/${id}`, {
+            const response = await fetch(process.env.BACKEND_URL + "/api/users", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': 'Bearer ' + sessionStorage.getItem("jwt-token")
+                },
+    
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Error del HTTP! Estado: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            return data
+    
+        } catch (error) {
+            console.error("Error cargando los datos del usuario:", error);
+        }
+
+    },
+    delete: async () => {
+        try {
+            const resp = await fetch(process.env.BACKEND_URL + "/api/users", {
                 method: "DELETE",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': 'Bearer ' + sessionStorage.getItem("jwt-token")
                 }
             })
 
@@ -82,7 +107,7 @@ const userDispatcher = {
             } else {
 
                 const data = await resp.json()
-                console.log(`Usuario ${id} eliminado correctamente`);
+                console.log(`Usuario eliminado correctamente`);
                 return data
             }
 
@@ -95,10 +120,11 @@ const userDispatcher = {
     },
     update: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode, password) => {
         try {
-            const resp = await fetch(process.env.BACKEND_URL + `/api/users/${id}`, {
+            const resp = await fetch(process.env.BACKEND_URL + `/api/users`, {
                 method: "PUT",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': 'Bearer ' + sessionStorage.getItem("jwt-token")
                 },
                 body: JSON.stringify({
                     firstName: firstName, lastName: lastName, email: email, userName: username, phone: phone, country: country,
@@ -121,37 +147,7 @@ const userDispatcher = {
             console.error("Error al actualizar el usuario:", error);
             throw error;
         }
-    },
-    get: async (emailUser) => {
-        try {
-            const resp = await fetch(process.env.BACKEND_URL + `/api/user/`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email: emailUser })
-
-            })
-
-            if (!resp.ok) {
-
-                throw Error("Ha habido un problema al obtener el usuario")
-            } else {
-
-                const data = await resp.json()
-                console.log(`Usuario encontrado`, data);
-                return data
-            }
-
-
-        } catch (error) {
-            console.error("Error al obtener el usuario:", error);
-            throw error;
-        }
-
     }
-
-
 
 }
 

@@ -17,13 +17,11 @@ const favoritesDispatcher = {
                 const data = await response.json();
                 console.log('Favorito creado correctamente');
                 return data;
-            } else {
-                console.error('Error al crear el favorito:');
             }
 
             
         } catch (error) {
-            console.error("Error durante el registro:", error);
+            console.error("Error al añadir a favoritos:", error);
             throw error;
         }
     },

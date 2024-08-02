@@ -103,10 +103,10 @@ def update_user():
 def delete_user():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
-
+    print(user)
     if user:
         # Eliminar los favoritos asociados al usuario
-        Favorite.query.filter_by(user_id=current_user_id).delete()
+        Favorite.query.filter_by(userId=current_user_id).delete()
         db.session.delete(user)
         db.session.commit()
         return jsonify({"msg": "Usuario y sus favoritos eliminados correctamente"}), 200

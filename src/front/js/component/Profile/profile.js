@@ -76,6 +76,8 @@ export const Profile = () => {
 
     const deleteAccount = async () => {
         await actions.deleteUser()
+        await actions.logout()
+        navigate("/welcome")
     }
 
     useEffect(() => {

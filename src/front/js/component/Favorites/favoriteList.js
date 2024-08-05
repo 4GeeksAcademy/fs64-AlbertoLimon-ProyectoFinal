@@ -26,7 +26,7 @@ export const FavoriteList = () => {
         }
     }
 
-    const delete = (id) => {
+    const deleteFav = async (id) => {
         await actions.deleteFavorite()
     }
 
@@ -53,7 +53,7 @@ export const FavoriteList = () => {
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/episodes/${episode.id}`)} className="btn btn-outline-primary">Show details</button>
                                     <button className="btn btn-outline-danger">
-                                        <FaTrash className="iconoEliminarFavorito" onClick={}/>
+                                        <FaTrash className="iconoEliminarFavorito"/>
                                     </button>
                                 </div>
                             </div>

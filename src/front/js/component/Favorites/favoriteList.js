@@ -1,8 +1,9 @@
 import React from "react"
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
 import "../../../styles/cards.css"
 import { useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 
 export const FavoriteList = () => {
 
@@ -14,32 +15,45 @@ export const FavoriteList = () => {
         await actions.getFavorites();
     }
 
+    const getImgFavorite = async (type, name) => {
+        let src = ""
+        if (type === "character") {
+            
+        } else if (type === "episode") {
+            
+        } else if (type === "location") {
+            
+        }
+    }
+
+    const delete = (id) => {
+        await actions.deleteFavorite()
+    }
+
     useEffect(() => {
 
-        //fetchFavorites()
-
+        fetchFavorites()
+        
     }, [])
-
-
-
 
     return (
         <>
-            
+
             <div className="card-container container">
                 <h1 className="text-white fs-1">Favorites</h1>
                 <div className="row d-flex justify-content-center align-items-center gap-4">
-                    {store.episodes.map((episode, index) => (
+                    {store.favorites.map((favorite, index) => (
 
                         <div className="card col-3" key={index}>
-                            <img src="" />
+                            
+                            <img  />
                             <div className="card-body">
-                                <h5 className="card-title mb-3 text-dark">{episode.name}</h5>
-
+                                <h5 className="card-title mb-3 text-dark">{favorite.itemName}</h5>
+                                <h5 className="card-title mb-3 text-dark">{favorite.type}</h5>
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/episodes/${episode.id}`)} className="btn btn-outline-primary">Show details</button>
-                                    <button className="btn btn-outline-danger" >
-                                        <MdFavorite className="iconoFavorito" />
+                                    <button className="btn btn-outline-danger">
+                                        <FaTrash className="iconoEliminarFavorito" onClick={}/>
                                     </button>
                                 </div>
                             </div>
@@ -47,10 +61,6 @@ export const FavoriteList = () => {
 
                     ))}
                 </div>
-
-
-
-
 
             </div>
         </>

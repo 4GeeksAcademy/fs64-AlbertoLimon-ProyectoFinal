@@ -13,7 +13,7 @@ class User(db.Model):
     birthDate = db.Column(db.DateTime, unique=True, nullable=True)
     country = db.Column(db.String(120), unique=True, nullable=True)
     postalCode = db.Column(db.String(120), unique=True, nullable=True)
-    favorites = db.relationship('Favorite', backref='user', lazy=True)
+  
 
     def __repr__(self):
         return f'<User {self.userName}, {self.email}>'
@@ -29,7 +29,7 @@ class User(db.Model):
             "birthDate": self.birthDate,
             "country": self.country,
             "postalCode": self.postalCode,
-            "favorites": self.favorites
+            
             # do not serialize the password, its a security breach
         }
     

@@ -124,18 +124,49 @@ def get_user():
         return jsonify(user.serialize()), 200
     else:
         return jsonify({"msg": "Usuario no encontrado"}), 404
+
+
+@api.route('/favorites', methods=['GET'])
+@jwt_required()
+def get_favorites():
+
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+
+    favorites = Favorite.query.filter_by(userId=user.id).all()
+    favorite_list = [favorite.serialize() for favorite in favorites]
     
+    return jsonify({'favorites': favorite_list}), 200
+
 @api.route('/favorites', methods=['POST'])
 @jwt_required()
 def create_favorite():
 
     data = request.json
-    favorite_query = Favorite.query.filter_by(name = data["name"]).first()
+
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+
+    favorite_query = Favorite.query.filter_by(itemName = data["itemName"], userId = user.id).first()
 
     if favorite_query is None:
-        create_favorite = Favorite(type = data["type"], name = data["name"], userId = data["userId"])
+        create_favorite = Favorite(type = data["type"], itemName = data["itemName"], userId = user.id)
         db.session.add(create_favorite)
         db.session.commit()
+        return jsonify({"msg": "Favorito añadido correctamente"}), 200
     else:
         return jsonify({"msg": "Favorito ya existe"}), 404
     
+@api.route('/favorite/<int:fav_id>', methods=['DELETE'])
+@jwt_required()
+def delete_favorite(fav_id):
+    current_user_id = get_jwt_identity()
+
+    favorite = Favorite.query.filter_by(id = fav_id).first()
+
+    if not favorite:
+        return jsonify({'message': 'Favorito no encontrado'}), 404
+
+    # Delete the favorite
+    favorites.remove(favorite)
+    return jsonify({'message': 'Favorite deleted successfully'}), 200

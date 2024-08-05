@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			episodes: [],
 			locations: [],
+			favorites: [],
 			numPages: null,
 			activeUser: {}
 		},
@@ -151,12 +152,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			updateUser: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode) => {
 				await userDispatcher.update(id, firstName, lastName, email, username, phone, country, birthDate, postalCode)
 			},
-
-			addFavorite: async (type, name, userId) => {
-				await favoritesDispatcher.add(type, name, userId)
-			},
 			getFavorites: async () => {
-				//await favoritesDispatcher.get(activeUser.id)
+				const data = await favoritesDispatcher.get()
+				console.log("Favoritos: ",data)
+				setStore({ favorites: data })
+			},
+			addFavorite: async (type, name) => {
+				await favoritesDispatcher.add(type, name)
+			},
+			deleteFavorite: async (id) => {
+				await favoritesDispatcher.delete(id)
+			},
+			getImageFavorite: async () => {
+				
 			}
 
 		}

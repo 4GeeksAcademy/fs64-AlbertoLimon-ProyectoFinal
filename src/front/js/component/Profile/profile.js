@@ -72,6 +72,7 @@ export const Profile = () => {
         }else{
             await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode)
         }
+        setStateDetailsReadOnly(true)
     }
 
     const deleteAccount = async () => {
@@ -88,9 +89,6 @@ export const Profile = () => {
     }, [])
 
     console.log("id : ",store.activeUser.id);
-        
-
- 
 
     return (
         <>

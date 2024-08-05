@@ -1,65 +1,82 @@
-import React from "react"
+import React, { useState } from "react"
 import { useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
 import "../../../styles/cards.css"
 import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
+import { FavoriteItems } from "./favoriteItems";
 
 export const FavoriteList = () => {
 
     const { store, actions } = useContext(Context);
 
-    const navigate = useNavigate()
+    const [favoriteCharacters, setFavoriteCharacters] = useState([])
+    const [favoriteEpisodes, setFavoriteEpisodes] = useState([])
+    const [favoriteLocations, setFavoriteLocations] = useState([])
 
     const fetchFavorites = async () => {
         await actions.getFavorites();
+        filtrarFavoritos()
     }
 
     const getImgFavorite = async (type, name) => {
         let src = ""
         if (type === "character") {
-            
+
         } else if (type === "episode") {
-            
+
         } else if (type === "location") {
-            
+
         }
     }
 
-    const deleteFav = async (id) => {
-        await actions.deleteFavorite()
+
+    const filtrarFavoritos = () => {
+
+        let characters = []
+        let episodes = []
+        let locations = []
+
+        store.favorites.forEach(favorite => {
+            if (favorite.type === "character") {
+                characters.push(favorite)
+            } else if (favorite.type === "episode") {
+                episodes.push(favorite)
+            } else if (favorite.type === "location") {
+                locations.push(favorite)
+            }
+        });
+
+        setFavoriteCharacters(characters)
+        setFavoriteEpisodes(episodes)
+        setFavoriteLocations(locations)
     }
 
     useEffect(() => {
 
         fetchFavorites()
-        
+
     }, [])
+    console.log(store.favorites)
+
 
     return (
         <>
 
             <div className="card-container container">
-                <h1 className="text-white fs-1">Favorites</h1>
-                <div className="row d-flex justify-content-center align-items-center gap-4">
-                    {store.favorites.map((favorite, index) => (
+                <div>
+                    <h1 className="text-white fs-1 text-start font-monospace">Favorites characters</h1>
+                    <FavoriteItems items={favoriteCharacters} />
+                </div>
 
-                        <div className="card col-3" key={index}>
-                            
-                            <img  />
-                            <div className="card-body">
-                                <h5 className="card-title mb-3 text-dark">{favorite.itemName}</h5>
-                                <h5 className="card-title mb-3 text-dark">{favorite.type}</h5>
-                                <div className="d-flex justify-content-between">
-                                    <button onClick={() => navigate(`/main/episodes/${episode.id}`)} className="btn btn-outline-primary">Show details</button>
-                                    <button className="btn btn-outline-danger">
-                                        <FaTrash className="iconoEliminarFavorito"/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                <div>
+                    <h1 className="text-white fs-1 text-start font-monospace">Favorites episodes</h1>
+                    <FavoriteItems items={favoriteEpisodes} />
+                </div>
 
-                    ))}
+                <div>
+                    <h1 className="text-white fs-1 text-start font-monospace">Favorites locations</h1>
+                    <FavoriteItems items={favoriteLocations} />
                 </div>
 
             </div>

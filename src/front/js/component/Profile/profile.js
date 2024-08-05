@@ -33,7 +33,7 @@ export const Profile = () => {
     console.log(inputLastName)
     console.log(inputUsername)
     console.log(inputEmail)
-    console.log(inputBirthDate)
+    console.log(store.activeUser.birthDate)
     console.log(inputCountry)
     console.log(inputPostalCode)
 
@@ -85,6 +85,16 @@ export const Profile = () => {
 
         actions.getUserFromBack()
         
+        
+    }, [])
+
+    useEffect(() => {
+
+        if(store.activeUser.name !== ""){
+            actions.getUserFromBack()
+        }else{
+
+        }   
         
     }, [])
 

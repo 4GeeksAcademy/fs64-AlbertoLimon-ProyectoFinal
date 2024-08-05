@@ -6,8 +6,20 @@
     padding: 0;
     border: 1px solid black;
 }
+
 .iconoFavorito{
     font-size: 1.5rem;
+}
+.scroll-container{
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: black white;
+}
+.cardFavorite{
+    width: 15rem;
+    margin-right: 2rem;
+    background-color: white;
 }
 .iconoEliminarFavorito{
     font-size: 1.3rem;

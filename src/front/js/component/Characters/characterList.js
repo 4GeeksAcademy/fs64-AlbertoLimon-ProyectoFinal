@@ -35,15 +35,9 @@ export const CharacterList = () => {
 
     }  
 
-    //Falta añadir el id del ususario actual
-    const addFavoriteCharacter = async (type, name, userId) => {
-        await actions.addFavorite(type, name, userId)
-    }
-
     useEffect(() => {
 
         actions.getUserFromBack()
-        console.log("token useEffect",sessionStorage.getItem("jwt-token"))
         
     }, [])
    

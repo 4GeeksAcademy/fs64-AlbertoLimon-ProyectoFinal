@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			token: sessionStorage.getItem("jwt-token"),
+			token: localStorage.getItem("jwt-token"),
 			characters: [],
 			episodes: [],
 			locations: [],
@@ -52,15 +52,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			syncTokenFromSessionStorage: async () => {
-				const token = sessionStorage.getItem("jwt-token")
-				console.log("Aplicación cargado, sincronizando el almacenamiento de la sesión")
+			syncTokenFromLocalStorage: async () => {
+				const token = localStorage.getItem("jwt-token")
+				console.log("Aplicación cargado, sincronizando el almacenamiento de local")
 				if (token && token != "" && token != undefined) {
 					setStore({ token: token })
 				}
 			},
 			logout: async () => {
-				sessionStorage.removeItem("jwt-token")
+				localStorage.removeItem("jwt-token")
 				console.log("Cerrando sesión...")
 				setStore({ token: null })
 
@@ -133,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loginUser: async (email, password) => {
 				if (await userDispatcher.login(email, password)) {
-					setStore({ token: sessionStorage.getItem("jwt-token") })
+					setStore({ token: localStorage.getItem("jwt-token") })
 					return true;
 				}
 			},

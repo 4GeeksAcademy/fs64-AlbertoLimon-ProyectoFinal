@@ -57,7 +57,7 @@ const userDispatcher = {
             const data = await resp.json()
             // Save your token in the localStorage
             // Also you should set your user into the store using the setItem function
-            sessionStorage.setItem("jwt-token", data.token);
+            localStorage.setItem("jwt-token", data.token);
 
 
             return data
@@ -74,7 +74,7 @@ const userDispatcher = {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': 'Bearer ' + sessionStorage.getItem("jwt-token")
+                    'Authorization': 'Bearer ' + localStorage.getItem("jwt-token")
                 },
     
             });
@@ -97,7 +97,7 @@ const userDispatcher = {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': 'Bearer ' + sessionStorage.getItem("jwt-token")
+                    'Authorization': 'Bearer ' + localStorage.getItem("jwt-token")
                 }
             })
 
@@ -124,7 +124,7 @@ const userDispatcher = {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': 'Bearer ' + sessionStorage.getItem("jwt-token")
+                    'Authorization': 'Bearer ' + localStorage.getItem("jwt-token")
                 },
                 body: JSON.stringify({
                     firstName: firstName, lastName: lastName, email: email, userName: username, phone: phone, country: country,

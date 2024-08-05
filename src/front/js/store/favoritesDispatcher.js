@@ -7,7 +7,7 @@ const favoritesDispatcher = {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': `Bearer ` + sessionStorage.getItem("jwt-token")
+                    'Authorization': `Bearer ` + localStorage.getItem("jwt-token")
                 },
                 body: JSON.stringify({ type: type, itemName: itemName })
             });
@@ -32,7 +32,7 @@ const favoritesDispatcher = {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ` + sessionStorage.getItem("jwt-token")
+                    'Authorization': `Bearer ` + localStorage.getItem("jwt-token")
                 }
             })
             if (response.ok) {
@@ -54,7 +54,7 @@ const favoritesDispatcher = {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ` + sessionStorage.getItem("jwt-token")
+                    'Authorization': `Bearer ` + localStorage.getItem("jwt-token")
                 }
             })
             if (!resp.ok) {

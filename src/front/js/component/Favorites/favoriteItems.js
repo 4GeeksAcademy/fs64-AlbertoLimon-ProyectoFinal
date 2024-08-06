@@ -28,8 +28,7 @@ export const FavoriteItems = ({ items }) => {
                         <div className="cardFavorite" key={index}>
                             <img src="" />
                             <div className="card-body">
-                                <h5 className="card-title mb-3 text-dark">{favorite.itemName}</h5>
-                                <h5 className="card-title mb-3 text-dark">{favorite.type}</h5>
+                                <h5 className="card-title mb-3 text-dark pb-1">{favorite.itemName}</h5>
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate()} className="btn btn-outline-primary">Show details</button>
                                     <button className="btn btn-outline-danger" onClick={() => actions.deleteFavorite()}>

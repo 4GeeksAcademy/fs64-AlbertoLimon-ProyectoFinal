@@ -17,7 +17,7 @@ export const Welcome = () => {
     useEffect(() => {
         
         if(store.token && store.token != "" && store.token != undefined){
-            console.log("Usuario ya logeado")
+            
             navigate("/main/characters")
         }
 

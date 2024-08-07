@@ -147,10 +147,10 @@ def create_favorite():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
 
-    favorite_query = Favorite.query.filter_by(itemName = data["itemName"], userId = user.id).first()
+    favorite_query = Favorite.query.filter_by(itemName = data["itemName"], type = data["type"], userId = user.id).first()
 
     if favorite_query is None:
-        create_favorite = Favorite(type = data["type"], itemName = data["itemName"], userId = user.id)
+        create_favorite = Favorite(type = data["type"], apiId = data["apiId"], itemName = data["itemName"], userId = user.id)
         db.session.add(create_favorite)
         db.session.commit()
         return jsonify({"msg": "Favorito añadido correctamente"}), 200
@@ -161,7 +161,9 @@ def create_favorite():
 @jwt_required()
 def delete_favorite(fav_id):
 
-    favorite = Favorite.query.filter_by(id = fav_id).first()
+    current_user_id = get_jwt_identity()
+
+    favorite = Favorite.query.filter_by(id = fav_id, userId = current_user_id).first()
 
     if favorite:
         db.session.delete(favorite)

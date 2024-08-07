@@ -54,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			syncTokenFromLocalStorage: async () => {
 				const token = localStorage.getItem("jwt-token")
-				console.log("Aplicación cargado, sincronizando el almacenamiento de local")
+				console.log("Aplicación cargado, sincronizando el almacenamiento local")
 				if (token && token != "" && token != undefined) {
 					setStore({ token: token })
 				}
@@ -147,6 +147,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteUser: async () => {
 				await userDispatcher.delete()
+				setStore({ token: null })
 			},
 			//Hay que comprobar el tema de las contraseñas
 			updateUser: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode) => {
@@ -157,14 +158,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("Favoritos: ",data)
 				setStore({ favorites: data })
 			},
-			addFavorite: async (type, name) => {
-				await favoritesDispatcher.add(type, name)
+			addFavorite: async (type, apiId, name) => {
+				await favoritesDispatcher.add(type, apiId, name)
 			},
 			deleteFavorite: async (id) => {
+				console.log("favorito a eliminar ", id)
 				await favoritesDispatcher.delete(id)
-			},
-			getImageFavorite: async () => {
 				
+			},
+			getImageFavorite: async (apiId) => {
+				const img = await favoritesDispatcher.getImage(apiId)
+				return img
 			}
 
 		}

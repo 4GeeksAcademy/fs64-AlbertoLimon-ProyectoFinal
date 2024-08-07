@@ -37,7 +37,10 @@ export const CharacterList = () => {
 
     useEffect(() => {
 
-        actions.getUserFromBack()
+        
+            actions.getUserFromBack()
+        
+        
         
     }, [])
    
@@ -60,7 +63,7 @@ export const CharacterList = () => {
             <div className="card-container container">
                 <div className="row d-flex justify-content-center align-items-center gap-4">
                     {store.characters.map((character, index) => (
-
+                        
                         <div className="card col-3" key={index}>
                             <img src={character.image} />
                             <div className="card-body">
@@ -68,7 +71,7 @@ export const CharacterList = () => {
 
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/characters/${character.id}`)} className="btn btn-outline-primary">Show details</button>
-                                    <button className="btn btn-outline-danger" onClick={() => actions.addFavorite("character", character.name)} >
+                                    <button className="btn btn-outline-danger" onClick={() => actions.addFavorite("character", character.id, character.name)} >
                                         <MdFavorite className="iconoFavorito" />
                                     </button>
                                 </div>

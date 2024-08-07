@@ -17,9 +17,14 @@
     scrollbar-color: black white;
 }
 .cardFavorite{
-    width: 15rem;
+    width:18rem;
+    padding: 0;
     margin-right: 2rem;
     background-color: white;
+    border: 1px solid black;
+}
+.underline{
+    border-bottom: 1px solid white;
 }
 .iconoEliminarFavorito{
     font-size: 1.3rem;

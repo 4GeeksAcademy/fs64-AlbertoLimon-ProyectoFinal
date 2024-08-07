@@ -1,7 +1,13 @@
+.wrapperDetalles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .contenedorDetalles{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     background-color: rgb(59, 59, 59);
     border-radius: 10px;
     width: 40%;

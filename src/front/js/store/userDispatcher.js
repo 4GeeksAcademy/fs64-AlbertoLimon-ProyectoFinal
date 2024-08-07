@@ -108,6 +108,7 @@ const userDispatcher = {
 
                 const data = await resp.json()
                 console.log(`Usuario eliminado correctamente`);
+                localStorage.removeItem("jwt-token")
                 return data
             }
 

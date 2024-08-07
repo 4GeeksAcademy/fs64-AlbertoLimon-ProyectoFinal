@@ -76,7 +76,7 @@ export const CharacterDetails = () => {
 	return (
 		<>
 
-			<div className="mt-4 mb-4">
+			<div className="mt-4 wrapperDetalles">
 				<div className="card-container container contenedorDetalles">
 
 					<div className="card imagenDetalles">

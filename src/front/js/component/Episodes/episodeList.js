@@ -65,7 +65,7 @@ export const EpisodeList = () => {
                                 <div className="d-flex justify-content-between">
                                     <button onClick={() => navigate(`/main/episodes/${episode.id}`)} className="btn btn-outline-primary">Show details</button>
                                     <button className="btn btn-outline-danger" >
-                                        <MdFavorite className="iconoFavorito" onClick={() => actions.addFavorite("episode", episode.name)}/>
+                                        <MdFavorite className="iconoFavorito" onClick={() => actions.addFavorite("episode", episode.id, episode.name)}/>
                                     </button>
                                 </div>
                             </div>

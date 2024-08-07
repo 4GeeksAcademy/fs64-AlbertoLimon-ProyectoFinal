@@ -7,6 +7,8 @@ import { Navbar } from "../Navbar/navbar";
 import { FaEdit } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 export const Profile = () => {
 
@@ -33,7 +35,7 @@ export const Profile = () => {
     console.log(inputLastName)
     console.log(inputUsername)
     console.log(inputEmail)
-    console.log(store.activeUser.birthDate)
+    console.log(inputBirthDate)
     console.log(inputCountry)
     console.log(inputPostalCode)
 
@@ -43,6 +45,9 @@ export const Profile = () => {
 
     const [stateDetailsReadOnly, setStateDetailsReadOnly] = useState(true)
     const [statePasswordReadOnly, setStatePasswordReadOnly] = useState(true)
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
 
     const toggleActualPasswordVisibility = (e) => {
         e.preventDefault()
@@ -65,40 +70,32 @@ export const Profile = () => {
     }
 
     const saveChanges = async () => {
-        if(inputNewPassword !== ""){
-            if(inputNewPassword === inputConfirmPassword){
+        if (inputNewPassword !== "") {
+            if (inputNewPassword === inputConfirmPassword) {
                 await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode)
             }
-        }else{
+        } else {
             await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode)
         }
         setStateDetailsReadOnly(true)
     }
 
-    const deleteAccount = async () => {
-        await actions.deleteUser()
-        await actions.logout()
-        navigate("/welcome")
-    }
+    const handleDeleteAccount = async () => {
+        // Mostrar el modal de confirmación antes de eliminar el contacto
+        setShowDeleteModal(true)
+
+    };
 
     useEffect(() => {
 
         actions.getUserFromBack()
-        
-        
+
+
     }, [])
 
-    useEffect(() => {
 
-        if(store.activeUser.name !== ""){
-            actions.getUserFromBack()
-        }else{
 
-        }   
-        
-    }, [])
-
-    console.log("id : ",store.activeUser.id);
+    console.log("id : ", store.activeUser.id);
 
     return (
         <>
@@ -281,10 +278,33 @@ export const Profile = () => {
                             <button className="btnCancel btn btn-light btn-block boton-submit" type="submit" onClick={() => navigate("/main/characters")}>Cancel</button>
                         </div>
                         <div className="">
-                            <button className="btnDelete btn btn-danger btn-block boton-submit w-100" type="submit" onClick={() => deleteAccount()}>Delete Account</button>
+                            <button className="btnDelete btn btn-danger btn-block boton-submit w-100" type="submit" onClick={() => handleDeleteAccount()}>Delete Account</button>
                         </div>
                     </div>
+                    <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Are you sure?</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>If you delete your account wou will lose all your information!</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                                No
+                            </Button>
+                            <Button
+                                variant="primary"
+                                onClick={() => {
+                                    // Llama a la acción para eliminar el contacto
+                                    actions.deleteUser();
 
+                                    // Cierra el modal de confirmación
+                                    setShowDeleteModal(false);
+                                    navigate("/welcome")
+                                }}
+                            >
+                                Yes
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
 

@@ -3,7 +3,6 @@ import { useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
 import "../../../styles/cards.css"
 import { useNavigate } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
 import { FavoriteItems } from "./favoriteItems";
 
 export const FavoriteList = () => {
@@ -18,18 +17,6 @@ export const FavoriteList = () => {
         await actions.getFavorites();
         filtrarFavoritos()
     }
-
-    const getImgFavorite = async (type, name) => {
-        let src = ""
-        if (type === "character") {
-
-        } else if (type === "episode") {
-
-        } else if (type === "location") {
-
-        }
-    }
-
 
     const filtrarFavoritos = () => {
 
@@ -65,17 +52,17 @@ export const FavoriteList = () => {
 
             <div className="card-container container">
                 <div>
-                    <h1 className="text-white fs-1 text-start font-monospace">Favorites characters</h1>
+                    <h1 className="text-white fs-1 text-start font-monospace underline">Favorites characters</h1>
                     <FavoriteItems items={favoriteCharacters} />
                 </div>
 
                 <div>
-                    <h1 className="text-white fs-1 text-start font-monospace">Favorites episodes</h1>
+                    <h1 className="text-white fs-1 text-start font-monospace underline">Favorites episodes</h1>
                     <FavoriteItems items={favoriteEpisodes} />
                 </div>
 
                 <div>
-                    <h1 className="text-white fs-1 text-start font-monospace">Favorites locations</h1>
+                    <h1 className="text-white fs-1 text-start font-monospace underline">Favorites locations</h1>
                     <FavoriteItems items={favoriteLocations} />
                 </div>
 

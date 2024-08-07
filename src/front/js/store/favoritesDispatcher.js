@@ -1,5 +1,5 @@
 const favoritesDispatcher = {
-    add: async (type, itemName) => {
+    add: async (type, apiId, itemName) => {
 
         try {
 
@@ -9,7 +9,7 @@ const favoritesDispatcher = {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ` + localStorage.getItem("jwt-token")
                 },
-                body: JSON.stringify({ type: type, itemName: itemName })
+                body: JSON.stringify({ type: type, apiId : apiId, itemName: itemName })
             });
 
 
@@ -54,7 +54,7 @@ const favoritesDispatcher = {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ` + localStorage.getItem("jwt-token")
+                    'Authorization': "Bearer " + localStorage.getItem("jwt-token")
                 }
             })
             if (!resp.ok) {
@@ -62,7 +62,7 @@ const favoritesDispatcher = {
                 throw Error("Ha habido un problema al eliminar el favorito ")
             } else {
 
-                const data = await resp.json()
+                const data = await response.json()
                 console.log(`Favorito eliminado correctamente`);
                 return data
             }
@@ -73,9 +73,9 @@ const favoritesDispatcher = {
         }
 
     },
-    getImage : async (type, name) => {
+    getImage : async (apiId) => {
         try {
-            const response = await fetch(`https://rickandmortyapi.com/api/${type}/?name=${name}`, {
+            const response = await fetch(`https://rickandmortyapi.com/api/character/${apiId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type':'application/json'
@@ -83,12 +83,12 @@ const favoritesDispatcher = {
             })
             if(response.ok){
                 const data = await response.json();
-                const episodes = data.results
-                return episodes;
+                const image = data.image
+                return image;
             }
 
         } catch (error) {
-            console.error("Error al cargar los capitulos:", error);
+            console.error("Error al cargar la imagen del favorito:", error);
             throw error;
         }
 

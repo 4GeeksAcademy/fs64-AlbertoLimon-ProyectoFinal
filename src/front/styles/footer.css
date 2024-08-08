@@ -3,7 +3,7 @@
     max-width: 100%;
     position: fixed;
     bottom: 0;
-    
+    border-top: 2px solid whitesmoke;
 }
 footer{
     width: 100%;

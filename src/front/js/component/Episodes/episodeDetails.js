@@ -13,8 +13,6 @@ export const EpisodeDetails = () => {
 
 	const { id } = useParams();
 
-	console.log("idEpisode ", id)
-
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -36,7 +34,7 @@ export const EpisodeDetails = () => {
 				<div className="card-container container contenedorDetalles">
 
 					<div className="card imagenDetalles">
-						<img src="" className="card-img-top" alt="..." />
+						<img src="https://episode.eu/wp-content/uploads/2020/04/logo-episode-zwart.jpg" className="card-img-top" alt="..." />
 					</div>
 
 

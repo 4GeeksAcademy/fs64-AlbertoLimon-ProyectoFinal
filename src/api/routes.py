@@ -145,19 +145,18 @@ def create_favorite():
     data = request.json
 
     current_user_id = get_jwt_identity()
-    user = User.query.get(current_user_id)
 
-    favorite_query = Favorite.query.filter_by(itemName = data["itemName"], type = data["type"], userId = user.id).first()
+    favorite_query = Favorite.query.filter_by(itemName = data["itemName"], type = data["type"], userId = current_user_id).first()
 
     if favorite_query is None:
-        create_favorite = Favorite(type = data["type"], apiId = data["apiId"], itemName = data["itemName"], userId = user.id)
+        create_favorite = Favorite(type = data["type"], apiId = data["apiId"], itemName = data["itemName"], userId = current_user_id)
         db.session.add(create_favorite)
         db.session.commit()
         return jsonify({"msg": "Favorito añadido correctamente"}), 200
     else:
         return jsonify({"msg": "Favorito ya existe"}), 404
     
-@api.route('/favorite/<int:fav_id>', methods=['DELETE'])
+@api.route('/favorites/<int:fav_id>', methods=['DELETE'])
 @jwt_required()
 def delete_favorite(fav_id):
 

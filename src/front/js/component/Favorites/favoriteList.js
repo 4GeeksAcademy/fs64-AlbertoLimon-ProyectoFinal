@@ -44,8 +44,14 @@ export const FavoriteList = () => {
         fetchFavorites()
 
     }, [])
-    console.log(store.favorites)
 
+    useEffect(() => {
+
+        filtrarFavoritos()
+
+    }, [store.favorites])
+    
+    console.log()
 
     return (
         <>
@@ -53,17 +59,30 @@ export const FavoriteList = () => {
             <div className="card-container container">
                 <div>
                     <h1 className="text-white fs-1 text-start font-monospace underline">Favorites characters</h1>
-                    <FavoriteItems items={favoriteCharacters} />
+                    {favoriteCharacters.length === 0 ? (
+                        <h4 className="font-monospace text-white">La lista de personajes favoritos está vacía</h4>
+                    ) : (
+                        <FavoriteItems items={favoriteCharacters} />
+                    )}
                 </div>
 
                 <div>
                     <h1 className="text-white fs-1 text-start font-monospace underline">Favorites episodes</h1>
-                    <FavoriteItems items={favoriteEpisodes} />
+                    
+                    {favoriteEpisodes.length === 0 ? (
+                        <h4 className="font-monospace text-white">La lista de episodios favoritos está vacía</h4>
+                    ) : (
+                        <FavoriteItems items={favoriteEpisodes} />
+                    )}
                 </div>
 
                 <div>
                     <h1 className="text-white fs-1 text-start font-monospace underline">Favorites locations</h1>
-                    <FavoriteItems items={favoriteLocations} />
+                    {favoriteLocations.length === 0 ? (
+                        <h4 className="font-monospace text-white">La lista de lugares favoritos está vacía</h4>
+                    ) : (
+                        <FavoriteItems items={favoriteLocations} />
+                    )}
                 </div>
 
             </div>

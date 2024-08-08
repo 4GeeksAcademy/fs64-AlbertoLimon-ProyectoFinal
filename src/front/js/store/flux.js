@@ -163,7 +163,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteFavorite: async (id) => {
 				console.log("favorito a eliminar ", id)
-				await favoritesDispatcher.delete(id)
+				const response = await favoritesDispatcher.delete(id)
+				console.log("response ",response)
+				if(response.deleted){
+					getActions().getFavorites()
+				}
+				
 				
 			},
 			getImageFavorite: async (apiId) => {

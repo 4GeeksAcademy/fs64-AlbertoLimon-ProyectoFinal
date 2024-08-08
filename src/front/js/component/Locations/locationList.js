@@ -58,7 +58,7 @@ export const LocationList = () => {
                     {store.locations.map((location, index) => (
 
                         <div className="card col-3" key={index}>
-                            <img src="" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Map_symbol_location_02.png" />
                             <div className="card-body">
                                 <h5 className="card-title mb-3 text-dark">{location.name}</h5>
 

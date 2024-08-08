@@ -8,33 +8,24 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export const CharacterDetails = () => {
 
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 
 	const [character, setCharacter] = useState({})
 
 	const [firstEpisode, setFirstEpisode] = useState("")
 
-
 	const { id } = useParams();
-
-	console.log("idCharacter ", id)
 
 	const navigate = useNavigate()
 
 	const goToEpisode = async (url) => {
-		console.log("url: ", url)
-
 		const id = await actions.getEpisodeId(url)
-		console.log("id ", id)
 		navigate(`/main/episodes/${id}`)
 	}
 
 
 	const goToLocation = async (url) => {
-		console.log("url: ", url)
-
 		const id = await actions.getLocationId(url)
-		console.log("id ", id)
 		navigate(`/main/locations/${id}`)
 	}
 
@@ -48,30 +39,27 @@ export const CharacterDetails = () => {
 	}, [])
 
 	const firstEpisodeSeenIn = async () => {
-		console.log(character)
+
 		const url = character.episode ? character.episode[0] : "Loading episode"
-		console.log("url ",url)
+
 		// Separar la parte base de la URL y el número de episodio
 		let baseUrl = "https://rickandmortyapi.com/api/episode/";
 		let episodeNumber = url.replace(baseUrl, '').trim();
 
 		console.log(baseUrl); // https://rickandmortyapi.com/api/episode/
-		console.log("episode number ",episodeNumber); // 1
-		
+		console.log("episode number ", episodeNumber); // 1
+
 		setFirstEpisode(await actions.getSingleEpisode(episodeNumber))
 
 	}
 
 	useEffect(() => {
-		
-		if(!!character.name){
-			console.log(character.episode ? character.episode[0] : "Loading episode")
+
+		if (!!character.name) {
 			firstEpisodeSeenIn()
 		}
-	},[character])
-	
-	console.log(character)
-	console.log("firstEpisode ",firstEpisode)
+	}, [character])
+
 
 	return (
 		<>

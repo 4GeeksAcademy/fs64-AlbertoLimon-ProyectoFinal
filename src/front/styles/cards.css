@@ -6,7 +6,9 @@
     padding: 0;
     border: 1px solid black;
 }
-
+.favorite{
+    width: 16rem;
+}
 .iconoFavorito{
     font-size: 1.5rem;
 }

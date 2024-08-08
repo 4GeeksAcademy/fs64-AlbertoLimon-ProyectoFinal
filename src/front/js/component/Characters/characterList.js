@@ -18,7 +18,7 @@ export const CharacterList = () => {
     const navigate = useNavigate()
 
     const fetchInfoPages = async () => {
-        
+
         if (search.length > 0) {
             await actions.getElementPages("characters", search)
             await actions.getCharactersSearched(pageNumber, search);
@@ -33,20 +33,15 @@ export const CharacterList = () => {
     const fetchCharacters = async () => {
         await actions.getCharacters(pageNumber);
 
-    }  
+    }
 
     useEffect(() => {
 
-        
-            actions.getUserFromBack()
-        
-        
-        
-    }, [])
-   
-    console.log(store.activeUser.id);
+        actions.getUserFromBack()
 
-    useEffect(() => { 
+    }, [])
+
+    useEffect(() => {
 
         fetchInfoPages()
 
@@ -63,7 +58,7 @@ export const CharacterList = () => {
             <div className="card-container container">
                 <div className="row d-flex justify-content-center align-items-center gap-4">
                     {store.characters.map((character, index) => (
-                        
+
                         <div className="card col-3" key={index}>
                             <img src={character.image} />
                             <div className="card-body">

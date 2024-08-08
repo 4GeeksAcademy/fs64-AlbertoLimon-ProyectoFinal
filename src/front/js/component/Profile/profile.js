@@ -14,14 +14,14 @@ export const Profile = () => {
 
     const { store, actions } = useContext(Context);
 
-    const [inputFirstName, setInputFirstName] = useState(store.activeUser.firstName);
-    const [inputLastName, setInputLastName] = useState(store.activeUser.lastName);
-    const [inputUsername, setInputUsername] = useState(store.activeUser.userName);
-    const [inputEmail, setInputEmail] = useState(store.activeUser.email);
-    const [inputPhone, setInputPhone] = useState(store.activeUser.phone);
-    const [inputBirthDate, setInputBirthDate] = useState(store.activeUser.birthDate);
-    const [inputCountry, setInputCountry] = useState(store.activeUser.country);
-    const [inputPostalCode, setInputPostalCode] = useState(store.activeUser.postalCode);
+    const [inputFirstName, setInputFirstName] = useState("");
+    const [inputLastName, setInputLastName] = useState("");
+    const [inputUsername, setInputUsername] = useState("");
+    const [inputEmail, setInputEmail] = useState("");
+    const [inputPhone, setInputPhone] = useState("");
+    const [inputBirthDate, setInputBirthDate] = useState("");
+    const [inputCountry, setInputCountry] = useState("");
+    const [inputPostalCode, setInputPostalCode] = useState("");
 
     const [inputActualPassword, setActualInputPassword] = useState("");
     const [inputNewPassword, setInputNewPassword] = useState("");
@@ -38,8 +38,6 @@ export const Profile = () => {
     console.log(inputBirthDate)
     console.log(inputCountry)
     console.log(inputPostalCode)
-
-    console.log(store.token)
 
     const navigate = useNavigate()
 
@@ -86,13 +84,32 @@ export const Profile = () => {
 
     };
 
+    const setInputs = () => {
+        setInputFirstName(store.activeUser.firstName)
+        setInputLastName(store.activeUser.lastName)
+        setInputUsername(store.activeUser.userName)
+        setInputEmail(store.activeUser.email)
+        setInputPhone(store.activeUser.phone)
+        setInputBirthDate(store.activeUser.birthDate)
+        setInputCountry(store.activeUser.country)
+        setInputPostalCode(store.activeUser.postalCode)
+    }
+
     useEffect(() => {
 
         actions.getUserFromBack()
 
-
     }, [])
 
+    useEffect(() => {
+
+        if (store.activeUser != "") {
+            setInputs()
+        }
+
+
+
+    }, [store.activeUser])
 
 
     console.log("id : ", store.activeUser.id);
@@ -162,7 +179,7 @@ export const Profile = () => {
 
                                         <div className="col form-label-group">
 
-                                            <Countries setInputCountry={setInputCountry} />
+                                            <Countries value={inputCountry} setInputCountry={setInputCountry} />
                                         </div>
                                     </div>
 

@@ -13,8 +13,6 @@ export const LocationDetails = () => {
 
 	const { id } = useParams();
 
-	console.log("idLocation ", id)
-
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -36,7 +34,7 @@ export const LocationDetails = () => {
 				<div className="card-container container contenedorDetalles">
 
 					<div className="card imagenDetalles">
-						<img src="" className="card-img-top" alt="..." />
+						<img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Map_symbol_location_02.png" className="card-img-top" alt="..." />
 					</div>
 
 

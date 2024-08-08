@@ -52,7 +52,10 @@ const userDispatcher = {
                 throw ("Credenciales inválidas")
             }
             else if (resp.status === 400) {
+                alert("Formato inválido de email o contraseña")
                 throw ("Formato inválido de email o contraseña")
+            }else if(resp.status === 404){
+                alert("Email o contraseña no coinciden")
             }
             const data = await resp.json()
             // Save your token in the localStorage

@@ -36,7 +36,7 @@ class User(db.Model):
 class Favorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(150), nullable=False)
-    apiId = db.Column(db.Integer,unique=True, nullable=False)
+    apiId = db.Column(db.Integer,unique=False, nullable=False)
     itemName = db.Column(db.String(150), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('user.id') ,nullable=False)
 

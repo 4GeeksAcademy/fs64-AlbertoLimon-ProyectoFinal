@@ -11,25 +11,31 @@ export const FavoriteItems = ({ items }) => {
     const [ img, setImg ] = useState("")
     const navigate = useNavigate()
 
-    /*
+   /* 
     const getImgFavorite = async (type, apiId) => {
-        console.log("src: ", img)
+        console.log("img")
+        const src = ""
         if (type === "character") {
-            setImg(await actions.getImageFavorite(apiId))
+            src = await actions.getImageFavorite(apiId)
         } else if (type === "episode") {
-            setImg("")
+            src = ""
         } else if (type === "location") {
-            setImg("")
+            src = ""
         }
-        console.log("img: ", img)
-      
+        console.log(src)
+        return `${src}`
     }
-        */
+*/
+    
     const getImgFavorite = async (apiId) => {
         let src = await actions.getImageFavorite(apiId)
         setImg(src)
         
     }
+    
+     getImgFavorite(1)
+    console.log(img)
+    
 
     const showDetails = (type, apiId) => {
         navigate(`/main/${type}s/${apiId}`)
@@ -38,10 +44,14 @@ export const FavoriteItems = ({ items }) => {
     return (
         <>
             <div className="scroll-container">
-                <div className="d-inline-flex scroll mb-3">
+                <div className="d-inline-flex scroll mb-3 gap-4">
                     {items.map((favorite, index) => (
-                        <div className="cardFavorite" key={index}>
-                            <img src=""/> 
+                        <div className="card favorite" key={index}>
+                            {(() => {
+								
+                                
+							})()}
+                            <img src={`${img}`}/> 
                             <div className="card-body">
                                 <h5 className="card-title mb-3 text-dark">{favorite.itemName}</h5>
                                 <div className="d-flex justify-content-between">

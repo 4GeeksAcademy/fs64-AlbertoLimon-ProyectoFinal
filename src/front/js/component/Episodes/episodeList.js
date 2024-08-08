@@ -58,7 +58,7 @@ export const EpisodeList = () => {
                     {store.episodes.map((episode, index) => (
 
                         <div className="card col-3" key={index}>
-                            <img src="" />
+                            <img src="https://episode.eu/wp-content/uploads/2020/04/logo-episode-zwart.jpg" />
                             <div className="card-body">
                                 <h5 className="card-title mb-3 text-dark">{episode.name}</h5>
 

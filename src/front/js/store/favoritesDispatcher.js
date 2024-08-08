@@ -57,14 +57,14 @@ const favoritesDispatcher = {
                     'Authorization': "Bearer " + localStorage.getItem("jwt-token")
                 }
             })
-            if (!resp.ok) {
+            if (!response.ok) {
 
                 throw Error("Ha habido un problema al eliminar el favorito ")
             } else {
 
                 const data = await response.json()
                 console.log(`Favorito eliminado correctamente`);
-                return data
+                return {data, deleted: true};
             }
 
         } catch (error) {

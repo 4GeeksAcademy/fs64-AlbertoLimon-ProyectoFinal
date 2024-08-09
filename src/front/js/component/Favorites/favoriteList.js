@@ -53,6 +53,7 @@ export const FavoriteList = () => {
     
     console.log()
 
+
     return (
         <>
 

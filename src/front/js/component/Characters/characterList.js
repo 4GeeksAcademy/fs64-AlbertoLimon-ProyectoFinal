@@ -37,12 +37,6 @@ export const CharacterList = () => {
 
     useEffect(() => {
 
-        actions.getUserFromBack()
-
-    }, [])
-
-    useEffect(() => {
-
         fetchInfoPages()
 
         fetchCharacters()
@@ -54,31 +48,40 @@ export const CharacterList = () => {
         <>
 
             <SearchBar setSearch={setSearch} setPageNumber={setPageNumber} />
+            {store.characters ?
 
-            <div className="card-container container">
-                <div className="row d-flex justify-content-center align-items-center gap-4">
-                    {store.characters.map((character, index) => (
+                <div className="card-container container">
+                    <div className="row d-flex justify-content-center align-items-center gap-4">
+                        {store.characters.map((character, index) => (
 
-                        <div className="card col-3" key={index}>
-                            <img src={character.image} />
-                            <div className="card-body">
-                                <h5 className="card-title mb-3 text-dark">{character.name}</h5>
+                            <div className="card col-3" key={index}>
+                                <img src={character.image} />
+                                <div className="card-body">
+                                    <h5 className="card-title mb-3 text-dark">{character.name}</h5>
 
-                                <div className="d-flex justify-content-between">
-                                    <button onClick={() => navigate(`/main/characters/${character.id}`)} className="btn btn-outline-primary">Show details</button>
-                                    <button className="btn btn-outline-danger" onClick={() => actions.addFavorite("character", character.id, character.name)} >
-                                        <MdFavorite className="iconoFavorito" />
-                                    </button>
+                                    <div className="d-flex justify-content-between">
+                                        <button onClick={() => navigate(`/main/characters/${character.id}`)} className="btn btn-outline-primary">Show details</button>
+                                        <button className="btn btn-outline-danger" onClick={() => actions.addFavorite("character", character.id, character.name, character.image)} >
+                                            <MdFavorite className="iconoFavorito" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                    ))}
+                        ))}
+                    </div>
+
+                    <Pagination totalPages={store.numPages} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+
                 </div>
 
-                <Pagination totalPages={store.numPages} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+                :
+                <div className="d-flex flex-column justify-content-center align-items-center mb-4">
+                    <h3 className="text-white font-monospace text-center">Characters not found!! </h3>
+                    <img className="w-25 mb-4" src="https://img.goodfon.com/original/1920x1080/4/5f/rick-morty-rick-sad-season-2-s2-sad-rick.jpg" />
+                </div>
 
-            </div>
+            }
 
         </>
     )

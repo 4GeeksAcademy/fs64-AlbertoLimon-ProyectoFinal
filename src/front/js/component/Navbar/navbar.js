@@ -25,7 +25,7 @@ export const Navbar = () => {
 				<div className="container">
 					<div className="navbar-brand">
 						<img className="imagenPerfil" src="https://i.pinimg.com/originals/ec/3e/3d/ec3e3d06ff9aaacd229c7c288308340e.png" />
-						<span className="">My Profile</span>
+						<span className="font-monospace">My Profile</span>
 					</div>
 					<div className="dropdown">
 						<a className="btn btn-transparent dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,15 +34,15 @@ export const Navbar = () => {
  
 						<ul className="dropdown-menu">
 							<Link to="/profile">
-								<li><a className="dropdown-item" href="#"><MdOutlineSettings /> Account Details</a></li>
+								<li><a className="dropdown-item font-monospace" href="#"><MdOutlineSettings /> Account Details</a></li>
 							</Link>
 							<Link to="/main/favorites">
-								<li><a className="dropdown-item" href="#"><MdFavoriteBorder /> My Favorites</a></li>
+								<li><a className="dropdown-item font-monospace" href="#"><MdFavoriteBorder /> My Favorites</a></li>
 							</Link>
 
 
 							<li><hr className="dropdown-divider" /></li>
-							<li onClick={() => logout()}><a className="dropdown-item"><LuLogOut /> Logout</a></li>
+							<li onClick={() => logout()}><a className="dropdown-item font-monospace"><LuLogOut /> Logout</a></li>
 						</ul>
 					</div>
 
@@ -62,14 +62,14 @@ export const Navbar = () => {
 						id="navbarNavAltMarkup"
 					>
 						<div className="navbar-nav">
-							<NavLink to="/main/characters" className="item-nav nav-link fs-2">
+							<NavLink to="/main/characters" className="item-nav nav-link fs-2 font-monospace">
 								Characters
 							</NavLink>
-							<NavLink to="/main/episodes" className="item-nav nav-link fs-2">
+							<NavLink to="/main/episodes" className="item-nav nav-link fs-2 font-monospace">
 								Episodes
 							</NavLink>
 							<NavLink
-								className="item-nav nav-link fs-2"
+								className="item-nav nav-link fs-2 font-monospace"
 								to="/main/locations"
 							>
 								Locations

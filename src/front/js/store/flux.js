@@ -150,16 +150,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ token: null })
 			},
 			//Hay que comprobar el tema de las contraseñas
-			updateUser: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode) => {
-				await userDispatcher.update(id, firstName, lastName, email, username, phone, country, birthDate, postalCode)
+			updateUser: async (id, firstName, lastName, email, username, phone, country, postalCode) => {
+				await userDispatcher.update(id, firstName, lastName, email, username, phone, country , postalCode)
 			},
 			getFavorites: async () => {
 				const data = await favoritesDispatcher.get()
 				console.log("Favoritos: ",data)
 				setStore({ favorites: data })
 			},
-			addFavorite: async (type, apiId, name) => {
-				await favoritesDispatcher.add(type, apiId, name)
+			addFavorite: async (type, apiId, name, image) => {
+				await favoritesDispatcher.add(type, apiId, name, image)
 			},
 			deleteFavorite: async (id) => {
 				console.log("favorito a eliminar ", id)
@@ -174,6 +174,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getImageFavorite: async (apiId) => {
 				const img = await favoritesDispatcher.getImage(apiId)
 				return img
+			},
+			verify: async() => {
+				if(localStorage.getItem("jwt-token")){
+					
+				}
 			}
 
 		}

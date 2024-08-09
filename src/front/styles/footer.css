@@ -1,5 +1,5 @@
 #contenedor-footer{
-    background-color: rgb(22, 22, 22);
+    background-color: #242527;
     max-width: 100%;
     position: fixed;
     bottom: 0;
@@ -25,7 +25,7 @@ a{
 }
 h5{
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: lightgray;
     margin-bottom: .5rem;
 }

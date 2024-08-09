@@ -1,12 +1,12 @@
 import React from "react"
 
-export const Countries = ({ value, setInputCountry }) => {
+export const Countries = ({ value, readOnly, setInputCountry }) => {
 
     return (
         <>
             <label htmlFor="inputCountry">Country</label>
 
-            <select className="form-select" readOnly value={value} defaultValue={"Select your country"} id="inputCountry" name="country" onChange={(event) => setInputCountry(event.target.value)} >
+            <select className="form-select" disabled={readOnly ? true : false} value={value} defaultValue={"Select your country"} id="inputCountry" name="country" onChange={(event) => setInputCountry(event.target.value)} >
                 
                 <option value=""></option>
                 <option value="Afghanistan">Afghanistan</option>

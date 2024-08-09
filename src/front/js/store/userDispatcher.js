@@ -122,7 +122,7 @@ const userDispatcher = {
             throw error;
         }
     },
-    update: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode, password) => {
+    update: async (id, firstName, lastName, email, username, phone, country, birthDate, postalCode) => {
         try {
             const resp = await fetch(process.env.BACKEND_URL + `/api/users`, {
                 method: "PUT",
@@ -132,7 +132,7 @@ const userDispatcher = {
                 },
                 body: JSON.stringify({
                     firstName: firstName, lastName: lastName, email: email, userName: username, phone: phone, country: country,
-                    birthDate: birthDate, postalCode: postalCode, password: password
+                    birthDate: birthDate, postalCode: postalCode
                 })
             })
 

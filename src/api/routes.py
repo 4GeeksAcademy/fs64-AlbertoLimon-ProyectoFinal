@@ -6,6 +6,7 @@ from api.models import db, User, Favorite
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+from datetime import timedelta
 
 api = Blueprint('api', __name__)
 
@@ -55,7 +56,7 @@ def login_user():
     elif email != user_login.email or password != user_login.password:
         return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
     else:
-        access_token = create_access_token(identity=user_login.id)
+        access_token = create_access_token(identity=user_login.id, fresh=timedelta(minutes=20))
         return jsonify({ "msg": "Inicio se sesión correcto!" ,"token": access_token, "user_id": user_login.id })
 
 
@@ -73,25 +74,15 @@ def update_user():
     user = User.query.get(current_user_id)
     if user:
         data = request.json
-        firstName = data.get('firstName', user.firstName)
-        lastName = data.get('lastName', user.lastName)
-        userName = data.get('userName', user.userName)
-        email = data.get('email', user.email)
-        password = data.get('password', user.password)
-        phone = data.get('phone', user.phone)
-        country = data.get('country', user.country)
-        birthDate = data.get('birthDate', user.birthDate)
-        postalCode = data.get('postalCode', user.postalCode)
         
-        user.firstName = firstName
-        user.lastName = lastName
-        user.userName = userName
-        user.email = email
-        user.password = password
-        user.phone = phone
-        user.country = country
-        user.birthDate = birthDate
-        user.postalCode = postalCode
+        user.firstName = data.get('firstName', user.firstName)
+        user.lastName = data.get('lastName', user.lastName)
+        user.userName = data.get('userName', user.userName)
+        user.email = data.get('email', user.email)
+        user.password = data.get('password', user.password)
+        user.phone = data.get('phone', user.phone)
+        user.country = data.get('country', user.country)
+        user.postalCode = data.get('postalCode', user.postalCode)
 
         db.session.commit()
         return jsonify({'msg': 'Información de usuario actualizada!'}), 200
@@ -149,7 +140,7 @@ def create_favorite():
     favorite_query = Favorite.query.filter_by(itemName = data["itemName"], type = data["type"], userId = current_user_id).first()
 
     if favorite_query is None:
-        create_favorite = Favorite(type = data["type"], apiId = data["apiId"], itemName = data["itemName"], userId = current_user_id)
+        create_favorite = Favorite(type = data["type"], apiId = data["apiId"], itemName = data["itemName"], image = data["image"], userId = current_user_id)
         db.session.add(create_favorite)
         db.session.commit()
         return jsonify({"msg": "Favorito añadido correctamente"}), 200

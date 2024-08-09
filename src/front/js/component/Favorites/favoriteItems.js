@@ -11,7 +11,7 @@ export const FavoriteItems = ({ items }) => {
     const [ img, setImg ] = useState("")
     const navigate = useNavigate()
 
-   /* 
+   
     const getImgFavorite = async (type, apiId) => {
         console.log("img")
         const src = ""
@@ -25,15 +25,16 @@ export const FavoriteItems = ({ items }) => {
         console.log(src)
         return `${src}`
     }
-*/
-    
+
+  /*  
     const getImgFavorite = async (apiId) => {
         let src = await actions.getImageFavorite(apiId)
         setImg(src)
         
     }
+        */
     
-     getImgFavorite(1)
+    getImgFavorite(1)
     console.log(img)
     
 
@@ -47,11 +48,8 @@ export const FavoriteItems = ({ items }) => {
                 <div className="d-inline-flex scroll mb-3 gap-4">
                     {items.map((favorite, index) => (
                         <div className="card favorite" key={index}>
-                            {(() => {
-								
-                                
-							})()}
-                            <img src={`${img}`}/> 
+                            
+                            <img src={favorite.image}/> 
                             <div className="card-body">
                                 <h5 className="card-title mb-3 text-dark">{favorite.itemName}</h5>
                                 <div className="d-flex justify-content-between">

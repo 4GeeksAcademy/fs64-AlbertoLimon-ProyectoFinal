@@ -1,5 +1,5 @@
 const favoritesDispatcher = {
-    add: async (type, apiId, itemName) => {
+    add: async (type, apiId, itemName, image) => {
 
         try {
 
@@ -9,7 +9,7 @@ const favoritesDispatcher = {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ` + localStorage.getItem("jwt-token")
                 },
-                body: JSON.stringify({ type: type, apiId : apiId, itemName: itemName })
+                body: JSON.stringify({ type: type, apiId : apiId, itemName: itemName, image : image })
             });
 
 

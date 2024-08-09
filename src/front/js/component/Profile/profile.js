@@ -19,7 +19,6 @@ export const Profile = () => {
     const [inputUsername, setInputUsername] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputPhone, setInputPhone] = useState("");
-    const [inputBirthDate, setInputBirthDate] = useState("");
     const [inputCountry, setInputCountry] = useState("");
     const [inputPostalCode, setInputPostalCode] = useState("");
 
@@ -35,7 +34,6 @@ export const Profile = () => {
     console.log(inputLastName)
     console.log(inputUsername)
     console.log(inputEmail)
-    console.log(inputBirthDate)
     console.log(inputCountry)
     console.log(inputPostalCode)
 
@@ -70,10 +68,10 @@ export const Profile = () => {
     const saveChanges = async () => {
         if (inputNewPassword !== "") {
             if (inputNewPassword === inputConfirmPassword) {
-                await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode)
+                await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputPostalCode)
             }
         } else {
-            await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputBirthDate, inputPostalCode)
+            await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputPostalCode)
         }
         setStateDetailsReadOnly(true)
     }
@@ -90,7 +88,6 @@ export const Profile = () => {
         setInputUsername(store.activeUser.userName)
         setInputEmail(store.activeUser.email)
         setInputPhone(store.activeUser.phone)
-        setInputBirthDate(store.activeUser.birthDate)
         setInputCountry(store.activeUser.country)
         setInputPostalCode(store.activeUser.postalCode)
     }
@@ -153,7 +150,7 @@ export const Profile = () => {
                                     <div className="row mt-2">
                                         <div className="col form-label-group ">
                                             <label className="" htmlFor="inputEmail">Email</label>
-                                            <input type="email" id="inputEmailLogin" className="form-control w-75" placeholder="" readOnly={stateDetailsReadOnly} required="" autoFocus=""
+                                            <input type="email" id="inputEmailLogin" className="form-control w-100" placeholder="" readOnly={stateDetailsReadOnly} required="" autoFocus=""
                                                 onChange={(event) => setInputEmail(event.target.value)}
                                                 value={inputEmail} />
 
@@ -161,7 +158,7 @@ export const Profile = () => {
 
                                         <div className="col form-label-group ">
                                             <label className="" htmlFor="inputUsername">Username</label>
-                                            <input type="text" id="inputUsername" className="form-control w-75" placeholder="" readOnly={stateDetailsReadOnly} required="" autoFocus=""
+                                            <input type="text" id="inputUsername" className="form-control w-100" placeholder="" readOnly={stateDetailsReadOnly} required="" autoFocus=""
                                                 onChange={(event) => setInputUsername(event.target.value)}
                                                 value={inputUsername} />
 
@@ -179,17 +176,7 @@ export const Profile = () => {
 
                                         <div className="col form-label-group">
 
-                                            <Countries value={inputCountry} setInputCountry={setInputCountry} />
-                                        </div>
-                                    </div>
-
-                                    <div className="row mt-2">
-                                        <div className="col form-label-group">
-                                            <label className="" htmlFor="inputDate">Birth Date</label>
-                                            <input type="date" id="inputDate" className="form-control w-50" readOnly={stateDetailsReadOnly} placeholder=""
-                                                onChange={(event) => setInputBirthDate(event.target.value)}
-                                                value={inputBirthDate} />
-
+                                            <Countries value={inputCountry} readOnly={stateDetailsReadOnly} setInputCountry={setInputCountry} />
                                         </div>
 
                                         <div className="col form-label-group">
@@ -199,7 +186,10 @@ export const Profile = () => {
                                                 value={inputPostalCode} />
 
                                         </div>
+
                                     </div>
+
+
 
                                 </form>
                             </div>

@@ -10,7 +10,6 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     phone = db.Column(db.Integer, unique=True, nullable=True)
-    birthDate = db.Column(db.Date, unique=False, nullable=True)
     country = db.Column(db.String(120), unique=False, nullable=True)
     postalCode = db.Column(db.String(120), unique=False, nullable=True)
     favorites = db.relationship('Favorite', backref='user', lazy=True)
@@ -26,7 +25,6 @@ class User(db.Model):
             "userName": self.userName,
             "email": self.email,
             "phone": self.phone,
-            "birthDate": self.birthDate,
             "country": self.country,
             "postalCode": self.postalCode,
             "favorites": [favorite.serialize() for favorite in self.favorites]
@@ -38,8 +36,8 @@ class Favorite(db.Model):
     type = db.Column(db.String(150), nullable=False)
     apiId = db.Column(db.Integer,unique=False, nullable=False)
     itemName = db.Column(db.String(150), nullable=False)
+    image = db.Column(db.String(200))
     userId = db.Column(db.Integer, db.ForeignKey('user.id') ,nullable=False)
-
 
     def __repr__(self):
         return f'<Favorite {self.itemName}>'
@@ -50,5 +48,6 @@ class Favorite(db.Model):
             "type": self.type,
             "apiId" : self.apiId,
             "itemName": self.itemName,
-            "userId": self.userId,
+            "image" : self.image,
+            "userId": self.userId
         }

@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Context } from "../../store/appContext";
-import "./search.css"
+import React from "react";
+import "../../../styles/search.css"
 
 export const SearchBar = ({ setSearch, setPageNumber }) => {
 
@@ -8,7 +7,7 @@ export const SearchBar = ({ setSearch, setPageNumber }) => {
         <>
             <form className="formSearch">
                 <input
-                    className="inputSearch"
+                    className="inputSearch font-monospace"
                     type="text"
                     placeholder="Search for Characters..."
                     onChange={(e) => {
@@ -17,7 +16,7 @@ export const SearchBar = ({ setSearch, setPageNumber }) => {
                     }}
 
                 />
-                <button className="btnSearch btn btn-secondary" onClick={(event) => { event.preventDefault() }}>Search</button>
+                <button className="btnSearch btn btn-secondary font-monospace" onClick={(event) => { event.preventDefault() }}>Search</button>
             </form>
         </>
     )

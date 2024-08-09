@@ -128,7 +128,6 @@ export const Register = () => {
 
                     </div>
 
-
                     <button className="btn btn-lg btn-success w-100 btn-block boton-submit" type="submit" onClick={(e) => handleSubmit(e)}>Sign in</button>
 
                 </form>

@@ -85,7 +85,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return data;
 			},
 			getCharactersSearched: async (pageNumber, name) => {
-				console.log("name ", name)
 				const data = await charactersDispatcher.getSearch(pageNumber, name)
 				setStore({ characters: data })
 			},
@@ -104,7 +103,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return data;
 			},
 			getEpisodesSearched: async (pageNumber, name) => {
-				console.log("name ", name)
 				const data = await episodesDispatcher.getSearch(pageNumber, name)
 				setStore({ episodes: data })
 			},
@@ -121,7 +119,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return data;
 			},
 			getLocationsSearched: async (pageNumber, name) => {
-				console.log("name ", name)
 				const data = await locationsDispatcher.getSearch(pageNumber, name)
 				setStore({ locations: data })
 			},
@@ -137,21 +134,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return true;
 				}
 			},
-			getUserFromBack: async () => {
-
+			getUser: async () => {
 				const data = await userDispatcher.get()
-				console.log(data)
 				setStore({ activeUser: data });
-
-
 			},
 			deleteUser: async () => {
 				await userDispatcher.delete()
 				setStore({ token: null })
 			},
-			//Hay que comprobar el tema de las contraseñas
-			updateUser: async (id, firstName, lastName, email, username, phone, country, postalCode) => {
-				await userDispatcher.update(id, firstName, lastName, email, username, phone, country , postalCode)
+			updateUser: async (id, firstName, lastName, email, username, phone, country, postalCode, password) => {
+				await userDispatcher.update(id, firstName, lastName, email, username, phone, country , postalCode, password)
 			},
 			getFavorites: async () => {
 				const data = await favoritesDispatcher.get()
@@ -162,9 +154,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				await favoritesDispatcher.add(type, apiId, name, image)
 			},
 			deleteFavorite: async (id) => {
-				console.log("favorito a eliminar ", id)
 				const response = await favoritesDispatcher.delete(id)
-				console.log("response ",response)
+
 				if(response.deleted){
 					getActions().getFavorites()
 				}

@@ -83,6 +83,7 @@ def update_user():
         user.phone = data.get('phone', user.phone)
         user.country = data.get('country', user.country)
         user.postalCode = data.get('postalCode', user.postalCode)
+        user.password = data.get('password', user.password)
 
         db.session.commit()
         return jsonify({'msg': 'Información de usuario actualizada!'}), 200

@@ -12,9 +12,8 @@
     padding: 12px 17px;
     font-size: 1rem;
   }
-
 .btnSearch {
     font-size: 1rem;
     border-radius: 10px;
-    box-shadow: 1px 3px 9px rgba( #000000);
+    box-shadow: 1px 3px 9px 1px black;
   }

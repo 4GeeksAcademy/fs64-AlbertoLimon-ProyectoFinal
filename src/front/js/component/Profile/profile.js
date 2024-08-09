@@ -14,6 +14,8 @@ export const Profile = () => {
 
     const { store, actions } = useContext(Context);
 
+    const navigate = useNavigate()
+
     const [inputFirstName, setInputFirstName] = useState("");
     const [inputLastName, setInputLastName] = useState("");
     const [inputUsername, setInputUsername] = useState("");
@@ -22,33 +24,16 @@ export const Profile = () => {
     const [inputCountry, setInputCountry] = useState("");
     const [inputPostalCode, setInputPostalCode] = useState("");
 
-    const [inputActualPassword, setActualInputPassword] = useState("");
+
     const [inputNewPassword, setInputNewPassword] = useState("");
     const [inputConfirmPassword, setInputConfirmPassword] = useState("");
 
-
-    const [showActualPassword, setShowActualPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
-
-    console.log(inputFirstName)
-    console.log(inputLastName)
-    console.log(inputUsername)
-    console.log(inputEmail)
-    console.log(inputCountry)
-    console.log(inputPostalCode)
-
-    const navigate = useNavigate()
 
     const [stateDetailsReadOnly, setStateDetailsReadOnly] = useState(true)
     const [statePasswordReadOnly, setStatePasswordReadOnly] = useState(true)
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-
-    const toggleActualPasswordVisibility = (e) => {
-        e.preventDefault()
-        setShowActualPassword(!showActualPassword);
-    };
 
     const toggleNewPasswordVisibility = (e) => {
         e.preventDefault()
@@ -68,12 +53,16 @@ export const Profile = () => {
     const saveChanges = async () => {
         if (inputNewPassword !== "") {
             if (inputNewPassword === inputConfirmPassword) {
-                await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputPostalCode)
+                console.log(inputNewPassword)
+                await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputPostalCode, inputNewPassword)
+            }else{
+                alert("Passwords do not match each other")
             }
         } else {
             await actions.updateUser(store.activeUser.id, inputFirstName, inputLastName, inputEmail, inputUsername, inputPhone, inputCountry, inputPostalCode)
         }
         setStateDetailsReadOnly(true)
+        setStatePasswordReadOnly(true)
     }
 
     const handleDeleteAccount = async () => {
@@ -94,7 +83,7 @@ export const Profile = () => {
 
     useEffect(() => {
 
-        actions.getUserFromBack()
+        actions.getUser()
 
     }, [])
 
@@ -107,9 +96,6 @@ export const Profile = () => {
 
 
     }, [store.activeUser])
-
-
-    console.log("id : ", store.activeUser.id);
 
     return (
         <>
@@ -212,29 +198,7 @@ export const Profile = () => {
                                 <form className="">
 
                                     <div className="row mt-3">
-
-                                        <div className="col form-label-group">
-
-                                            <label className="" htmlFor="inputPassword">Actual Password</label>
-                                            <div className="d-flex flex-row align-items-center">
-                                                <input type={showActualPassword ? 'text' : 'password'}
-                                                    onChange={(e) => {
-                                                        setActualInputPassword(e.target.value);
-
-                                                    }}
-                                                    value={inputActualPassword}
-                                                    readOnly={statePasswordReadOnly}
-                                                    id="inputActualPassword" className="form-control w-75" required=""
-                                                />
-                                                <button className="bg-transparent border-0 ps-2 fs-4 pb-2" onClick={(e) => toggleActualPasswordVisibility(e)}>
-                                                    {showActualPassword ? <FaEyeSlash /> : <FaEye />}
-                                                </button>
-                                            </div>
-
-
-                                        </div>
-
-
+                           
                                         <div className="col form-label-group">
 
                                             <label className="" htmlFor="inputPassword">New Password</label>
@@ -246,13 +210,12 @@ export const Profile = () => {
                                                     }}
                                                     value={inputNewPassword}
                                                     readOnly={statePasswordReadOnly}
-                                                    id="inputNewPassword" className="form-control w-75" required=""
+                                                    id="inputNewPassword" className="form-control w-100" required=""
                                                 />
                                                 <button className="bg-transparent border-0 ps-2  fs-4 pb-2" onClick={(e) => toggleNewPasswordVisibility(e)}>
                                                     {showNewPassword ? <FaEyeSlash /> : <FaEye />}
                                                 </button>
                                             </div>
-
 
                                         </div>
 
@@ -267,7 +230,7 @@ export const Profile = () => {
                                                 }}
                                                 value={inputConfirmPassword}
                                                 readOnly={statePasswordReadOnly}
-                                                id="inputConfirmPassword" className="form-control w-75" required=""
+                                                id="inputConfirmPassword" className="form-control w-100" required=""
                                             />
 
                                         </div>

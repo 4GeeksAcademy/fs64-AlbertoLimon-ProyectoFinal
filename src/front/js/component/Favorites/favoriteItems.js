@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useContext } from "react";
 import { Context } from "../../store/appContext";
 import "../../../styles/cards.css"
@@ -8,36 +8,9 @@ import { FaTrash } from "react-icons/fa";
 export const FavoriteItems = ({ items }) => {
 
     const { store, actions } = useContext(Context);
-    const [ img, setImg ] = useState("")
+
     const navigate = useNavigate()
-
-   
-    const getImgFavorite = async (type, apiId) => {
-        console.log("img")
-        const src = ""
-        if (type === "character") {
-            src = await actions.getImageFavorite(apiId)
-        } else if (type === "episode") {
-            src = ""
-        } else if (type === "location") {
-            src = ""
-        }
-        console.log(src)
-        return `${src}`
-    }
-
-  /*  
-    const getImgFavorite = async (apiId) => {
-        let src = await actions.getImageFavorite(apiId)
-        setImg(src)
-        
-    }
-        */
     
-    getImgFavorite(1)
-    console.log(img)
-    
-
     const showDetails = (type, apiId) => {
         navigate(`/main/${type}s/${apiId}`)
     }

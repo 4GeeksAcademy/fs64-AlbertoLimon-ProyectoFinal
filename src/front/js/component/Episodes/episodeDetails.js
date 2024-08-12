@@ -15,6 +15,22 @@ export const EpisodeDetails = () => {
 
 	const navigate = useNavigate()
 
+	const token = localStorage.getItem("jwt-token")
+
+    useEffect(() => {
+       
+        const verification = async () => {
+            const verify = await actions.verifyToken()
+            if (!verify) {
+                localStorage.removeItem("jwt-token")
+                navigate("/welcome")
+                alert("You have to log in")
+            }
+        }
+        verification()
+        
+    }, [token])
+	
 	useEffect(() => {
 
 		const fetchEpisode = async () => {
@@ -48,10 +64,6 @@ export const EpisodeDetails = () => {
 						</div>
 						<div className="text-white mt-2">
 							Episode: <span className="spanDetalle fw-bold">{episode.episode}</span>
-						</div>
-
-						<div className="text-white mt-2">
-							Some residents: <span className="spanDetalle fw-bold"></span>
 						</div>
 
 					</div>

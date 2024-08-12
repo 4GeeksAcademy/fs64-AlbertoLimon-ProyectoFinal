@@ -68,7 +68,6 @@ const locationsDispatcher = {
             if(response.ok){
                 const data = await response.json();
                 const locationsSearched = data.results
-                console.log("data searched:  " ,locationsSearched)
                 return locationsSearched;
             }
 

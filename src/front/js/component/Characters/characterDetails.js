@@ -53,13 +53,28 @@ export const CharacterDetails = () => {
 
 	}
 
+	const token = localStorage.getItem("jwt-token")
+
+    useEffect(() => {
+       
+        const verification = async () => {
+            const verify = await actions.verifyToken()
+            if (!verify) {
+                localStorage.removeItem("jwt-token")
+                navigate("/welcome")
+                alert("You have to log in")
+            }
+        }
+        verification()
+        
+    }, [token])
+
 	useEffect(() => {
 
 		if (!!character.name) {
 			firstEpisodeSeenIn()
 		}
 	}, [character])
-
 
 	return (
 		<>

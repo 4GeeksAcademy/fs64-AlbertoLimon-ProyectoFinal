@@ -32,10 +32,11 @@
     font-size: 1.3rem;
 }
 .icono-login{
-    width: 30%;
+    margin-bottom: 1rem;
+    font-size: 4rem;
 }
 .icono-register{
-    width: 30%;
+    font-size: 5rem;
 }
 .olvidar-contraseña{
     align-items: end;

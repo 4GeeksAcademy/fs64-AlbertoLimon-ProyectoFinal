@@ -36,6 +36,21 @@ export const EpisodeList = () => {
         await actions.getEpisodes(pageNumber);
     }
 
+    const token = localStorage.getItem("jwt-token")
+
+    useEffect(() => {
+       
+        const verification = async () => {
+            const verify = await actions.verifyToken()
+            if (!verify) {
+                localStorage.removeItem("jwt-token")
+                navigate("/welcome")
+                alert("You have to log in")
+            }
+        }
+        verification()
+        
+    }, [token])
 
     useEffect(() => {
 
@@ -45,14 +60,10 @@ export const EpisodeList = () => {
 
     }, [pageNumber, search])
 
-    console.log("search ", search)
-
-
-
     return (
         <>
 
-            <SearchBar setSearch={setSearch} setPageNumber={setPageNumber} />
+            <SearchBar type={"episode"} setSearch={setSearch} setPageNumber={setPageNumber} />
 
             {store.episodes ?
 

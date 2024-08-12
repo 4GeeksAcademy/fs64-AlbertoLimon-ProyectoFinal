@@ -48,7 +48,6 @@ const episodesDispatcher = {
             })
             if(response.ok){
                 const data = await response.json();
-                console.log(data)
                 const id = data.id
                 return id;
             }
@@ -69,7 +68,6 @@ const episodesDispatcher = {
             if(response.ok){
                 const data = await response.json();
                 const episodesSearched = data.results
-                console.log("data searched:  " ,episodesSearched)
                 return episodesSearched;
             }
 

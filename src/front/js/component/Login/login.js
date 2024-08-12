@@ -3,9 +3,9 @@ import { Context } from "../../store/appContext";
 import "../../../styles/welcome.css";
 import "../../../styles/login.css";
 import { useNavigate } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa";
 
 export const Login = () => {
 
@@ -67,10 +67,10 @@ export const Login = () => {
                 <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
                     <form className="form-login bg-transparent">
                         <div className="text-center">
-                            <img className="icono-login" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
+                            <FaRegUserCircle  className="icono-login"/>
                         </div>
 
-                        <div className="form-label-group">
+                        <div className="form-label-group mt-1">
                             <label className="letra-negrita" htmlFor="inputEmail">Email</label>
                             <input type="email" id="inputEmailLogin" className="form-control sombreado" placeholder="Email address" required="" autoFocus=""
                                 onChange={(event) => setInputEmail(event.target.value)}
@@ -78,7 +78,7 @@ export const Login = () => {
 
                         </div>
 
-                        <div className="form-label-group mt-4">
+                        <div className="form-label-group mt-3 mb-2">
                             <label className="letra-negrita" htmlFor="inputPassword">Password</label>
                             <div className="d-flex">
 
@@ -95,15 +95,11 @@ export const Login = () => {
                                 </button>
                             </div>
 
-                            <div className="d-flex justify-content-end">
-                                <span className="">
-                                    <a className="fs-6 text-dark fw-bold" href="">Forgot password?</a>
-                                </span>
-                            </div>
+                          
 
                         </div>
 
-                        <button className="btn btn-lg btn-primary w-100 btn-block boton-submit mt-3" type="submit" onClick={(e) => handleSubmit(e)}>Login</button>
+                        <button className="btn btn-lg btn-primary w-100 btn-block boton-submit mt-4" type="submit" onClick={(e) => handleSubmit(e)}>Login</button>
 
                     </form>
                 </div>

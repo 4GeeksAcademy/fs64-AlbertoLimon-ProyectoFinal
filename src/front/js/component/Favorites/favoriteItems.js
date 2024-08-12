@@ -1,5 +1,5 @@
 import React from "react"
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
 import "../../../styles/cards.css"
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,22 @@ export const FavoriteItems = ({ items }) => {
     const showDetails = (type, apiId) => {
         navigate(`/main/${type}s/${apiId}`)
     }
+
+    const token = localStorage.getItem("jwt-token")
+
+    useEffect(() => {
+       
+        const verification = async () => {
+            const verify = await actions.verifyToken()
+            if (!verify) {
+                localStorage.removeItem("jwt-token")
+                navigate("/welcome")
+                alert("You have to log in")
+            }
+        }
+        verification()
+        
+    }, [token])
 
     return (
         <>

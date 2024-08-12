@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
+import React, { useContext, useEffect } from "react";
 import "../../styles/welcome.css";
 import { Login } from "../component/Login/login"
 import { Register } from "../component/Register/register"
@@ -8,15 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 
 export const Welcome = () => {
-
-    const { store } = useContext(Context);
-    const navigate = useNavigate()
-
     
+    const navigate = useNavigate()
 
     useEffect(() => {
         
-        if(store.token && store.token != "" && store.token != undefined){
+        const token = localStorage.getItem("jwt-token")
+        if(token && token != "" && token != undefined){
             
             navigate("/main/characters")
         }

@@ -11,6 +11,7 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+from datetime import timedelta
 
 # from models import Person
 
@@ -21,6 +22,7 @@ app = Flask(__name__)
 
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this "super secret" to something else!
 jwt = JWTManager(app)
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=20)
 
 app.url_map.strict_slashes = False
 

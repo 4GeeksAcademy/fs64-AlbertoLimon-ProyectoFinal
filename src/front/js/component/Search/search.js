@@ -1,7 +1,16 @@
 import React from "react";
 import "../../../styles/search.css"
 
-export const SearchBar = ({ setSearch, setPageNumber }) => {
+export const SearchBar = ({ type, setSearch, setPageNumber }) => {
+
+    let inputPlaceholder;
+    if(type === "character"){
+        inputPlaceholder = "Search for Characters..."
+    }else if(type === "location"){
+        inputPlaceholder = "Search for Locations..."
+    }else if(type === "episode"){
+        inputPlaceholder = "Search for Episodes..."
+    }
 
     return (
         <>
@@ -9,7 +18,7 @@ export const SearchBar = ({ setSearch, setPageNumber }) => {
                 <input
                     className="inputSearch font-monospace"
                     type="text"
-                    placeholder="Search for Characters..."
+                    placeholder={inputPlaceholder}
                     onChange={(e) => {
                         setPageNumber(1)
                         setSearch(e.target.value)

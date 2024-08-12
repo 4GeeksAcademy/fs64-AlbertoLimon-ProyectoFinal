@@ -40,7 +40,6 @@ def register_user():
         }
         return jsonify(response), 404
 
-
 @api.route('/login', methods=['POST'])
 def login_user():
     request_body = request.json
@@ -56,7 +55,7 @@ def login_user():
     elif email != user_login.email or password != user_login.password:
         return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
     else:
-        access_token = create_access_token(identity=user_login.id, fresh=timedelta(minutes=20))
+        access_token = create_access_token(identity=user_login.id)
         return jsonify({ "msg": "Inicio se sesión correcto!" ,"token": access_token, "user_id": user_login.id })
 
 

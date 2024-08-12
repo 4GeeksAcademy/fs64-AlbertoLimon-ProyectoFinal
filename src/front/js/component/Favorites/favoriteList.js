@@ -8,6 +8,7 @@ import { FavoriteItems } from "./favoriteItems";
 export const FavoriteList = () => {
 
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate()
 
     const [favoriteCharacters, setFavoriteCharacters] = useState([])
     const [favoriteEpisodes, setFavoriteEpisodes] = useState([])
@@ -39,6 +40,22 @@ export const FavoriteList = () => {
         setFavoriteLocations(locations)
     }
 
+    const token = localStorage.getItem("jwt-token")
+
+    useEffect(() => {
+       
+        const verification = async () => {
+            const verify = await actions.verifyToken()
+            if (!verify) {
+                localStorage.removeItem("jwt-token")
+                navigate("/welcome")
+                alert("You have to log in")
+            }
+        }
+        verification()
+        
+    }, [token])
+
     useEffect(() => {
 
         fetchFavorites()
@@ -61,7 +78,7 @@ export const FavoriteList = () => {
                 <div>
                     <h1 className="text-white fs-1 text-start font-monospace underline">Favorites characters</h1>
                     {favoriteCharacters.length === 0 ? (
-                        <h4 className="font-monospace text-white">La lista de personajes favoritos está vacía</h4>
+                        <h4 className="font-monospace text-white">Favorite characters list is empty!</h4>
                     ) : (
                         <FavoriteItems items={favoriteCharacters} />
                     )}
@@ -71,7 +88,7 @@ export const FavoriteList = () => {
                     <h1 className="text-white fs-1 text-start font-monospace underline">Favorites episodes</h1>
                     
                     {favoriteEpisodes.length === 0 ? (
-                        <h4 className="font-monospace text-white">La lista de episodios favoritos está vacía</h4>
+                        <h4 className="font-monospace text-white">Favorite episodes list is empty!</h4>
                     ) : (
                         <FavoriteItems items={favoriteEpisodes} />
                     )}
@@ -80,7 +97,7 @@ export const FavoriteList = () => {
                 <div>
                     <h1 className="text-white fs-1 text-start font-monospace underline">Favorites locations</h1>
                     {favoriteLocations.length === 0 ? (
-                        <h4 className="font-monospace text-white">La lista de lugares favoritos está vacía</h4>
+                        <h4 className="font-monospace text-white">Favorite locations list is empty!</h4>
                     ) : (
                         <FavoriteItems items={favoriteLocations} />
                     )}

@@ -3,9 +3,9 @@ import { Context } from "../../store/appContext";
 import "../../../styles/welcome.css";
 import "../../../styles/register.css";
 import { useNavigate } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa";
 
 export const Register = () => {
     const { store, actions } = useContext(Context);
@@ -56,14 +56,14 @@ export const Register = () => {
             <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
                 <form className="form-register bg-transparent">
                     <div className="text-center">
-                        <img className="icono-register" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
+                        <FaRegUserCircle  className="icono-register"/>
                     </div>
 
                     <div className="row d-flex flex-row">
                         <div className="col">
                             <div className="form-label-group mt-3">
                                 <label className="letra-negrita" htmlFor="inputFirstName">First Name</label>
-                                <input type="text" id="inputFirstName" className="form-control sombreado w-75" placeholder="Enter your first name" required="" autoFocus=""
+                                <input type="text" id="inputFirstName" className="form-control sombreado" placeholder="Enter your first name" required="" autoFocus=""
                                     onChange={(event) => setInputFirstName(event.target.value)}
                                     value={inputFirstName} />
 
@@ -79,7 +79,7 @@ export const Register = () => {
 
                             <div className="form-label-group mt-3">
                                 <label className="letra-negrita" htmlFor="inputName">Username</label>
-                                <input type="text" id="inputUsername" className="form-control sombreado w-75" placeholder="Enter your username" required="" autoFocus=""
+                                <input type="text" id="inputUsername" className="form-control sombreado" placeholder="Enter your username" required="" autoFocus=""
                                     onChange={(event) => setInputUsername(event.target.value)}
                                     value={inputUsername} />
 
@@ -90,7 +90,7 @@ export const Register = () => {
 
                             <div className="form-label-group mt-3">
                                 <label className="letra-negrita" htmlFor="inputLastName">Last Name</label>
-                                <input type="text" id="inputLastName" className="form-control sombreado w-75" placeholder="Enter your last name" required="" autoFocus=""
+                                <input type="text" id="inputLastName" className="form-control sombreado" placeholder="Enter your last name" required="" autoFocus=""
                                     onChange={(event) => setInputLastName(event.target.value)}
                                     value={inputLastName} />
 

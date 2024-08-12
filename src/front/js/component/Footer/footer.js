@@ -14,13 +14,13 @@ export const Footer = () => {
 				<footer className="d-flex flex-column justify-content-center ">
 					<div className="row border-bottom border-secondary ">
 						<div className="col-4 centrado">
-							<h5 className="font-monospace">Quick Links</h5>
+							<h5 className="font-monospace letra-negrita">Quick Links</h5>
 							<ul className="nav flex-column">
 								<li className="nav-item mt-2 mb-2 font-monospace"><a href="https://rickandmortyapi.com/" target="_blank">Rick & Morty API</a></li>
 							</ul>
 						</div>
 						<div className="col-4 centrado">
-							<h5 className="font-monospace">Contact Us</h5>
+							<h5 className="font-monospace letra-negrita">Contact Us</h5>
 							<ul className="nav flex-column">
 								<li className="nav-item mb-2 d-flex flex-row justify-content-center align-items-center ">
 									<BiLogoGmail />
@@ -30,7 +30,7 @@ export const Footer = () => {
 						</div>
 
 						<div className="col-4 centrado">
-							<h5 className="font-monospace">Follow</h5>
+							<h5 className="font-monospace letra-negrita">Follow</h5>
 							<ul className="nav flex-row gap-3">
 								<li className="nav-item mb-2"><a href="https://www.linkedin.com/in/alberto-limón-carmona-34660420b" target="_blank"><FaLinkedin /></a> </li>
 								<li className="nav-item mb-2"><a href="https://github.com/albertolimongithub" target="_blank"><FaGithub /></a>  </li>

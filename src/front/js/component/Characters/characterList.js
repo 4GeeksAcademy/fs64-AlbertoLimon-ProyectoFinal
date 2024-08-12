@@ -35,6 +35,23 @@ export const CharacterList = () => {
 
     }
 
+    const token = localStorage.getItem("jwt-token")
+
+    useEffect(() => {
+       
+        const verification = async () => {
+            const verify = await actions.verifyToken()
+            if (!verify) {
+                localStorage.removeItem("jwt-token")
+                navigate("/welcome")
+                alert("You have to log in")
+            }
+        }
+        verification()
+        
+    }, [token])
+    
+
     useEffect(() => {
 
         fetchInfoPages()
@@ -46,8 +63,7 @@ export const CharacterList = () => {
 
     return (
         <>
-
-            <SearchBar setSearch={setSearch} setPageNumber={setPageNumber} />
+            <SearchBar type={"character"} setSearch={setSearch} setPageNumber={setPageNumber} />
             {store.characters ?
 
                 <div className="card-container container">

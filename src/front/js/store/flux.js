@@ -61,7 +61,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			logout: async () => {
 				localStorage.removeItem("jwt-token")
-				console.log("Cerrando sesión...")
 				setStore({ token: null })
 
 			},
@@ -77,7 +76,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getCharacters: async (pageNumber) => {
 				const data = await charactersDispatcher.get(pageNumber)
-				console.log(data)
 				setStore({ characters: data })
 			},
 			getSingleCharacter: async (id) => {
@@ -143,11 +141,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ token: null })
 			},
 			updateUser: async (id, firstName, lastName, email, username, phone, country, postalCode, password) => {
-				await userDispatcher.update(id, firstName, lastName, email, username, phone, country , postalCode, password)
+				await userDispatcher.update(id, firstName, lastName, email, username, phone, country, postalCode, password)
 			},
 			getFavorites: async () => {
 				const data = await favoritesDispatcher.get()
-				console.log("Favoritos: ",data)
 				setStore({ favorites: data })
 			},
 			addFavorite: async (type, apiId, name, image) => {
@@ -156,19 +153,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			deleteFavorite: async (id) => {
 				const response = await favoritesDispatcher.delete(id)
 
-				if(response.deleted){
+				if (response.deleted) {
 					getActions().getFavorites()
 				}
-				
-				
+
+
 			},
 			getImageFavorite: async (apiId) => {
 				const img = await favoritesDispatcher.getImage(apiId)
 				return img
 			},
-			verify: async() => {
-				if(localStorage.getItem("jwt-token")){
-					
+			verifyToken: async () => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/protected", {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + localStorage.getItem("jwt-token")
+						},
+					});
+					if (response.status === 200) {
+						return true;
+					} else {
+						
+						return false;
+					}
+				} catch (error) {
+					console.error("Error en la solicitud:", error);
+					return false;
 				}
 			}
 

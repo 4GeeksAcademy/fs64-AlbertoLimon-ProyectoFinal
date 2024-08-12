@@ -36,6 +36,21 @@ export const LocationList = () => {
         await actions.getLocations(pageNumber);
     }
 
+    const token = localStorage.getItem("jwt-token")
+
+    useEffect(() => {
+       
+        const verification = async () => {
+            const verify = await actions.verifyToken()
+            if (!verify) {
+                localStorage.removeItem("jwt-token")
+                navigate("/welcome")
+                alert("You have to log in")
+            }
+        }
+        verification()
+        
+    }, [token])
 
     useEffect(() => {
 
@@ -45,14 +60,11 @@ export const LocationList = () => {
 
     }, [pageNumber, search])
 
-    console.log("num pages  ", pageNumber)
-    console.log("locations ", store.locations)
-
 
     return (
         <>
 
-            <SearchBar setSearch={setSearch} setPageNumber={setPageNumber} />
+            <SearchBar type={"location"} setSearch={setSearch} setPageNumber={setPageNumber} />
 
             {store.locations ?
 

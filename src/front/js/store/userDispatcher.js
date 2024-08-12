@@ -110,8 +110,8 @@ const userDispatcher = {
             } else {
 
                 const data = await resp.json()
-                console.log(`Usuario eliminado correctamente`);
                 localStorage.removeItem("jwt-token")
+                alert("User deleted successfully")
                 return data
             }
 
@@ -142,7 +142,7 @@ const userDispatcher = {
             } else {
 
                 const data = await resp.json()
-                console.log(`Usuario ${id} actualizado correctamente`);
+                alert(`User ${username}  successfully updated`)
                 return data
             }
 

@@ -49,7 +49,6 @@ const charactersDispatcher = {
             if(response.ok){
                 const data = await response.json();
                 const charactersSearched = data.results
-                console.log("data searched:  " ,charactersSearched)
                 return charactersSearched;
             }
 

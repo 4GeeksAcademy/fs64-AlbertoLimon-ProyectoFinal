@@ -34,10 +34,10 @@ export const Navbar = () => {
  
 						<ul className="dropdown-menu">
 							<Link to="/profile">
-								<li><a className="dropdown-item font-monospace" href="#"><MdOutlineSettings /> Account Details</a></li>
+								<li className="dropdown-item font-monospace"><MdOutlineSettings /> Account Details</li>
 							</Link>
 							<Link to="/main/favorites">
-								<li><a className="dropdown-item font-monospace" href="#"><MdFavoriteBorder /> My Favorites</a></li>
+								<li className="dropdown-item font-monospace"><MdFavoriteBorder /> My Favorites</li>
 							</Link>
 
 

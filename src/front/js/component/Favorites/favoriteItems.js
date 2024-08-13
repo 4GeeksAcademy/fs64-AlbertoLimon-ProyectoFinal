@@ -7,7 +7,7 @@ import { FaTrash } from "react-icons/fa";
 
 export const FavoriteItems = ({ items }) => {
 
-    const { store, actions } = useContext(Context);
+    const { actions } = useContext(Context);
 
     const navigate = useNavigate()
     

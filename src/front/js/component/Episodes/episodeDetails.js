@@ -41,8 +41,6 @@ export const EpisodeDetails = () => {
 		fetchEpisode()
 	}, [])
 
-	console.log("episode ",episode)
-
 	return (
 		<>
 

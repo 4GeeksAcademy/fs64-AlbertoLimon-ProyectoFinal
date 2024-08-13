@@ -70,7 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 			getElementPages: async (type, name) => {
-				console.log("name ", name)
 				const data = await pageDispatcher.getElementPages(type, name)
 				setStore({ numPages: data })
 			},

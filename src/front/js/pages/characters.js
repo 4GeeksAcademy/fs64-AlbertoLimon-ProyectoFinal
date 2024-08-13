@@ -4,11 +4,10 @@ import { CharacterList } from "../component/Characters/characterList";
 import "../../styles/main.css"
 import { useNavigate } from "react-router-dom";
 
-
-
 export const Characters = () => {
 
     const { actions } = useContext(Context);
+
     const navigate = useNavigate()
     
     const token = localStorage.getItem("jwt-token")

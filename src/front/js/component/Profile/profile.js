@@ -14,6 +14,8 @@ export const Profile = () => {
 
     const { store, actions } = useContext(Context);
 
+    const token = localStorage.getItem("jwt-token")
+
     const navigate = useNavigate()
 
     const [inputFirstName, setInputFirstName] = useState("");
@@ -82,6 +84,20 @@ export const Profile = () => {
     }
 
     useEffect(() => {
+       
+        const verification = async () => {
+            const verify = await actions.verifyToken()
+            if (!verify) {
+                localStorage.removeItem("jwt-token")
+                navigate("/welcome")
+                alert("You have to log in")
+            }
+        }
+        verification()
+        
+    }, [token])
+
+    useEffect(() => {
 
         actions.getUser()
 
@@ -92,8 +108,6 @@ export const Profile = () => {
         if (store.activeUser != "") {
             setInputs()
         }
-
-
 
     }, [store.activeUser])
 
@@ -268,7 +282,7 @@ export const Profile = () => {
 
                                     // Cierra el modal de confirmación
                                     setShowDeleteModal(false);
-                                    navigate("/welcome")
+                                   
                                 }}
                             >
                                 Yes
